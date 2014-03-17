@@ -1,4 +1,5 @@
-var testCase = require('../controllers/testCase');
+var testCase = require('../controllers/testCase.js'),
+  conjugation = require('../controllers/conjugation.js');
 
 /*
  * GET home page.
@@ -21,4 +22,17 @@ exports.newTest = function(req, res){
 
 // AJAX request.
 exports.check = function(req, res){
+  var conjugations = conjugation.conjugate(
+    req.body.verb,
+    req.body.mood);
+
+  if (conjugations[req.body.perspective] === req.body.answer) {
+    res.send({
+      result: 'correct'
+    });
+  } else {
+    res.send({
+      result: 'incorrect'
+    });
+  }
 };

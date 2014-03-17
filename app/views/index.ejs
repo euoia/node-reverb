@@ -35,12 +35,14 @@
 			</div>
 
 			<form id="testForm">
+				<input type="hidden" name="verb" value="<%= verb %>" />
 				<input type="hidden" name="mood" value="<%= mood %>" />
 				<input type="hidden" name="perspective" value="<%= perspective %>" />
 				<div class="testAnswer">
-					<%= perspectiveText %> <input id="answer" class="testAnswerInput"  autofocus="autofocus"/>
+					<%= perspectiveText %> <input name="answer" class="testAnswerInput"  autofocus="autofocus" autocomplete="off" />
 					<!-- (<%= answer %>) -->
 				</div>
+				<div class="response"></div>
 			</form>
 		</div>
 	</body>
