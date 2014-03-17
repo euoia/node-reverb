@@ -1,0 +1,50 @@
+var _ = require('underscore');
+
+var insults = [
+  'abruti',
+  'vas te faire enculer',
+  'vas te faire foutre',
+  'andouille',
+  'avorton',
+  'bouffon',
+  'branleur',
+  'cave',
+  'connard',
+  'crétin',
+  'débile',
+  'ducon',
+  'enculé',
+  'enfant de pute',
+  'enfant de salaud',
+  'enfoiré',
+  'étron',
+  'face de pet',
+  'fils de chienne',
+  'fils de garce',
+  'fils de putain',
+  'fils de pute',
+  'fripouille',
+  'gland',
+  'glandeur',
+  'idiot',
+  'imbécile',
+  'incapable',
+  'minable',
+  'minus',
+  'misérable',
+  'moins-que-rien',
+  'moron',
+  'niaiseux',
+  'nul',
+  'plouc',
+  'poltron',
+  'putois',
+  'raté',
+  'roi des cons',
+  'rosbif',
+  'sous-merde'
+];
+
+exports.newInsult = function(){
+  return _.sample(insults);
+};

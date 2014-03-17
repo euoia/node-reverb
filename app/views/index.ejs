@@ -6,14 +6,42 @@
     <head>
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-		<title>Title goes here</title>
+		<title>French verb practise</title>
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width">
 
-		<link href="bootstrap/css/bootstrap.min.css" rel="stylesheet" media="screen">
-        <link rel="stylesheet" href="css/normalize.min.css">
-        <link rel="stylesheet" href="css/main.css">
+        <link rel="stylesheet" href="bower_components/bootflatv2/css/bootstrap.min.css">
+        <link rel="stylesheet" href="bower_components/bootflatv2/bootflat/css/bootflat.min.css">
+        <link rel="stylesheet" href="stylesheets/style.css">
+
+		<script src="bower_components/jquery/dist/jquery.min.js" type="text/javascript" charset="utf-8"></script>
+		<script src="javascripts/test.js" type="text/javascript" charset="utf-8"></script>
+		<script type="text/javascript" charset="utf-8">
+			window.onload = function() {
+				var test = new Test({
+					form: document.getElementById('testForm'),
+				});
+
+				document.getElementById('answer').focus();
+			};
+		</script>
+
     </head>
     <body>
+		<div class="test">
+			<div class="testText">
+				<!-- Conjugate the verb <%= verb %> in the mood <%= mood %>: <%= perspective %> ___________ ... -->
+				Conjuguer le verbe &laquo;<%= verb %>&raquo; <%= moodText %> &hellip;
+			</div>
+
+			<form id="testForm">
+				<input type="hidden" name="mood" value="<%= mood %>" />
+				<input type="hidden" name="perspective" value="<%= perspective %>" />
+				<div class="testAnswer">
+					<%= perspectiveText %> <input id="answer" class="testAnswerInput"  autofocus="autofocus"/>
+					<!-- (<%= answer %>) -->
+				</div>
+			</form>
+		</div>
 	</body>
 </html>

@@ -1,0 +1,21 @@
+{
+  "name": "node-reverb",
+  "version": "0.0.1",
+  "authors": [
+    "James Pickard <james.pickard+github@gmail.com>"
+  ],
+  "description": "Test your French conjugation skills.",
+  "license": "ISC",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "bootflatv2": "*",
+    "jquery": "~2.1.0"
+  }
+}
