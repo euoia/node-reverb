@@ -1,5 +1,7 @@
 var testCase = require('../controllers/testCase.js'),
-  conjugation = require('../controllers/conjugation.js');
+  conjugation = require('../controllers/conjugation.js'),
+  insults = require('../controllers/insults.js'),
+  util = require('util');
 
 /*
  * GET home page.
@@ -22,17 +24,32 @@ exports.newTest = function(req, res){
 
 // AJAX request.
 exports.check = function(req, res){
-  var conjugations = conjugation.conjugate(
-    req.body.verb,
-    req.body.mood);
+  var verb = req.body.verb,
+    mood = req.body.mood,
+    perspective = req.body.perspective,
+    answer = req.body.answer;
 
-  if (conjugations[req.body.perspective] === req.body.answer) {
+  var conjugations = conjugation.conjugate(verb, mood);
+  var correctAnswer = conjugations[req.body.perspective];
+
+  if (correctAnswer === answer) {
+    var congrats = util.format('Très bien! La bonne réponse est %s.', answer);
+    // TODO: Alternative answers.
+
     res.send({
-      result: 'correct'
+      correct: true,
+      congrats: congrats
     });
   } else {
+    var insult = util.format('%s! Vouz devez répondre: %s %s',
+      insults.newInsult(),
+      testCase.perspectives[perspective].translations[0],
+      correctAnswer);
+
     res.send({
-      result: 'incorrect'
+      correct: false,
+      insult: insult,
+      conjugationTable: conjugation.conjugationTable(verb, mood)
     });
   }
 };

@@ -1,0 +1,19 @@
+0 info it worked if it ends with ok
+1 verbose cli [ '/Users/jamespickard/.nvm/v0.11.10/bin/node',
+1 verbose cli   '/Users/jamespickard/.nvm/v0.11.10/bin/npm',
+1 verbose cli   'test' ]
+2 info using npm@1.3.22
+3 info using node@v0.11.10
+4 error Error: ENOENT, open '/Users/jamespickard/Programming/node-reverb/public/package.json'
+5 error If you need help, you may report this *entire* log,
+5 error including the npm and node versions, at:
+5 error     <http://github.com/isaacs/npm/issues>
+6 error System Darwin 13.1.0
+7 error command "/Users/jamespickard/.nvm/v0.11.10/bin/node" "/Users/jamespickard/.nvm/v0.11.10/bin/npm" "test"
+8 error cwd /Users/jamespickard/Programming/node-reverb/public
+9 error node -v v0.11.10
+10 error npm -v 1.3.22
+11 error path /Users/jamespickard/Programming/node-reverb/public/package.json
+12 error code ENOENT
+13 error errno -2
+14 verbose exit [ -2, true ]

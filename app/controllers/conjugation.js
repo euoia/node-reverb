@@ -13,34 +13,34 @@ var moodData = JSON.parse(moodFile);
 
 // TODO: This would be much simpler if the json file was pre-processed.
 var moodPaths = {
-  'infinitive-present': function(moodRules) {
+  'infinitive_present': function(moodRules) {
     return moodRules.infinitive[0]['infinitive-present'];
   },
-  'indicative-present': function(moodRules) {
+  'indicative_present': function(moodRules) {
     return moodRules.indicative[0].present;
   },
-  'indicative-imperfect': function(moodRules) {
+  'indicative_imperfect': function(moodRules) {
     return moodRules.indicative[0].imperfect;
   },
-  'indicative-future': function(moodRules) {
+  'indicative_future': function(moodRules) {
     return moodRules.indicative[0].future;
   },
-  'indicative-simple-past': function(moodRules) {
+  'indicative_simple_past': function(moodRules) {
     return moodRules.indicative[0]['simple-past'];
   },
-  'conditional-present': function(moodRules) {
+  'conditional_present': function(moodRules) {
     return moodRules.conditional[0].present;
   },
-  'subjunctive-present': function(moodRules) {
+  'subjunctive_present': function(moodRules) {
     return moodRules.subjunctive[0].present;
   },
-  'imperative-present': function(moodRules) {
-    return moodRules.imperative[0].present;
+  'imperative_present': function(moodRules) {
+    return moodRules.imperative[0]['imperative-present'];
   },
-  'participle-present': function(moodRules) {
-    return moodRules.participle[0].present;
+  'participle_present': function(moodRules) {
+    return moodRules.participle[0]['present-participle'];
   },
-  'participle-past-participle': function(moodRules) {
+  'participle_past_participle': function(moodRules) {
     return moodRules.participle[0]['past-participle'];
   }
 };
@@ -77,7 +77,7 @@ var moodRules = exports.moodRules = function(verbTemplate) {
 // Get the conjugated forms of a verb from all perspectives.
 // See moodPaths above for the valid moods.
 // TODO: This could be quicker if the verbTemplate was cached.
-exports.conjugate = function(verb, mood) {
+var conjugate = exports.conjugate = function(verb, mood) {
   var template = verbTemplate(verb);
   var rules = moodRules(template);
 
@@ -87,10 +87,14 @@ exports.conjugate = function(verb, mood) {
   // unnecessary nesting).
   var moodPathFn = moodPaths[mood];
   if (moodPathFn === undefined) {
-
     throw new Error(util.format('Not a valid mood %s', mood));
   }
   var moodConjugation = moodPathFn(rules);
+  if (moodConjugation === undefined) {
+    console.log('Rules', rules);
+    throw new Error(util.format('Unable to extract mood from rules where mood=%s', mood));
+  }
+
   var perspectives = moodConjugation[0].p;
 
   // The template contains a head piece and a tail piece.
@@ -115,12 +119,12 @@ exports.conjugate = function(verb, mood) {
   // The perspectives are always in this order:
   // je tu il nous vous ils.
   var conjugations =  {
-    'first-singular':   conjugate(perspectives[0]),
-    'second-singular':  conjugate(perspectives[1]),
-    'third-singular':   conjugate(perspectives[2]),
-    'first-plural':     conjugate(perspectives[3]),
-    'second-plural':    conjugate(perspectives[4]),
-    'third-plural':     conjugate(perspectives[5])
+    'first_singular':   conjugate(perspectives[0]),
+    'second_singular':  conjugate(perspectives[1]),
+    'third_singular':   conjugate(perspectives[2]),
+    'first_plural':     conjugate(perspectives[3]),
+    'second_plural':    conjugate(perspectives[4]),
+    'third_plural':     conjugate(perspectives[5])
   };
 
   return conjugations;
@@ -129,4 +133,11 @@ exports.conjugate = function(verb, mood) {
 // Get the conjugation table for verb.
 // The verb must be supplied in its infinite form.
 exports.conjugationTable = function(verb) {
+  var results = {};
+
+  _.each(Object.keys(moodPaths), function(mood) {
+    results[mood] = conjugate(verb, mood);
+  });
+
+  return results;
 };

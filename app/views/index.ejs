@@ -14,15 +14,19 @@
         <link rel="stylesheet" href="bower_components/bootflatv2/bootflat/css/bootflat.min.css">
         <link rel="stylesheet" href="stylesheets/style.css">
 
-		<script src="bower_components/jquery/dist/jquery.min.js" type="text/javascript" charset="utf-8"></script>
+		<!-- app -->
 		<script src="javascripts/test.js" type="text/javascript" charset="utf-8"></script>
+
+		<!-- lib -->
+		<script src="bower_components/jquery/dist/jquery.min.js" type="text/javascript" charset="utf-8"></script>
+		<script src="bower_components/underscore/underscore.js" type="text/javascript" charset="utf-8"></script>
+
+		<!-- startup -->
 		<script type="text/javascript" charset="utf-8">
 			window.onload = function() {
 				var test = new Test({
 					form: document.getElementById('testForm'),
 				});
-
-				document.getElementById('answer').focus();
 			};
 		</script>
 
@@ -43,6 +47,7 @@
 					<!-- (<%= answer %>) -->
 				</div>
 				<div class="response"></div>
+				<div class="conjugationTableContainer"></div>
 			</form>
 		</div>
 	</body>

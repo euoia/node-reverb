@@ -68,43 +68,43 @@ verbs.push.apply(verbs, [
 ]);
 
 var moods = {
-  'indicative-future': {
+  'indicative_future': {
     translation: 'au futur'
   },
-  'indicative-present': {
+  'indicative_present': {
     translation: 'au indicatif présent'
   },
-  'indicative-imperfect': {
+  'indicative_imperfect': {
     translation: "à  l'imparfait"
   },
-  'conditional-present': {
+  'conditional_present': {
     translation: 'au conditionnel'
   },
-  'subjunctive-present': {
+  'subjunctive_present': {
     translation: 'au subjunctif présent'
   },
-  'participle-past-participle': {
+  'participle_past_participle': {
   translation: 'au passé composé'
   }
 };
 
-var perspectives = {
-  'first-singular': {
+var perspectives = exports.perspectives = {
+  'first_singular': {
     translations: ['Je']
   },
-  'second-singular': {
+  'second_singular': {
     translations: ['Tu']
   },
-  'third-singular': {
+  'third_singular': {
     translations: ['Il', 'Elle']
   },
-  'first-plural': {
+  'first_plural': {
     translations: ['Nous']
   },
-  'second-plural': {
+  'second_plural': {
     translations: ['Vous']
   },
-  'third-plural': {
+  'third_plural': {
     translations: ['Ils', 'Elles']
   }
 };

@@ -13,15 +13,87 @@ assert.deepEqual(moodRules,
 
 var conjugations = conjugation.conjugate(
   'finir',
-  'indicative-simple-past');
+  'indicative_simple_past');
 
 assert.deepEqual(
   conjugations,
   {
-    'first-singular': 'finis',
-    'second-singular': 'finis',
-    'third-singular': 'finit',
-    'first-plural': 'finîmes',
-    'second-plural': 'finîtes',
-    'third-plural': 'finirent'
+    'first_singular': 'finis',
+    'second_singular': 'finis',
+    'third_singular': 'finit',
+    'first_plural': 'finîmes',
+    'second_plural': 'finîtes',
+    'third_plural': 'finirent'
   });
+
+assert.deepEqual(conjugation.conjugationTable('boucher'),
+  { 'infinitive_present':
+    { 'first_singular': 'boucher',
+      'second_singular': '',
+      'third_singular': '',
+      'first_plural': '',
+      'second_plural': '',
+      'third_plural': '' },
+    'indicative_present':
+    { 'first_singular': 'bouche',
+      'second_singular': 'bouches',
+      'third_singular': 'bouche',
+      'first_plural': 'bouchons',
+      'second_plural': 'bouchez',
+      'third_plural': 'bouchent' },
+    'indicative_imperfect':
+    { 'first_singular': 'bouchais',
+      'second_singular': 'bouchais',
+      'third_singular': 'bouchait',
+      'first_plural': 'bouchions',
+      'second_plural': 'bouchiez',
+      'third_plural': 'bouchaient' },
+    'indicative_future':
+    { 'first_singular': 'boucherai',
+      'second_singular': 'boucheras',
+      'third_singular': 'bouchera',
+      'first_plural': 'boucherons',
+      'second_plural': 'boucherez',
+      'third_plural': 'boucheront' },
+    'indicative_simple_past':
+    { 'first_singular': 'bouchai',
+      'second_singular': 'bouchas',
+      'third_singular': 'boucha',
+      'first_plural': 'bouchâmes',
+      'second_plural': 'bouchâtes',
+      'third_plural': 'bouchèrent' },
+    'conditional_present':
+    { 'first_singular': 'boucherais',
+      'second_singular': 'boucherais',
+      'third_singular': 'boucherait',
+      'first_plural': 'boucherions',
+      'second_plural': 'boucheriez',
+      'third_plural': 'boucheraient' },
+    'subjunctive_present':
+    { 'first_singular': 'bouche',
+      'second_singular': 'bouches',
+      'third_singular': 'bouche',
+      'first_plural': 'bouchions',
+      'second_plural': 'bouchiez',
+      'third_plural': 'bouchent' },
+    'imperative_present':
+    { 'first_singular': 'bouche',
+      'second_singular': 'bouchons',
+      'third_singular': 'bouchez',
+      'first_plural': '',
+      'second_plural': '',
+      'third_plural': '' },
+    'participle_present':
+    { 'first_singular': 'bouchant',
+      'second_singular': '',
+      'third_singular': '',
+      'first_plural': '',
+      'second_plural': '',
+      'third_plural': '' },
+    'participle_past_participle':
+    { 'first_singular': 'bouché',
+      'second_singular': 'bouchés',
+      'third_singular': 'bouchée',
+      'first_plural': 'bouchées',
+      'second_plural': '',
+      'third_plural': '' } });
