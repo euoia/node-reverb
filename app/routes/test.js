@@ -1,6 +1,7 @@
 var testCase = require('../controllers/testCase.js'),
   conjugation = require('../controllers/conjugation.js'),
   insults = require('../controllers/insults.js'),
+  tts = require('../controllers/tts.js'),
   util = require('util');
 
 /*
@@ -41,15 +42,18 @@ exports.check = function(req, res){
       congrats: congrats
     });
   } else {
-    var insult = util.format('%s! Vouz devez répondre: %s %s',
+    var insult = util.format('%s! Vous devez répondre: %s %s',
       insults.newInsult(),
       testCase.perspectives[perspective].translations[0],
       correctAnswer);
 
+    var ttsInsultPath = tts.get(insult);
+
     res.send({
       correct: false,
       insult: insult,
-      conjugationTable: conjugation.conjugationTable(verb, mood)
+      conjugationTable: conjugation.conjugationTable(verb, mood),
+      ttsInsultPath: ttsInsultPath
     });
   }
 };
