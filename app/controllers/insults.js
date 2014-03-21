@@ -13,18 +13,10 @@ var insults = [
   'Crétin',
   'Débile',
   'Ducon',
-  'Enculé',
-  'Enfant de pute',
-  'Enfant de salaud',
   'Enfoiré',
   'Étron',
   'Face de pet',
-  'Fils de chienne',
-  'Fils de garce',
-  'Fils de putain',
-  'Fils de pute',
   'Fripouille',
-  'Gland',
   'Glandeur',
   'Idiot',
   'Imbécile',
@@ -40,9 +32,7 @@ var insults = [
   'Poltron',
   'Putois',
   'Raté',
-  'Roi des cons',
-  'Rosbif',
-  'Sous-merde'
+  'Roi des cons'
 ];
 
 exports.newInsult = function(){
