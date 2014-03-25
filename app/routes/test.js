@@ -13,14 +13,24 @@ exports.newTest = function(req, res){
   console.log('test', test);
 
   // TODO: tts for question.
-  res.render('index', {
-    title: 'Pratiquer conjuguer verbes françaises',
-    verb: test.verb,
-    mood: test.mood,
-    perspective: test.perspective,
-    gender: test.gender,
-    questionText: test.questionText,
-    questionLeader: test.questionLeader
+  tts.get(test.questionText, function(err, ttsQuestionPath) {
+    if (err) {
+      console.log('Error in tts.get', err);
+      return;
+    }
+
+    ttsQuestionUrl = tts.urlFromPath(ttsQuestionPath);
+
+    res.render('index', {
+      title: 'Pratiquer conjuguer verbes françaises',
+      verb: test.verb,
+      mood: test.mood,
+      perspective: test.perspective,
+      gender: test.gender,
+      questionAudio: ttsQuestionUrl,
+      questionText: test.questionText,
+      questionLeader: test.questionLeader
+    });
   });
 };
 
@@ -36,6 +46,7 @@ exports.check = function(req, res){
 
   var answer = testCase.answer(verb, perspective, mood, gender);
 
+  console.log('[test check] response=%s answer=%s answer.text=%s', response, answer.verb, answer.text);
   if (response === answer.verb) {
     // TODO: Alternative masculine/feminine answers.
     var congrats = util.format('Très bien! La bonne réponse est «%s».',
@@ -47,17 +58,15 @@ exports.check = function(req, res){
         return;
       }
 
-      var ttsCongratsURL = tts.urlFromPath(ttsCongratsPath);
+      var ttsCongratsUrl = tts.urlFromPath(ttsCongratsPath);
 
       res.send({
         correct: true,
         congrats: congrats,
-        audio: ttsCongratsURL
+        audio: ttsCongratsUrl
       });
     });
   } else {
-    console.log('Incorrect response, response=%s answer=%s answer.text=%s', response, answer.verb, answer.text);
-
     var insult = util.format('%s! Vous devez répondre: «%s».',
       insults.newInsult(),
       answer.text);
@@ -68,13 +77,13 @@ exports.check = function(req, res){
         return;
       }
 
-      var ttsInsultURL = tts.urlFromPath(ttsInsultPath);
+      var ttsInsultUrl = tts.urlFromPath(ttsInsultPath);
 
       res.send({
         correct: false,
         insult: insult,
         conjugationTable: conjugation.conjugationTable(verb, mood),
-        audio: ttsInsultURL
+        audio: ttsInsultUrl
       });
     });
   }

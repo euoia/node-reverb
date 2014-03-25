@@ -22,7 +22,7 @@ exports.newTest = function() {
   var sentenceBeginning = sentences.beginning(verb, perspective, mood, gender);
 
   var questionText = util.format(
-    'Conjuguer le verbe &laquo;%s&raquo; %s &hellip;',
+    'Conjuguer le verbe «%s» %s …',
     verb,
     moods.text(mood));
 

@@ -65,3 +65,11 @@ public/tts_cache/cdafe6aedbf70936f078f9ce9f1a995fde162908.mp3 Avorton! Vous deve
 public/tts_cache/662021b000efc929cbfb4574a8ce9b6f1006a8d7.mp3 Très bien! La bonne réponse est «Il couvrira».
 public/tts_cache/53440b8c5bfc612396ac7ad09b80c56a32446bea.mp3 Idiot! Vous devez répondre: «Ils feraient».
 public/tts_cache/6b2af66c62758b0cdca1b0e6d3bc1ccdc5176354.mp3 Niaiseux! Vous devez répondre: «Elles parleront».
+public/tts_cache/76e673f1cea13c98b05f7c9a0887fcc3d2cb6e2f.mp3 Conjuguer le verbe &laquo;rendre&raquo; au conditionnel &hellip;
+public/tts_cache/d5df04926fd81120bab119d70688a0cebf36881c.mp3 Conjuguer le verbe &laquo;sortir&raquo; au passé composé &hellip;
+public/tts_cache/5aa505a9205ab46b608048c97e027bb812b2913b.mp3 Conjuguer le verbe &laquo;naître&raquo; au passé composé &hellip;
+public/tts_cache/ad08255c65d1a32f79e28baf7192c6b13062b6c7.mp3 Conjuguer le verbe &laquo;entrer&raquo; à  l'imparfait &hellip;
+public/tts_cache/582b74603751453dc4eeac6c1a487c9aa7baa221.mp3 Conjuguer le verbe «monter» à  l'imparfait …
+public/tts_cache/7f73668cf33b6bc6f724687230d39a931eec1f1d.mp3 Abruti! Vous devez répondre: «Vous montiez».
+public/tts_cache/bc8aafe692607beccef23fe8bc12e9e783803322.mp3 Conjuguer le verbe «arriver» au passé composé …
+public/tts_cache/d8694c12a0484cee1173eaa971fce25023079f15.mp3 Glandeur! Vous devez répondre: «Nous sommes arrivées».
