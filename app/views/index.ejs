@@ -24,7 +24,7 @@
 		<!-- startup -->
 		<script type="text/javascript" charset="utf-8">
 			window.onload = function() {
-				var test = new Test({
+				test = new Test({
 					form: document.getElementById('testForm'),
 				});
 			};
@@ -34,20 +34,21 @@
     <body>
 		<div class="test">
 			<div class="testText">
-				<!-- Conjugate the verb <%= verb %> in the mood <%= mood %>: <%= perspective %> ___________ ... -->
-				Conjuguer le verbe &laquo;<%= verb %>&raquo; <%= moodText %> &hellip;
+				<!-- Conjugate the verb <verb> in the mood <mood>: <%= perspective %> ___________ ... -->
+				<%= questionText %>
 			</div>
 
 			<form id="testForm">
 				<input type="hidden" name="verb" value="<%= verb %>" />
 				<input type="hidden" name="mood" value="<%= mood %>" />
 				<input type="hidden" name="perspective" value="<%= perspective %>" />
+				<input type="hidden" name="gender" value="<%= gender %>" />
 				<div class="testAnswer">
-					<%= perspectiveText %> <input name="answer" class="testAnswerInput"  autofocus="autofocus" autocomplete="off" />
-					<!-- (<%= answer %>) -->
+					<%= questionLeader %> <input name="response" class="testResponseInput"  autofocus="autofocus" autocomplete="off" />
 				</div>
-				<div class="response"></div>
+				<div class="answer"></div>
 				<div class="conjugationTableContainer"></div>
+				<div class="next"><button class="nextButton">next</button</div>
 			</form>
 		</div>
 	</body>

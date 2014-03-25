@@ -1,126 +1,55 @@
 var _ = require('underscore'),
-  conjugation = require('./conjugation');
+  conjugation = require('./conjugation.js'),
+  sentences = require('./sentences.js'),
+  verbs = require('../models/verbs.js'),
+  moods = require('../models/moods.js'),
+  util = require('util');
 
-// Difficulty: 1.
-var verbs = [
-  'aller',
-  'avoir',
-  'devoir',
-  'dire',
-  'dormir',
-  'être',
-  'faire',
-  'lire',
-  'mettre',
-  'parler',
-  'penser',
-  'pouvoir',
-  'prendre',
-  'savoir',
-  'vouloir'
-];
-
-// Difficulty: 2.
-verbs.push.apply(verbs, [
-  'acheter',
-  'appeler',
-  'boire',
-  'boucher',
-  'choisir',
-  'croire',
-  'couvrir',
-  'écrire',
-  'finir',
-  'jeter',
-  'manger',
-  'payer',
-  'placer',
-  'rendre',
-  'rire',
-  'sentir',
-  'suivre',
-  'tenir',
-  'valoir',
-  'venir',
-  'vivre',
-  'voir'
-]);
-
-// Difficulty: 3 (être verbs).
-// Re*- versions taken out.
-verbs.push.apply(verbs, [
-  'aller',
-  'arriver',
-  'descendre',
-  'entrer',
-  'rentrer',
-  'monter',
-  'mourir',
-  'naître',
-  'partir',
-  'passer',
-  'rester',
-  'retourner',
-  'sortir',
-  'tomber',
-  'venir',
-  'devenir'
-]);
-
-var moods = {
-  'indicative_future': {
-    translation: 'au futur'
-  },
-  'indicative_present': {
-    translation: 'au indicatif présent'
-  },
-  'indicative_imperfect': {
-    translation: "à  l'imparfait"
-  },
-  'conditional_present': {
-    translation: 'au conditionnel'
-  },
-  'subjunctive_present': {
-    translation: 'au subjunctif présent'
-  },
-  'participle_past_participle': {
-  translation: 'au passé composé'
-  }
-};
-
-var perspectives = exports.perspectives = {
-  'first_singular': {
-    translations: ['Je']
-  },
-  'second_singular': {
-    translations: ['Tu']
-  },
-  'third_singular': {
-    translations: ['Il', 'Elle']
-  },
-  'first_plural': {
-    translations: ['Nous']
-  },
-  'second_plural': {
-    translations: ['Vous']
-  },
-  'third_plural': {
-    translations: ['Ils', 'Elles']
-  }
-};
 
 exports.newTest = function() {
-  var verb = _.sample(verbs),
-    mood = _.sample(Object.keys(moods)),
-    perspective = _.sample(Object.keys(perspectives));
+  var verb = _.sample(verbs.all_verbs),
+    mood = _.sample(moods.all_moods),
+    perspective = _.sample(sentences.perspectives),
+    gender = _.sample(sentences.genders);
 
-  var verbMoods = conjugation.conjugate(verb, mood);
+  // The question text provides the first part of a statement. For example:
+  // Je ... (most moods)
+  // J'ai ... (passé composé avoir verb)
+  // Je suis ... (passé composé être verb)
+  // Il faut que je ... (subjuntive)
+
+  // Start of a sentence, the user must finish it.
+  var sentenceBeginning = sentences.beginning(verb, perspective, mood, gender);
+
+  var questionText = util.format(
+    'Conjuguer le verbe &laquo;%s&raquo; %s &hellip;',
+    verb,
+    moods.text(mood));
 
   return {
     verb: verb,
     mood: mood,
-    moodText: moods[mood].translation,
     perspective: perspective,
-    perspectiveText: _.sample(perspectives[perspective].translations)
+    gender: gender,
+    questionText: questionText,
+    questionLeader: sentenceBeginning
+  };
+};
+
+exports.answer = function (verb, perspective, mood, gender) {
+  // Get the conjugations in all perspectives for this verb/mood combo.
+  var conjugations = conjugation.conjugate(verb, mood);
+
+  // Get the conjugation in a specific perspective.
+  var conjugatedVerb = conjugations[perspective];
+
+  // Generate the full expected response.
+  var sentenceBeginning = sentences.beginning(verb, perspective, mood, gender);
+
+  var conjugationText = util.format('%s %s', sentenceBeginning, conjugatedVerb);
+
+  return {
+    verb: conjugatedVerb,
+    text: conjugationText
   };
 };

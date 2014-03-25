@@ -12,14 +12,15 @@ exports.newTest = function(req, res){
   test = testCase.newTest();
   console.log('test', test);
 
+  // TODO: tts for question.
   res.render('index', {
-    title: 'Express',
+    title: 'Pratiquer conjuguer verbes françaises',
     verb: test.verb,
     mood: test.mood,
-    moodText: test.moodText,
     perspective: test.perspective,
-    perspectiveText: test.perspectiveText,
-    answer: test.answer
+    gender: test.gender,
+    questionText: test.questionText,
+    questionLeader: test.questionLeader
   });
 };
 
@@ -28,32 +29,53 @@ exports.check = function(req, res){
   var verb = req.body.verb,
     mood = req.body.mood,
     perspective = req.body.perspective,
-    answer = req.body.answer;
+    gender = req.body.gender,
+    response = req.body.response;
 
-  var conjugations = conjugation.conjugate(verb, mood);
-  var correctAnswer = conjugations[req.body.perspective];
+  console.dir(req.body);
 
-  if (correctAnswer === answer) {
-    var congrats = util.format('Très bien! La bonne réponse est %s.', answer);
-    // TODO: Alternative answers.
+  var answer = testCase.answer(verb, perspective, mood, gender);
 
-    res.send({
-      correct: true,
-      congrats: congrats
+  if (response === answer.verb) {
+    // TODO: Alternative masculine/feminine answers.
+    var congrats = util.format('Très bien! La bonne réponse est «%s».',
+      answer.text);
+
+    tts.get(congrats, function(err, ttsCongratsPath) {
+      if (err) {
+        console.log('Error in tts.get', err);
+        return;
+      }
+
+      var ttsCongratsURL = tts.urlFromPath(ttsCongratsPath);
+
+      res.send({
+        correct: true,
+        congrats: congrats,
+        audio: ttsCongratsURL
+      });
     });
   } else {
-    var insult = util.format('%s! Vous devez répondre: %s %s',
+    console.log('Incorrect response, response=%s answer=%s answer.text=%s', response, answer.verb, answer.text);
+
+    var insult = util.format('%s! Vous devez répondre: «%s».',
       insults.newInsult(),
-      testCase.perspectives[perspective].translations[0],
-      correctAnswer);
+      answer.text);
 
-    var ttsInsultPath = tts.get(insult);
+    tts.get(insult, function(err, ttsInsultPath) {
+      if (err) {
+        console.log('Error in tts.get', err);
+        return;
+      }
 
-    res.send({
-      correct: false,
-      insult: insult,
-      conjugationTable: conjugation.conjugationTable(verb, mood),
-      ttsInsultPath: ttsInsultPath
+      var ttsInsultURL = tts.urlFromPath(ttsInsultPath);
+
+      res.send({
+        correct: false,
+        insult: insult,
+        conjugationTable: conjugation.conjugationTable(verb, mood),
+        audio: ttsInsultURL
+      });
     });
   }
 };

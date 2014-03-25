@@ -1,2 +1,67 @@
 public/tts_cache/d316ef41b9a50cb7e647a0a1a3082bb12903209e.mp3 Poltron! Vous devez répondre: Vous prendrez
 public/tts_cache/49e9f98edfd6519f28ff9d8faaa0001e36a0c508.mp3 Plouc! Vous devez répondre: Il devenait
+public/tts_cache/d04b554073f4404039c6b05650e0ac5ca6035be9.mp3 Andouille! Vous devez répondre: Vous 
+public/tts_cache/9059b023354a58b2e4a51833953ee47b1d30cbbb.mp3 Gland! Vous devez répondre: Je finirais
+public/tts_cache/19c9829d94a633c4f2bc73e1ddf25352b86bb5b9.mp3 Crétin! Vous devez répondre: Tu tombés
+public/tts_cache/595ed5c6db0ddc0c16cd70c1f306c5370d3d0461.mp3 Vas te faire foutre! Vous devez répondre: Je rirai
+public/tts_cache/54874e727b49225dc90087d7e7943bb8b1400110.mp3 Fils de pute! Vous devez répondre: Nous voyions
+public/tts_cache/a2745010cbfa3a0e9b4648d7541aaae2e61b0c79.mp3 Fils de pute! Vous devez répondre: Tu sortiras
+public/tts_cache/c48d17b5de78c0a98f1af9c3ee579e4c87b22543.mp3 Face de pet! Vous devez répondre: Ils écriraient
+public/tts_cache/62007e3b466993195503836dfb87c4b3b6b712b8.mp3 Fils de chienne! Vous devez répondre: Nous resterons
+public/tts_cache/90982b2f4c1f9a6174ea23922cacf5da58078b48.mp3 Vas te faire enculer! Vous devez répondre: Je boive
+public/tts_cache/b9e20c64068e006cbf99bb01fceb6fa8d4147bd5.mp3 Nul! Vous devez répondre: Nous rentrons
+public/tts_cache/3aa6720699a5f36563b6d484b822dc39f6c4ae33.mp3 Avorton! Vous devez répondre: Nous devrions
+public/tts_cache/6fb70358bceceb6a7c105e167e39fe6215d51d77.mp3 Gland! Vous devez répondre: Vous mangerez
+public/tts_cache/8d50a20907fd80524563c4d8fa130183d63e26c5.mp3 Raté! Vous devez répondre: Tu fasses
+public/tts_cache/8d50a20907fd80524563c4d8fa130183d63e26c5.mp3 Raté! Vous devez répondre: Tu fasses
+public/tts_cache/975e795501a657df9907ae4b1840cef18465f51a.mp3 Avorton! Vous devez répondre: Je bouche
+public/tts_cache/975e795501a657df9907ae4b1840cef18465f51a.mp3 Avorton! Vous devez répondre: Je bouche
+public/tts_cache/d63611b291d095b74fd143ea9aaaa08e8aa6a6e5.mp3 Minable! Vous devez répondre: Je dormirais
+public/tts_cache/961b16522e3e15af390f1b59ae617bfb59cc641e.mp3 Fils de pute! Vous devez répondre: Il passait
+public/tts_cache/b09a368e2093f62a7bf4c4a03948b4a38bbdbc87.mp3 Face de pet! Vous devez repondre: Nous achetées
+public/tts_cache/ec71811e1ff4d349deae34297ea4eee6f3f10dd1.mp3 Incapable! Vous devez repondre: bonjour Vous aurez
+public/tts_cache/cecd3f9dcba83238063717c84147ed282e02b612.mp3 Nul! Vous devez répondre: Tu ailles
+public/tts_cache/b3c9aeed684c4f823f514fd2e96003e95b711974.mp3 Ducon! Vous devez répondre: Nous deviendrions
+public/tts_cache/b4cd1c3209fd767619c6d8c433d9e7604e72d09e.mp3 Moins-que-rien! Vous devez répondre: Je venu
+public/tts_cache/bf16380d40f2720d956530144c0a752a28dffe66.mp3 Très bien! La bonne réponse est placerais.
+public/tts_cache/2a6ebf2f8251534466c6a00256e5154910cdcf60.mp3 Très bien! La bonne réponse est bois.
+public/tts_cache/d7811d230b96afbe62bc4b0a431b6aefb1591e39.mp3 Abruti! Vous devez répondre: Il voit
+public/tts_cache/3fa0fb71d3bdd100cb03a038300a81ed187e7652.mp3 Roi des cons! Vous devez répondre: Ils seront %s
+public/tts_cache/7724795f7e522379894e27483b2c59b4f64293f2.mp3 Très bien! La bonne réponse est «Il boit».
+public/tts_cache/fc2dfe8cc455507bdbe003ce2d84f4a9975e9278.mp3 Face de pet! Vous devez répondre: «Ils aillent».
+public/tts_cache/d11730e5f8e39424abe64508dbd1d018ee3585e1.mp3 Branleur! Vous devez répondre: «Nous rentrerions».
+public/tts_cache/66c056487307fd5cb8bb2a0e4f8bab72ea041590.mp3 Crétin! Vous devez répondre: «Il passera».
+public/tts_cache/9e30ddaa073e51654a80f30c1cebe0d40d47c888.mp3 Incapable! Vous devez répondre: «Tu tenus».
+public/tts_cache/1ec47c20cc1a14c9af1c1dc2455e094c9e6f287f.mp3 Bouffon! Vous devez répondre: «Ils seront».
+public/tts_cache/3598a80380d0ca2ac45ff25462d0ba0ed2fdca08.mp3 Très bien! La bonne réponse est «Vous viendrez».
+public/tts_cache/586a5f97fdf4a70ee937765850ec141091aa9cc8.mp3 Très bien! La bonne réponse est «Tu parles».
+public/tts_cache/ef160c9c78fbb4f2e5644990737df9f5abd9f4f1.mp3 Très bien! La bonne réponse est «Vous allez».
+public/tts_cache/74e54ff937815d4f5588cbb5761d856d61b2b132.mp3 Misérable! Vous devez répondre: «Ils rient».
+public/tts_cache/529e77029da069b3719f900672a750351ff37812.mp3 Niaiseux! Vous devez répondre: «Ils ont».
+public/tts_cache/0bb5b9d4bf4f52626c2bb9312de961191ea85830.mp3 Connard! Vous devez répondre: «Nous tenues».
+public/tts_cache/3290e6e81c9732dda01e2ac2492dc66c02862dfc.mp3 Vas te faire enculer! Vous devez répondre: «Nous achetions».
+public/tts_cache/652d2cadae44e7570e01cf129daac0b92d4403ad.mp3 Très bien! La bonne réponse est «undefined entraient».
+public/tts_cache/7a24dcfc74fae96bd0204240939607972f646ae2.mp3 Très bien! La bonne réponse est «undefined resterais».
+public/tts_cache/83f0ace3198758ff460c7ce2289c2d25d4c5f913.mp3 Imbécile! Vous devez répondre: «Il allait».
+public/tts_cache/199030c496771407d97cec8415074feb1b48b39e.mp3 Niaiseux! Vous devez répondre: «Vous veniez».
+public/tts_cache/c4beded0d843a8ed9bfae0726325fabb9498aae0.mp3 Plouc! Vous devez répondre: «Il mourrait».
+public/tts_cache/8debae156514abeab366c623984691058f1e763f.mp3 Imbécile! Vous devez répondre: «Vous mourrez».
+public/tts_cache/a9ea094eb34f32233a2ed09efd11838473b69887.mp3 Cave! Vous devez répondre: «Nous tombions».
+public/tts_cache/63673aedcc614104129b0f7a6a3b01722b93a4df.mp3 Moins-que-rien! Vous devez répondre: «Nous ayons».
+public/tts_cache/4f9f7e7288ee7e4809260ea3bbd4336c9ee7f213.mp3 Moins-que-rien! Vous devez répondre: «Tu iras».
+public/tts_cache/31beee6ed81fcc4a561566417f243bb4fc7945e0.mp3 Imbécile! Vous devez répondre: «Je vivrai».
+public/tts_cache/6bca076058f1b16de27b6d0d582e452a393ff29a.mp3 Connard! Vous devez répondre: «Nous choisissions».
+public/tts_cache/5c5626af69b4f408ac59b83a67eb43f07b40497e.mp3 Roi des cons! Vous devez répondre: «Elles ».
+public/tts_cache/76be9fecaf8728f257127d1f09151e24670e0a59.mp3 Minable! Vous devez répondre: «Nous [object Object]».
+public/tts_cache/ac4f996c351f8c7d6f54cca60929d01d13c68627.mp3 Ducon! Vous devez répondre: «Nous [object Object]».
+public/tts_cache/4ff51ddf74ae283ee473664082bda723002f48e5.mp3 Moins-que-rien! Vous devez répondre: «Il appelée».
+public/tts_cache/620f8f56f72e919d36375cacfa3404312223dff0.mp3 Moron! Vous devez répondre: «Nous rions».
+public/tts_cache/f06cf856118dfb22e6d6758cd05ce6f374cd8345.mp3 Avorton! Vous devez répondre: «Vous ».
+public/tts_cache/8d9bb998ecef9d1d46fb4c72ec7f6fa6e292eb9d.mp3 Misérable! Vous devez répondre: «Tu prendrais».
+public/tts_cache/d6b2518295c78840f9586e8130c6a0a2f45abbd3.mp3 Plouc! Vous devez répondre: «Ils mangeaient».
+public/tts_cache/0110df6c3155b0af5672c403ae7795f95e999b31.mp3 Bouffon! Vous devez répondre: «Nous descendues».
+public/tts_cache/c73d6c9e7ac6d8f23b393b0eabbd9f49c171a130.mp3 Avorton! Vous devez répondre: «Il retournera».
+public/tts_cache/cdafe6aedbf70936f078f9ce9f1a995fde162908.mp3 Avorton! Vous devez répondre: «Il vaudrait».
+public/tts_cache/662021b000efc929cbfb4574a8ce9b6f1006a8d7.mp3 Très bien! La bonne réponse est «Il couvrira».
+public/tts_cache/53440b8c5bfc612396ac7ad09b80c56a32446bea.mp3 Idiot! Vous devez répondre: «Ils feraient».
+public/tts_cache/6b2af66c62758b0cdca1b0e6d3bc1ccdc5176354.mp3 Niaiseux! Vous devez répondre: «Elles parleront».

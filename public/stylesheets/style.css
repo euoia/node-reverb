@@ -1,6 +1,10 @@
-body {
+incorrect {
   padding: 50px;
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+}
+
+div {
+	margin-bottom: 1em;
 }
 
 a {
@@ -14,11 +18,8 @@ body {
 	width: 70em;
 }
 
-.testText {
-	margin-bottom: 2em;
-}
-
 .test {
+	margin-top: 2em;
 	margin-left: auto;
 	margin-right: auto;
 	text-align: center;
@@ -26,26 +27,63 @@ body {
 	color: #012395;
 }
 
-.testAnswer {
-	color: #ed2939;
+.testResponse {
+	color: #7b7b7b;
 }
 
-.testAnswerInput {
+.testResponseInput {
 	background-color: #edebaa;
 	border-width: 0;
-	width: 5em;
+	width: 8em;
 	border-bottom: 1px dashed #777;
 }
 
-.testAnswerInput:focus {
+.testResponseInput:focus {
     outline-width: 0;
 }
 
 .conjugationTableContainer {
-	font-size: 18pt;
+	font-family: monospace;
+	font-size: 14pt;
+	display: table;
+	margin-left: auto;
+	margin-right: auto;
 }
 
-.conjugationTable > td, th {
-	padding: 10px;
+td, th {
+	padding: 13px;
 	text-align: left;
+}
+
+.next {
+	display: none;
+}
+
+.nextButton {
+	background: white;
+	color: green;
+	font-family: monospace;
+}
+
+.perspective {
+	text-align: right;
+	font-weight: 600;
+}
+
+th {
+	border-bottom: 1px solid #1b1b1b;
+}
+
+table {
+	background-color: #f8f8f8;
+	color: #6b6ba5;
+	border: 1px dashed #1b1b1b;
+}
+
+.correct {
+	color: #11ff11;
+}
+
+.incorrect {
+	color: #ff1111;
 }

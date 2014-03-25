@@ -5,7 +5,8 @@ function Test(options) {
     var verb = $('input[name=verb]', this.form).val();
     var mood = $('input[name=mood]', this.form).val();
     var perspective = $('input[name=perspective]', this.form).val();
-    var answer = $('input[name=answer]', this.form).val();
+    var gender = $('input[name=gender]', this.form).val();
+    var response = $('input[name=response]', this.form).val();
 
     // TODO: Make ajax request.
     $.ajax({
@@ -15,14 +16,19 @@ function Test(options) {
         verb: verb,
         mood: mood,
         perspective: perspective,
-        answer: answer
+        gender: gender,
+        response: response
       },
-      success: this.handleCheckResponse.bind(this),
+      success: this.handleCheckanswer.bind(this),
       dataType: 'json'
     });
 
     return false;
   }.bind(this);
+
+  $('.next', this.form).click(function(eventData) {
+    window.location = '/';
+  });
 
   this.conjugationTableTemplate = _.template(
     '<table class="conjugationTable">' +
@@ -35,7 +41,7 @@ function Test(options) {
         '<th>au passé composé</th>' +
       '</tr>' +
       '<tr>' +
-        '<td>je</td>' +
+        '<td class="perspective">je</td>' +
         '<td><%= indicative_imperfect.first_singular %></td>' +
         '<td><%= indicative_present.first_singular %></td>' +
         '<td><%= indicative_future.first_singular %></td>' +
@@ -43,7 +49,7 @@ function Test(options) {
         '<td><%= participle_past_participle.first_singular %></td>' +
       '</tr>' +
       '<tr>' +
-        '<td>tu</td>' +
+        '<td class="perspective">tu</td>' +
         '<td><%= indicative_imperfect.second_singular %></td>' +
         '<td><%= indicative_present.second_singular %></td>' +
         '<td><%= indicative_future.second_singular %></td>' +
@@ -51,7 +57,7 @@ function Test(options) {
         '<td><%= participle_past_participle.second_singular %></td>' +
       '</tr>' +
       '<tr>' +
-        '<td>il</td>' +
+        '<td class="perspective">il</td>' +
         '<td><%= indicative_imperfect.third_singular %></td>' +
         '<td><%= indicative_present.third_singular %></td>' +
         '<td><%= indicative_future.third_singular %></td>' +
@@ -59,7 +65,7 @@ function Test(options) {
         '<td><%= participle_past_participle.third_singular %></td>' +
       '</tr>' +
       '<tr>' +
-        '<td>nous</td>' +
+        '<td class="perspective">nous</td>' +
         '<td><%= indicative_imperfect.first_plural %></td>' +
         '<td><%= indicative_present.first_plural %></td>' +
         '<td><%= indicative_future.first_plural %></td>' +
@@ -67,7 +73,7 @@ function Test(options) {
         '<td><%= participle_past_participle.first_plural %></td>' +
       '</tr>' +
       '<tr>' +
-        '<td>vous</td>' +
+        '<td class="perspective">vous</td>' +
         '<td><%= indicative_imperfect.second_plural %></td>' +
         '<td><%= indicative_present.second_plural %></td>' +
         '<td><%= indicative_future.second_plural %></td>' +
@@ -75,7 +81,7 @@ function Test(options) {
         '<td><%= participle_past_participle.second_plural %></td>' +
       '</tr>' +
       '<tr>' +
-        '<td>ils</td>' +
+        '<td class="perspective">ils</td>' +
         '<td><%= indicative_imperfect.third_plural %></td>' +
         '<td><%= indicative_present.third_plural %></td>' +
         '<td><%= indicative_future.third_plural %></td>' +
@@ -91,15 +97,29 @@ Test.prototype.generateConjugationTable = function(conjugationTable) {
   return this.conjugationTableTemplate(conjugationTable);
 };
 
-Test.prototype.handleCheckResponse = function(resData) {
-  $('.response', testForm).html(resData.result);
+Test.prototype.playAudio = function(audioPath) {
+  var audio = document.createElement('audio');
+  audio.src = audioPath;
+  audio.autoplay = true;
+
+  this.form.appendChild(audio);
+};
+
+Test.prototype.handleCheckanswer = function(resData) {
+  $('.answer', this.form).html(resData.result);
 
   if (resData.correct === true) {
-    $('.response', testForm).html(resData.congrats);
+    $('.answer', this.form).html(resData.congrats);
+    $('.answer', this.form).addClass('correct');
   } else {
-    $('.response', testForm).html(resData.insult);
-    console.dir(resData.conjugationTable);
-    $('.conjugationTableContainer', testForm).html(
+    $('.answer', this.form).html(resData.insult);
+    $('.answer', this.form).addClass('incorrect');
+
+    $('.conjugationTableContainer', this.form).html(
       this.generateConjugationTable(resData.conjugationTable));
   }
+
+  this.playAudio(resData.audio);
+  $('.next', this.form).show();
+  $('.nextButton', this.form).focus();
 };
