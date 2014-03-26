@@ -1,9 +1,9 @@
 var moods = {
-  'indicative_future': {
-    text: 'au futur'
-  },
   'indicative_present': {
     text: 'au indicatif présent'
+  },
+  'indicative_future': {
+    text: 'au futur'
   },
   'indicative_imperfect': {
     text: "à  l'imparfait"

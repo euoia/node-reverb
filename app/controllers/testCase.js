@@ -3,13 +3,14 @@ var _ = require('underscore'),
   sentences = require('./sentences.js'),
   verbs = require('../models/verbs.js'),
   moods = require('../models/moods.js'),
+  perspectives = require('../models/perspectives.js'),
   util = require('util');
 
 
 exports.newTest = function() {
   var verb = _.sample(verbs.all_verbs),
     mood = _.sample(moods.all_moods),
-    perspective = _.sample(sentences.perspectives),
+    perspective = _.sample(perspectives.all_perspectives),
     gender = _.sample(sentences.genders);
 
   // The question text provides the first part of a statement. For example:
@@ -38,12 +39,9 @@ exports.newTest = function() {
 
 exports.answer = function (verb, perspective, mood, gender) {
   // Get the conjugations in all perspectives for this verb/mood combo.
-  var conjugations = conjugation.conjugate(verb, mood);
+  var conjugatedVerb = conjugation.conjugate(verb, perspective, mood, gender);
 
-  // Get the conjugation in a specific perspective.
-  var conjugatedVerb = conjugations[perspective];
-
-  // Generate the full expected response.
+  // Generate the full sentence beginning.
   var sentenceBeginning = sentences.beginning(verb, perspective, mood, gender);
 
   var conjugationText = util.format('%s %s', sentenceBeginning, conjugatedVerb);
