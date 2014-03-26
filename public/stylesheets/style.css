@@ -56,11 +56,34 @@ body {
 	height: 1056px;
 }
 
-.testTitle {
-	font-weight: 600;
-	text-align: center;
+.test::before {
+  content: '';
+  position: absolute;
+  width: 4px;
+  top: 0;
+  left: 30px;
+  bottom: 0;
+  border: 1px solid;
+  border-color: transparent #efe4e4;
+}
+
+.testTitleSection {
 	margin-bottom: 20px;
-	margin-top: 20px;
+	margin-top: -4px;
+	margin-left: -42px;
+	background-color: #ffffff;
+	min-height: 64px;
+	padding-top: 64px;
+	vertical-align: bottom;
+}
+
+.testTitle {
+	background-color: transparent;
+	font-size: 1.2em;
+	text-align: center;
+	margin-top: -20px;
+	margin-bottom: 20px;
+	text-decoration: underline;
 }
 
 .testText {
