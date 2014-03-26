@@ -115,3 +115,7 @@ assert.deepEqual(conjugation.conjugationTable('aller'),
      second_plural: 'allés',
      third_plural: 'allés' } }
 );
+
+assert.equal(
+  conjugation.conjugate('aller', 'third_singular', 'participle_past_participle', 'feminine'),
+  'allée');

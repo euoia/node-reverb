@@ -81,7 +81,7 @@ var moodRules = exports.moodRules = function(verbTemplate) {
 // Get the conjugated forms of a verb from all perspectives.
 // See moodPaths above for the valid moods.
 // TODO: This could be quicker if the verbTemplate was cached.
-var conjugationsInMood = exports.conjugationsInMood = function(verb, mood) {
+var conjugationsInMood = exports.conjugationsInMood = function(verb, mood, gender) {
   var template = verbTemplate(verb);
   var rules = moodRules(template);
 
@@ -112,7 +112,7 @@ var conjugationsInMood = exports.conjugationsInMood = function(verb, mood) {
     var verbEnding = perspectiveRule.i;
     var conjugatedVerb = util.format('%s%s', verbHead, verbEnding);
     var conjugatedVerbModifiedForContext = perspectives.modifyVerbForContext(
-      conjugatedVerb, verb, perspective, mood, 'masculine');
+      conjugatedVerb, verb, perspective, mood, gender);
 
     return conjugatedVerbModifiedForContext;
   }
@@ -146,26 +146,23 @@ var conjugationsInMood = exports.conjugationsInMood = function(verb, mood) {
 
 // Get the conjugation table for verb.
 // The verb must be supplied in its infinite form.
+// Only uses the masculine forms.
 exports.conjugationTable = function(verb) {
   var results = {};
 
   _.each(moods.all_moods, function(mood) {
-    results[mood] = conjugationsInMood(verb, mood);
+    results[mood] = conjugationsInMood(verb, mood, 'masculine');
   });
 
   return results;
 };
 
 exports.conjugate = function (verb, perspective, mood, gender) {
-  var moodConjugations = conjugationsInMood(verb, mood);
+  var moodConjugations = conjugationsInMood(verb, mood, gender);
 
   // Get the base conjugated version of the verb.
   var conjugatedVerb = moodConjugations[perspective];
 
-  // In some contexts the conjugated verb is modified.
-  var conjugatedVerbModifiedForContext = perspectives.modifyVerbForContext(
-    conjugatedVerb, perspective, mood, gender);
-
-  return conjugatedVerbModifiedForContext;
+  return conjugatedVerb;
 
 };
