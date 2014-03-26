@@ -37,7 +37,7 @@ var perspectives = {
     subject: 'Il',
     avoir: 'Il à',
     etre: 'Il est',
-    verb_suffix: 'e',
+    verb_suffix: '',
     feminine: {
       subject: 'Elle',
       avoir: 'Elle à',
@@ -85,7 +85,7 @@ exports.verbSuffix = function (verb, perspective, gender) {
   return perspectives[perspective][aspect];
 };
 
-exports.token = function (verb, perspective, gender, mood) {
+exports.token = function (verb, perspective, mood, gender) {
   // One of: subject, avoir, etre.
   var aspect;
 
@@ -102,7 +102,9 @@ exports.token = function (verb, perspective, gender, mood) {
   }
 
   // If there's a feminine version then use it.
-  if (gender === 'feminine' && perspectives[perspective].feminine !== undefined) {
+  if (gender === 'feminine' &&
+      perspectives[perspective].feminine !== undefined
+  ) {
     return perspectives[perspective].feminine[aspect];
   }
 
@@ -115,21 +117,22 @@ exports.token = function (verb, perspective, gender, mood) {
 // I.e. Applies a suffix to the verb when the mood is
 // participle_past_participle and the verb is conjugated with être rather than
 // avoir.
-exports.modifyVerbForContext = function (verb, perspective, gender, mood) {
+exports.modifyVerbForContext = function (conjugatedVerb, verb, perspective, mood, gender) {
   var verbSuffix = '';
 
   if (mood === 'participle_past_participle' &&
     _.contains(verbs.etre_verbs, verb)
   ) {
-
     // If there's a feminine version then use it.
-    if (perspectives[perspective].feminine !== undefined) {
+    if (gender === 'feminine' &&
+        perspectives[perspective].feminine !== undefined
+    ) {
       verbSuffix = perspectives[perspective].feminine.verb_suffix;
     } else {
       verbSuffix = perspectives[perspective].verb_suffix;
     }
   }
 
-  return util.format('%s%s', verb, verbSuffix);
+  return util.format('%s%s', conjugatedVerb, verbSuffix);
 };
 

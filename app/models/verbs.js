@@ -64,6 +64,8 @@ all_verbs.push.apply(all_verbs, [
   'devenir'
 ]);
 
+all_verbs = ['aller'];
+
 // The être verbs are conjugated differently.
 // In past-participle they conjugate with être instead of avoir.
 var etre_verbs = [

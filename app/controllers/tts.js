@@ -44,7 +44,8 @@ function updateIndex(path, str) {
 exports.get = function(strToSpeak, cb) {
   var strPath = makeStrPath(strToSpeak);
   if (fs.existsSync(strPath)) {
-    return strPath;
+    console.log('audio already exists');
+    return cb(null, strPath);
   }
 
   var APIUrl = makeAPIUrl(strToSpeak);

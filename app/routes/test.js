@@ -13,6 +13,7 @@ exports.newTest = function(req, res){
   console.log('test', test);
 
   // TODO: tts for question.
+  console.log('getting question audio');
   tts.get(test.questionText, function(err, ttsQuestionPath) {
     if (err) {
       console.log('Error in tts.get', err);
@@ -21,6 +22,7 @@ exports.newTest = function(req, res){
 
     ttsQuestionUrl = tts.urlFromPath(ttsQuestionPath);
 
+    console.log('rendering');
     res.render('index', {
       title: 'Pratiquer conjuguer verbes françaises',
       verb: test.verb,

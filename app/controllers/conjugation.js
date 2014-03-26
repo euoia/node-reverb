@@ -86,8 +86,8 @@ var conjugationsInMood = exports.conjugationsInMood = function(verb, mood) {
   var rules = moodRules(template);
 
   // Get the specific path to the conjugation rule for this mood.
-  var perspectives = getConjugationRulesFromMoodRules(mood, rules);
-  if (perspectives === null) {
+  var conjugationRules = getConjugationRulesFromMoodRules(mood, rules);
+  if (conjugationRules === null) {
     // This is an error.
     return null;
   }
@@ -103,29 +103,43 @@ var conjugationsInMood = exports.conjugationsInMood = function(verb, mood) {
   var verbHead = verb.substr(0, verbSplitPoint);
   var verbTail = verb.substr(verbSplitPoint);
 
-  function createConjugatedVerb (perspective, perspectiveRule) {
-    // There's a special case for participle_past_participle - only the first
-    // rule is used. TODO: Fix up the verb tables.
-    if (mood === 'participle_past_participle' &&
-      perspective  !== 'first_singular'
-    ) {
-      return '';
-    }
-
+  function createConjugatedVerb (perspectiveRule) {
     var verbEnding = perspectiveRule.i;
     return util.format('%s%s', verbHead, verbEnding);
   }
 
-  // The perspective rules are always in this order:
-  // je tu il nous vous ils.
-  var conjugations =  {
-    'first_singular':   createConjugatedVerb('first_singular', perspectives[0]),
-    'second_singular':  createConjugatedVerb('second_singular', perspectives[1]),
-    'third_singular':   createConjugatedVerb('third_singular', perspectives[2]),
-    'first_plural':     createConjugatedVerb('first_plural', perspectives[3]),
-    'second_plural':    createConjugatedVerb('second_plural', perspectives[4]),
-    'third_plural':     createConjugatedVerb('third_plural', perspectives[5])
-  };
+  function createConjugatedPastParticiple (perspectiveRule, perspective) {
+    var verbEnding = perspectiveRule.i;
+    var conjugatedVerb = util.format('%s%s', verbHead, verbEnding);
+    var conjugatedVerbModifiedForContext = perspectives.modifyVerbForContext(
+      conjugatedVerb, verb, perspective, mood, 'masculine');
+
+    return conjugatedVerbModifiedForContext;
+  }
+
+  var conjugations;
+  if (mood === 'participle_past_participle') {
+    // Conjugating in the past_participle mood is a special case.
+    conjugations =  {
+      'first_singular':   createConjugatedPastParticiple(conjugationRules[0], 'first_singular'),
+      'second_singular':  createConjugatedPastParticiple(conjugationRules[0], 'second_singular'),
+      'third_singular':   createConjugatedPastParticiple(conjugationRules[0], 'third_singular'),
+      'first_plural':     createConjugatedPastParticiple(conjugationRules[0], 'first_plural'),
+      'second_plural':    createConjugatedPastParticiple(conjugationRules[0], 'second_plural'),
+      'third_plural':     createConjugatedPastParticiple(conjugationRules[0], 'third_plural')
+    };
+  } else {
+    // The perspective rules are always in this order:
+    // je tu il nous vous ils.
+    conjugations =  {
+      'first_singular':   createConjugatedVerb(conjugationRules[0]),
+      'second_singular':  createConjugatedVerb(conjugationRules[1]),
+      'third_singular':   createConjugatedVerb(conjugationRules[2]),
+      'first_plural':     createConjugatedVerb(conjugationRules[3]),
+      'second_plural':    createConjugatedVerb(conjugationRules[4]),
+      'third_plural':     createConjugatedVerb(conjugationRules[5])
+    };
+  }
 
   return conjugations;
 };

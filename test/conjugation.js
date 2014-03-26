@@ -27,46 +27,91 @@ assert.deepEqual(
   });
 
 assert.deepEqual(conjugation.conjugationTable('boucher'),
-  { indicative_present:
-    { first_singular: 'bouche',
-      second_singular: 'bouches',
-      third_singular: 'bouche',
-      first_plural: 'bouchons',
-      second_plural: 'bouchez',
-      third_plural: 'bouchent' },
-    indicative_future:
-    { first_singular: 'boucherai',
-      second_singular: 'boucheras',
-      third_singular: 'bouchera',
-      first_plural: 'boucherons',
-      second_plural: 'boucherez',
-      third_plural: 'boucheront' },
-    indicative_imperfect:
-    { first_singular: 'bouchais',
-      second_singular: 'bouchais',
-      third_singular: 'bouchait',
-      first_plural: 'bouchions',
-      second_plural: 'bouchiez',
-      third_plural: 'bouchaient' },
-    conditional_present:
-    { first_singular: 'boucherais',
-      second_singular: 'boucherais',
-      third_singular: 'boucherait',
-      first_plural: 'boucherions',
-      second_plural: 'boucheriez',
-      third_plural: 'boucheraient' },
-    subjunctive_present:
-    { first_singular: 'bouche',
-      second_singular: 'bouches',
-      third_singular: 'bouche',
-      first_plural: 'bouchions',
-      second_plural: 'bouchiez',
-      third_plural: 'bouchent' },
-    participle_past_participle:
-    { first_singular: 'bouché',
-      second_singular: '',
-      third_singular: '',
-      first_plural: '',
-      second_plural: '',
-      third_plural: '' } }
+{ indicative_present:
+   { first_singular: 'bouche',
+     second_singular: 'bouches',
+     third_singular: 'bouche',
+     first_plural: 'bouchons',
+     second_plural: 'bouchez',
+     third_plural: 'bouchent' },
+  indicative_future:
+   { first_singular: 'boucherai',
+     second_singular: 'boucheras',
+     third_singular: 'bouchera',
+     first_plural: 'boucherons',
+     second_plural: 'boucherez',
+     third_plural: 'boucheront' },
+  indicative_imperfect:
+   { first_singular: 'bouchais',
+     second_singular: 'bouchais',
+     third_singular: 'bouchait',
+     first_plural: 'bouchions',
+     second_plural: 'bouchiez',
+     third_plural: 'bouchaient' },
+  conditional_present:
+   { first_singular: 'boucherais',
+     second_singular: 'boucherais',
+     third_singular: 'boucherait',
+     first_plural: 'boucherions',
+     second_plural: 'boucheriez',
+     third_plural: 'boucheraient' },
+  subjunctive_present:
+   { first_singular: 'bouche',
+     second_singular: 'bouches',
+     third_singular: 'bouche',
+     first_plural: 'bouchions',
+     second_plural: 'bouchiez',
+     third_plural: 'bouchent' },
+  participle_past_participle:
+   { first_singular: 'bouché',
+     second_singular: 'bouché',
+     third_singular: 'bouché',
+     first_plural: 'bouché',
+     second_plural: 'bouché',
+     third_plural: 'bouché' } }
+);
+
+assert.deepEqual(conjugation.conjugationTable('aller'),
+{ indicative_present:
+   { first_singular: 'vais',
+     second_singular: 'vas',
+     third_singular: 'va',
+     first_plural: 'allons',
+     second_plural: 'allez',
+     third_plural: 'vont' },
+  indicative_future:
+   { first_singular: 'irai',
+     second_singular: 'iras',
+     third_singular: 'ira',
+     first_plural: 'irons',
+     second_plural: 'irez',
+     third_plural: 'iront' },
+  indicative_imperfect:
+   { first_singular: 'allais',
+     second_singular: 'allais',
+     third_singular: 'allait',
+     first_plural: 'allions',
+     second_plural: 'alliez',
+     third_plural: 'allaient' },
+  conditional_present:
+   { first_singular: 'irais',
+     second_singular: 'irais',
+     third_singular: 'irait',
+     first_plural: 'irions',
+     second_plural: 'iriez',
+     third_plural: 'iraient' },
+  subjunctive_present:
+   { first_singular: 'aille',
+     second_singular: 'ailles',
+     third_singular: 'aille',
+     first_plural: 'allions',
+     second_plural: 'alliez',
+     third_plural: 'aillent' },
+  participle_past_participle:
+   { first_singular: 'allé',
+     second_singular: 'allé',
+     third_singular: 'allé',
+     first_plural: 'allés',
+     second_plural: 'allés',
+     third_plural: 'allés' } }
 );
