@@ -7,7 +7,7 @@
     "test": "node test/*"
   },
   "dependencies": {
-    "express": "3.4.8",
+    "express": "~3.4.8",
     "jade": "*",
     "underscore": "~1.6.0",
     "request": "~2.34.0"
