@@ -28,5 +28,5 @@ exports.beginning = function (verb, perspective, mood, gender) {
     return;
   }
 
-  return perspectives.token(verb, perspective, mood, gender);
+  return perspectives.snippet(verb, perspective, mood, gender);
 };

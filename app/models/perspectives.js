@@ -25,23 +25,27 @@ var perspectives = {
     subject: 'Je',
     avoir: "J'ai",
     etre: 'Je suis',
+    subjunctive: 'Il faut que je',
     verb_suffix: ''
   },
   'second_singular': {
     subject: 'Tu',
     avoir: 'Tu as',
     etre: 'Tu es',
+    subjunctive: 'Il faut que tu',
     verb_suffix: ''
   },
   'third_singular': {
     subject: 'Il',
     avoir: 'Il à',
     etre: 'Il est',
+    subjunctive: "Il faut qu'il",
     verb_suffix: '',
     feminine: {
       subject: 'Elle',
       avoir: 'Elle à',
       etre: 'Elle est',
+      subjunctive: "Il faut qu'elle",
       verb_suffix: 'e'
     }
   },
@@ -49,23 +53,27 @@ var perspectives = {
     subject: 'Nous',
     avoir: 'Nous avons',
     etre: 'Nous sommes',
+    subjunctive: 'Il faut que nous',
     verb_suffix: 's'
   },
   'second_plural': {
     subject: 'Vous',
     avoir: 'Vous avez',
     etre: 'Vous êtes',
+    subjunctive: 'Il faut que vous',
     verb_suffix: 's'
   },
   'third_plural': {
     subject: 'Ils',
     avoir: 'Ils ont',
     etre: 'Ils sont',
+    subjunctive: "Il faut qu'ils",
     verb_suffix: 's',
     feminine: {
       subject: 'Elles',
       avoir: 'Elles ont',
       etre: 'Elles sont',
+      subjunctive: "Il faut qu'elles",
       verb_suffix: 'es'
     }
   }
@@ -85,7 +93,7 @@ exports.verbSuffix = function (verb, perspective, gender) {
   return perspectives[perspective][aspect];
 };
 
-exports.token = function (verb, perspective, mood, gender) {
+exports.snippet = function (verb, perspective, mood, gender) {
   // One of: subject, avoir, etre.
   var aspect;
 
@@ -99,6 +107,10 @@ exports.token = function (verb, perspective, mood, gender) {
     }
   } else {
     aspect = 'subject';
+  }
+
+  if (mood === 'subjunctive_present') {
+    aspect = 'subjunctive';
   }
 
   // If there's a feminine version then use it.
