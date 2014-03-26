@@ -34,11 +34,12 @@ function Test(options) {
     '<table class="conjugationTable">' +
       '<tr>' +
         '<th>&nbsp;</th>' +
-        '<th>à l\'imparfait</th>' +
-        '<th>au présent</th>' +
-        '<th>au futur</th>' +
-        '<th>au conditionnel</th>' +
-        '<th>au passé composé</th>' +
+        '<th>l\'imparfait</th>' +
+        '<th>présent</th>' +
+        '<th>futur</th>' +
+        '<th>conditionnel</th>' +
+        '<th>subjonctif présent</th>' +
+        '<th>passé composé</th>' +
       '</tr>' +
       '<tr>' +
         '<td class="perspective">je</td>' +
@@ -46,6 +47,7 @@ function Test(options) {
         '<td><%= indicative_present.first_singular %></td>' +
         '<td><%= indicative_future.first_singular %></td>' +
         '<td><%= conditional_present.first_singular %></td>' +
+        '<td><%= subjunctive_present.first_singular %></td>' +
         '<td><%= participle_past_participle.first_singular %></td>' +
       '</tr>' +
       '<tr>' +
@@ -54,6 +56,7 @@ function Test(options) {
         '<td><%= indicative_present.second_singular %></td>' +
         '<td><%= indicative_future.second_singular %></td>' +
         '<td><%= conditional_present.second_singular %></td>' +
+        '<td><%= subjunctive_present.second_singular %></td>' +
         '<td><%= participle_past_participle.second_singular %></td>' +
       '</tr>' +
       '<tr>' +
@@ -62,6 +65,7 @@ function Test(options) {
         '<td><%= indicative_present.third_singular %></td>' +
         '<td><%= indicative_future.third_singular %></td>' +
         '<td><%= conditional_present.third_singular %></td>' +
+        '<td><%= subjunctive_present.third_singular %></td>' +
         '<td><%= participle_past_participle.third_singular %></td>' +
       '</tr>' +
       '<tr>' +
@@ -70,6 +74,7 @@ function Test(options) {
         '<td><%= indicative_present.first_plural %></td>' +
         '<td><%= indicative_future.first_plural %></td>' +
         '<td><%= conditional_present.first_plural %></td>' +
+        '<td><%= subjunctive_present.first_plural %></td>' +
         '<td><%= participle_past_participle.first_plural %></td>' +
       '</tr>' +
       '<tr>' +
@@ -78,6 +83,7 @@ function Test(options) {
         '<td><%= indicative_present.second_plural %></td>' +
         '<td><%= indicative_future.second_plural %></td>' +
         '<td><%= conditional_present.second_plural %></td>' +
+        '<td><%= subjunctive_present.second_plural %></td>' +
         '<td><%= participle_past_participle.second_plural %></td>' +
       '</tr>' +
       '<tr>' +
@@ -86,6 +92,7 @@ function Test(options) {
         '<td><%= indicative_present.third_plural %></td>' +
         '<td><%= indicative_future.third_plural %></td>' +
         '<td><%= conditional_present.third_plural %></td>' +
+        '<td><%= subjunctive_present.third_plural %></td>' +
         '<td><%= participle_past_participle.third_plural %></td>' +
       '</tr>' +
     '</table>');

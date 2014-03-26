@@ -1,6 +1,6 @@
 var moods = {
   'indicative_present': {
-    text: "à l'indicatif présent"
+    text: "au présent"
   },
   'indicative_future': {
     text: 'au futur'
