@@ -24,7 +24,7 @@ exports.newTest = function(req, res){
 
     console.log('rendering');
     res.render('index', {
-      title: 'Pratiquer conjuguer verbes françaises',
+      title: 'Pratiquer la conjugaison des verbes en français',
       verb: test.verb,
       mood: test.mood,
       perspective: test.perspective,
