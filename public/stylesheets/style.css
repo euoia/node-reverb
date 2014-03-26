@@ -3,10 +3,6 @@ incorrect {
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
 }
 
-div {
-	margin-bottom: 1em;
-}
-
 a {
   color: #00B7FF;
 }
@@ -16,15 +12,59 @@ body {
 	margin-left: auto;
 	margin-right: auto;
 	width: 70em;
+
+   background: -webkit-linear-gradient(top, rgb(136,199,201) 58%, rgb(202,232,235) 100%);
+   background: -moz-linear-gradient(top, rgb(136,199,201) 58%, rgb(202,232,235) 100%);
+   background: -ms-linear-gradient(top, rgb(136,199,201) 58%, rgb(202,232,235) 100%);
+   background: -o-linear-gradient(top, rgb(136,199,201) 58%, rgb(202,232,235) 100%);
+   background: linear-gradient(top, rgb(136,199,201) 58%, rgb(202,232,235) 100%);
+   padding: 3%;
+   height: 94%;
 }
 
 .test {
-	margin-top: 2em;
 	margin-left: auto;
 	margin-right: auto;
-	text-align: center;
-	font: 24pt georgia;
+	text-align: left;
+	font: normal 12px/1.5 "Lucida Grande", arial, sans-serif;
 	color: #012395;
+
+	padding: 8px 5px 3px 42px;
+	position: relative;
+	color: #444;
+	line-height: 20px;
+
+	background: #fff;
+	background: -webkit-gradient(linear, 0 0, 0 100%, from(#d9eaf3), color-stop(4%, #fff)) 0 4px;
+	background: -webkit-linear-gradient(top, #d9eaf3 0%, #fff 8%) 0 4px;
+	background: -moz-linear-gradient(top, #d9eaf3 0%, #fff 8%) 0 4px;
+	background: -ms-linear-gradient(top, #d9eaf3 0%, #fff 8%) 0 4px;
+	background: -o-linear-gradient(top, #d9eaf3 0%, #fff 8%) 0 4px;
+	background: linear-gradient(top, #d9eaf3 0%, #fff 8%) 0 4px;
+	-webkit-background-size: 100% 20px;
+	-moz-background-size: 100% 20px;
+	-ms-background-size: 100% 20px;
+	-o-background-size: 100% 20px;
+	background-size: 100% 20px;
+	-webkit-border-radius: 3px;
+	-moz-border-radius: 3px;
+	border-radius: 3px;
+	-webkit-box-shadow: 0 1px 2px rgba(0,0,0,0.07);
+	-moz-box-shadow: 0 1px 2px rgba(0,0,0,0.07);
+	box-shadow: 0 1px 2px rgba(0,0,0,0.07);
+	width: 816px;
+	height: 1056px;
+}
+
+.testTitle {
+	font-weight: 600;
+	text-align: center;
+	margin-bottom: 20px;
+	margin-top: 20px;
+}
+
+.testText {
+	font-weight: 400;
 }
 
 .testResponse {
@@ -32,10 +72,10 @@ body {
 }
 
 .testResponseInput {
-	background-color: #edebaa;
 	border-width: 0;
+	background: transparent;
+	height: 20px;
 	width: 8em;
-	border-bottom: 1px dashed #777;
 }
 
 .testResponseInput:focus {
@@ -44,14 +84,12 @@ body {
 
 .conjugationTableContainer {
 	font-family: monospace;
-	font-size: 14pt;
 	display: table;
-	margin-left: auto;
-	margin-right: auto;
 }
 
 td, th {
-	padding: 13px;
+	padding-left: 10px;
+	padding-right: 10px;
 	text-align: left;
 }
 
@@ -60,9 +98,14 @@ td, th {
 }
 
 .nextButton {
-	background: white;
+	background: transparent;
 	color: green;
 	font-family: monospace;
+	border: 0px solid white;
+	height: 20px;
+	padding: 0;
+	margin-top: 18px;
+	text-decoration: underline;
 }
 
 .perspective {
@@ -70,18 +113,14 @@ td, th {
 	font-weight: 600;
 }
 
-th {
-	border-bottom: 1px solid #1b1b1b;
-}
 
 table {
-	background-color: #f8f8f8;
 	color: #6b6ba5;
-	border: 1px dashed #1b1b1b;
+	margin-top: 20px; /* must be same as line-height */
 }
 
 .correct {
-	color: #11ff11;
+	color: #11cc11;
 }
 
 .incorrect {
