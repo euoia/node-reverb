@@ -130,10 +130,12 @@ function Test(options) {
   $('.verb').click(function (eventData) {
     var action;
     if($(this).hasClass('deselected')) {
-      action = '/prefs/deselect';
-    } else {
       action = '/prefs/select';
+    } else {
+      action = '/prefs/deselect';
     }
+
+    $(this).toggleClass('deselected');
 
     $.ajax({
       type: 'POST',
@@ -141,7 +143,7 @@ function Test(options) {
       data: {
         verb: $(this).html()
       },
-      failure: function() {
+      fail: function() {
         // If something goes wrong toggle it back.
         $(this).toggleClass('deselected');
       }
