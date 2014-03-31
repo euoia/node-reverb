@@ -5,17 +5,20 @@ function Test(options) {
   this.controls = options.controls;
   this.preferences = options.preferences;
 
-  // Toggle selected status of deselected verbs.
+  // Toggle selected status of deselected verbs in prefs.
   for (i = 0, l = options.deselectedVerbs.length; i < l; i += 1) {
     var verb = options.deselectedVerbs[i];
     $('.' + verb, this.preferences).toggleClass('deselected');
   }
 
-  // Toggle selected status of deselected moods.
+  // Toggle selected status of deselected moods in prefs.
   for (i = 0, l = options.deselectedMoods.length; i < l; i += 1) {
     var mood = options.deselectedMoods[i];
     $('.' + mood, this.preferences).toggleClass('deselected');
   }
+
+  // Store the deselected moods, we need this info for displaying the conjugation table.
+  this.deselectedMoods = options.deselectedMoods;
 
   this.form.onsubmit = function(d) {
     var verb = $('input[name=verb]', this.form).val();
@@ -44,73 +47,6 @@ function Test(options) {
   $('.next', this.form).click(function(eventData) {
     window.location = '/';
   });
-
-  this.conjugationTableTemplate = _.template(
-    '<table class="conjugationTable">' +
-      '<tr>' +
-        '<th>&nbsp;</th>' +
-        '<th>l\'imparfait</th>' +
-        '<th>présent</th>' +
-        '<th>futur</th>' +
-        '<th>conditionnel</th>' +
-        '<th>subjonctif présent</th>' +
-        '<th>passé composé</th>' +
-      '</tr>' +
-      '<tr>' +
-        '<td class="perspective">je</td>' +
-        '<td><%= indicative_imperfect.first_singular %></td>' +
-        '<td><%= indicative_present.first_singular %></td>' +
-        '<td><%= indicative_future.first_singular %></td>' +
-        '<td><%= conditional_present.first_singular %></td>' +
-        '<td><%= subjunctive_present.first_singular %></td>' +
-        '<td><%= participle_past_participle.first_singular %></td>' +
-      '</tr>' +
-      '<tr>' +
-        '<td class="perspective">tu</td>' +
-        '<td><%= indicative_imperfect.second_singular %></td>' +
-        '<td><%= indicative_present.second_singular %></td>' +
-        '<td><%= indicative_future.second_singular %></td>' +
-        '<td><%= conditional_present.second_singular %></td>' +
-        '<td><%= subjunctive_present.second_singular %></td>' +
-        '<td><%= participle_past_participle.second_singular %></td>' +
-      '</tr>' +
-      '<tr>' +
-        '<td class="perspective">il</td>' +
-        '<td><%= indicative_imperfect.third_singular %></td>' +
-        '<td><%= indicative_present.third_singular %></td>' +
-        '<td><%= indicative_future.third_singular %></td>' +
-        '<td><%= conditional_present.third_singular %></td>' +
-        '<td><%= subjunctive_present.third_singular %></td>' +
-        '<td><%= participle_past_participle.third_singular %></td>' +
-      '</tr>' +
-      '<tr>' +
-        '<td class="perspective">nous</td>' +
-        '<td><%= indicative_imperfect.first_plural %></td>' +
-        '<td><%= indicative_present.first_plural %></td>' +
-        '<td><%= indicative_future.first_plural %></td>' +
-        '<td><%= conditional_present.first_plural %></td>' +
-        '<td><%= subjunctive_present.first_plural %></td>' +
-        '<td><%= participle_past_participle.first_plural %></td>' +
-      '</tr>' +
-      '<tr>' +
-        '<td class="perspective">vous</td>' +
-        '<td><%= indicative_imperfect.second_plural %></td>' +
-        '<td><%= indicative_present.second_plural %></td>' +
-        '<td><%= indicative_future.second_plural %></td>' +
-        '<td><%= conditional_present.second_plural %></td>' +
-        '<td><%= subjunctive_present.second_plural %></td>' +
-        '<td><%= participle_past_participle.second_plural %></td>' +
-      '</tr>' +
-      '<tr>' +
-        '<td class="perspective">ils</td>' +
-        '<td><%= indicative_imperfect.third_plural %></td>' +
-        '<td><%= indicative_present.third_plural %></td>' +
-        '<td><%= indicative_future.third_plural %></td>' +
-        '<td><%= conditional_present.third_plural %></td>' +
-        '<td><%= subjunctive_present.third_plural %></td>' +
-        '<td><%= participle_past_participle.third_plural %></td>' +
-      '</tr>' +
-    '</table>');
 
   var preferencesShown = false;
   var fading = false;
@@ -166,8 +102,10 @@ function Test(options) {
     var action;
     if($(this).hasClass('deselected')) {
       action = '/prefs/selectMood';
+      this.deselectedMoods = _.without(this.deselectedMoods, this.dataset.mood);
     } else {
       action = '/prefs/deselectMood';
+      this.deselectedMoods.push(this.dataset.mood);
     }
 
     $(this).toggleClass('deselected');
@@ -183,11 +121,130 @@ function Test(options) {
         $(this).toggleClass('deselected');
       }.bind(this)
     });
+
+    // Show or hide the mood from the conjguation table.
+    $('.table-' + this.dataset.mood).toggle();
   });
+
+  this.moods =  [
+    'indicative_present',
+    'indicative_future',
+    'indicative_imperfect',
+    'conditional_present',
+    'subjunctive_present',
+    'participle_past_participle'
+  ];
+
+  this.tableTemplate = {};
+
+  this.tableTemplate.indicative_imperfect = [
+    '<th class="table-indicative_imperfect">l\'imparfait</th>',
+    '<td class="table-indicative_imperfect"><%= indicative_imperfect.first_singular %></td>',
+    '<td class="table-indicative_imperfect"><%= indicative_imperfect.second_singular %></td>',
+    '<td class="table-indicative_imperfect"><%= indicative_imperfect.third_singular %></td>',
+    '<td class="table-indicative_imperfect"><%= indicative_imperfect.first_plural %></td>',
+    '<td class="table-indicative_imperfect"><%= indicative_imperfect.second_plural %></td>',
+    '<td class="table-indicative_imperfect"><%= indicative_imperfect.third_plural %></td>'
+  ];
+
+  this.tableTemplate.indicative_present = [
+    '<th class="table-indicative_present">présent</th>',
+    '<td class="table-indicative_present"><%= indicative_present.first_singular %></td>',
+    '<td class="table-indicative_present"><%= indicative_present.second_singular %></td>',
+    '<td class="table-indicative_present"><%= indicative_present.third_singular %></td>',
+    '<td class="table-indicative_present"><%= indicative_present.first_plural %></td>',
+    '<td class="table-indicative_present"><%= indicative_present.second_plural %></td>',
+    '<td class="table-indicative_present"><%= indicative_present.third_plural %></td>'
+  ];
+
+  this.tableTemplate.indicative_future = [
+    '<th>futur</th>',
+    '<td class="table-indicative_future"><%= indicative_future.first_singular %></td>',
+    '<td class="table-indicative_future"><%= indicative_future.second_singular %></td>',
+    '<td class="table-indicative_future"><%= indicative_future.third_singular %></td>',
+    '<td class="table-indicative_future"><%= indicative_future.first_plural %></td>',
+    '<td class="table-indicative_future"><%= indicative_future.second_plural %></td>',
+    '<td class="table-indicative_future"><%= indicative_future.third_plural %></td>'
+  ];
+
+  this.tableTemplate.conditional_present = [
+    '<th class="table-conditional_present">conditionnel</th>',
+    '<td class="table-conditional_present"><%= conditional_present.first_singular %></td>',
+    '<td class="table-conditional_present"><%= conditional_present.second_singular %></td>',
+    '<td class="table-conditional_present"><%= conditional_present.third_singular %></td>',
+    '<td class="table-conditional_present"><%= conditional_present.first_plural %></td>',
+    '<td class="table-conditional_present"><%= conditional_present.second_plural %></td>',
+    '<td class="table-conditional_present"><%= conditional_present.third_plural %></td>'
+  ];
+
+  this.tableTemplate.subjunctive_present = [
+    '<th class="table-subjunctive_present">subjonctif présent</th>',
+    '<td class="table-subjunctive_present"><%= subjunctive_present.first_singular %></td>',
+    '<td class="table-subjunctive_present"><%= subjunctive_present.second_singular %></td>',
+    '<td class="table-subjunctive_present"><%= subjunctive_present.third_singular %></td>',
+    '<td class="table-subjunctive_present"><%= subjunctive_present.first_plural %></td>',
+    '<td class="table-subjunctive_present"><%= subjunctive_present.second_plural %></td>',
+    '<td class="table-subjunctive_present"><%= subjunctive_present.third_plural %></td>'
+  ];
+
+
+  this.tableTemplate.participle_past_participle = [
+    '<th class="table-participle_past_participle">passé composé</th>',
+    '<td class="table-participle_past_participle"><%= participle_past_participle.first_singular %></td>',
+    '<td class="table-participle_past_participle"><%= participle_past_participle.second_singular %></td>',
+    '<td class="table-participle_past_participle"><%= participle_past_participle.third_singular %></td>',
+    '<td class="table-participle_past_participle"><%= participle_past_participle.first_plural %></td>',
+    '<td class="table-participle_past_participle"><%= participle_past_participle.second_plural %></td>',
+    '<td class="table-participle_past_participle"><%= participle_past_participle.third_plural %></td>'
+  ];
 }
 
 Test.prototype.generateConjugationTable = function(conjugationTable) {
-  return this.conjugationTableTemplate(conjugationTable);
+  var table = '<table class="conjugationTable">';
+
+  var perspectives = [
+    'je',
+    'tu',
+    'il',
+    'nous',
+    'vous',
+    'ils'
+  ];
+
+  var perspective, mood, moodVerbTemplate;
+
+  for (var p = 0; p < perspectives.length; p += 1) {
+    table += '<tr>';
+
+
+
+    for (var m = 0; m < this.moods.length + 1; m += 1) {
+      mood = this.moods[m - 1];
+
+      if (mood !== undefined && _.contains(this.deselectedMoods, mood)) {
+        continue;
+      }
+
+      if (m === 0) {
+        if (p > 0) {
+          perspective = perspectives[p - 1];
+          table += '<td class="perspective">' + perspective + '</td>';
+        } else {
+          // Top-left cell is empty.
+          table += '<td>&nbsp;</td>';
+        }
+      } else {
+        table += this.tableTemplate[mood][p];
+      }
+    }
+    table += '</tr>';
+  }
+
+  table += '</table>';
+
+  var tableTemplate = _.template(table);
+
+  return tableTemplate(conjugationTable);
 };
 
 Test.prototype.playAudio = function(audioPath) {
