@@ -1,5 +1,9 @@
 function Test(options) {
   this.form = options.form;
+  this.controls = options.controls;
+
+  for (var i = 0, l = options.deselectedVerbs.length; i < l; i += 1) {
+  }
 
   this.form.onsubmit = function(d) {
     var verb = $('input[name=verb]', this.form).val();
@@ -8,7 +12,6 @@ function Test(options) {
     var gender = $('input[name=gender]', this.form).val();
     var response = $('input[name=response]', this.form).val();
 
-    // TODO: Make ajax request.
     $.ajax({
       type: 'POST',
       url: '/test/check',
@@ -97,7 +100,51 @@ function Test(options) {
       '</tr>' +
     '</table>');
 
-    //this.conjugationTableTemplate = _.template('<table><tr><td>hello</td><tr></table>');
+  var preferencesShown = false;
+  var fading = false;
+  $('.prefsLink', this.controls).click(function (eventData) {
+    if (fading === true) {
+      return;
+    }
+
+    if (preferencesShown) {
+      $('.preferences').fadeOut({
+        complete: function () {
+          $('.test').fadeIn();
+          preferencesShown = false;
+          fading = false;
+        }
+      });
+    } else {
+      $('.test').fadeOut({
+        complete: function() {
+          $('.preferences').fadeIn();
+          $('.testResponse').focus();
+          preferencesShown = true;
+          fading = false;
+        }
+      });
+    }
+  });
+
+  $('.verb').click(function (eventData) {
+    $(this).toggleClass('deselected');
+
+    var action;
+    if($(this).hasClass('deselected')) {
+      action = '/prefs/deselect';
+    } else {
+      action = '/prefs/select';
+    }
+
+    $.ajax({
+      type: 'POST',
+      url: action,
+      data: {
+        verb: $(this).html()
+      }
+    });
+  });
 }
 
 Test.prototype.generateConjugationTable = function(conjugationTable) {
