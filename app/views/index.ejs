@@ -46,7 +46,7 @@
 			<div class="testTitle"><%= title %></div>
 
 			<div id="preferences" class="preferences">
-				<div class="preferencesTitle">Deselect moods which you don't want to practice.</div>
+				<div class="preferencesTitle">Désélectionnez les temps que vous ne voulez pas pratiquer</div>
 
 				<!-- Show the moods -->
 				<% for (mood in moods) { %>
@@ -58,11 +58,11 @@
 					</table>
 				<% } %>
 
-				<div class="preferencesTitle">Deselect verbs which you don't want to practice.</div>
+				<div class="preferencesTitle">Désélectionnez les verbes que vous ne voulez pas pratiquer</div>
 
 				<!-- The verbs are stored by difficulty level -->
 				<% for(var level=1, maxLevel=verbLevels.length + 1; level < maxLevel; level += 1) { %>
-					<div class="difficultyTitle">Difficulty <%= level %></div>
+					<div class="difficultyTitle">Niveau <%= level %></div>
 					<table class="chooseVerbs">
 						<% for(var v=0, numVerbs=verbLevels[level-1].length; v < numVerbs; v += 1) { %>
 							<tr>
@@ -92,7 +92,7 @@
 					<input type="hidden" name="perspective" value="<%= perspective %>" />
 					<input type="hidden" name="gender" value="<%= gender %>" />
 					<div class="testResponse">
-						A. <%= questionLeader %> <input name="response" class="testResponseInput"  autofocus="autofocus" autocomplete="off" />
+						R. <%= questionLeader %> <input name="response" class="testResponseInput"  autofocus="autofocus" autocomplete="off" />
 					</div>
 					<div class="answer"></div>
 					<div class="conjugationTableContainer"></div>
