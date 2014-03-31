@@ -128,8 +128,6 @@ function Test(options) {
   });
 
   $('.verb').click(function (eventData) {
-    $(this).toggleClass('deselected');
-
     var action;
     if($(this).hasClass('deselected')) {
       action = '/prefs/deselect';
@@ -142,6 +140,10 @@ function Test(options) {
       url: action,
       data: {
         verb: $(this).html()
+      },
+      failure: function() {
+        // If something goes wrong toggle it back.
+        $(this).toggleClass('deselected');
       }
     });
   });
