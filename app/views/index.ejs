@@ -28,6 +28,7 @@
 					form: document.getElementById('testForm'),
 					controls: document.getElementById('controls'),
 					deselectedVerbs: <%- deselectedVerbs %>,
+					deselectedMoods: <%- deselectedMoods %>,
 					preferences: document.getElementById('preferences')
 				});
 			};
@@ -45,7 +46,19 @@
 			<div class="testTitle"><%= title %></div>
 
 			<div id="preferences" class="preferences">
-				<div class="preferencesTitle">Select which verbs you would like to practice.</div>
+				<div class="preferencesTitle">Deselect moods which you don't want to practice.</div>
+
+				<!-- Show the moods -->
+				<% for (mood in moods) { %>
+					<% if (moods.hasOwnProperty(mood) === false) { continue; } %>
+					<table class="chooseMoods">
+						<tr>
+							<td><a href="#" data-mood="<%= mood %>" class="mood <%= mood %>"><%= moods[mood].text %></a></td>
+						</tr>
+					</table>
+				<% } %>
+
+				<div class="preferencesTitle">Deselect verbs which you don't want to practice.</div>
 
 				<!-- The verbs are stored by difficulty level -->
 				<% for(var level=1, maxLevel=verbLevels.length + 1; level < maxLevel; level += 1) { %>
@@ -54,13 +67,15 @@
 						<% for(var v=0, numVerbs=verbLevels[level-1].length; v < numVerbs; v += 1) { %>
 							<tr>
 								<% for(var col=0; col < 5 && v < numVerbs; col += 1) { %>
-									<td><a href="#" class="verb <%= verbLevels[level-1][v] %>"><%= verbLevels[level-1][v] %></a></td>
+									<% var prefVerb = verbLevels[level-1][v] %>
+									<td><a href="#" data-verb="<%= prefVerb %>" class="verb <%= prefVerb %>"><%= prefVerb %></a></td>
 									<% v += 1 %>
 								<% } %>
 							</tr>
 						<% } %>
 					</table>
 				<% } %>
+
 			</div>
 
 			<div class="test">

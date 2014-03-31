@@ -4,6 +4,7 @@ var testCase = require('../controllers/testCase.js'),
   tts = require('../controllers/tts.js'),
   util = require('util'),
   verbs = require('../models/verbs.js'),
+  moods = require('../models/moods.js'),
   prefs = require('../models/prefs.js');
 
 /*
@@ -11,12 +12,10 @@ var testCase = require('../controllers/testCase.js'),
  */
 
 exports.newTest = function(req, res){
-  var possibleVerbs = prefs.selectedVerbs(req.session);
+  var possibleVerbs = prefs.selectedVerbs(req.session),
+    possibleMoods = prefs.selectedMoods(req.session),
+    test = testCase.newTest(possibleVerbs, possibleMoods);
 
-  test = testCase.newTest(possibleVerbs);
-  console.log('test', test);
-
-  console.log('getting question audio');
   tts.get(test.questionText, function(err, ttsQuestionPath) {
     if (err) {
       console.log('Error in tts.get', err);
@@ -24,8 +23,6 @@ exports.newTest = function(req, res){
     }
 
     ttsQuestionUrl = tts.urlFromPath(ttsQuestionPath);
-
-    console.dir(verbs.verbLevels);
 
     res.render('index', {
       title: 'Pratiquer la conjugaison des verbes en français',
@@ -37,7 +34,9 @@ exports.newTest = function(req, res){
       questionText: test.questionText,
       questionLeader: test.questionLeader,
       verbLevels: verbs.verbLevels,
-      deselectedVerbs: JSON.stringify(prefs.deselectedVerbs(req.session))
+      deselectedVerbs: JSON.stringify(prefs.deselectedVerbs(req.session)),
+      moods: moods.moods,
+      deselectedMoods: JSON.stringify(prefs.deselectedMoods(req.session))
     });
   });
 };

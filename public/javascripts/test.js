@@ -1,12 +1,20 @@
 function Test(options) {
+  var i;
+
   this.form = options.form;
   this.controls = options.controls;
   this.preferences = options.preferences;
 
   // Toggle selected status of deselected verbs.
-  for (var i = 0, l = options.deselectedVerbs.length; i < l; i += 1) {
+  for (i = 0, l = options.deselectedVerbs.length; i < l; i += 1) {
     var verb = options.deselectedVerbs[i];
     $('.' + verb, this.preferences).toggleClass('deselected');
+  }
+
+  // Toggle selected status of deselected moods.
+  for (i = 0, l = options.deselectedMoods.length; i < l; i += 1) {
+    var mood = options.deselectedMoods[i];
+    $('.' + mood, this.preferences).toggleClass('deselected');
   }
 
   this.form.onsubmit = function(d) {
@@ -131,12 +139,12 @@ function Test(options) {
     }
   });
 
-  $('.verb').click(function (eventData) {
+  $('.verb', this.preferences).click(function (eventData) {
     var action;
     if($(this).hasClass('deselected')) {
-      action = '/prefs/select';
+      action = '/prefs/selectVerb';
     } else {
-      action = '/prefs/deselect';
+      action = '/prefs/deselectVerb';
     }
 
     $(this).toggleClass('deselected');
@@ -145,12 +153,35 @@ function Test(options) {
       type: 'POST',
       url: action,
       data: {
-        verb: $(this).html()
+        verb: this.dataset.verb
       },
       fail: function() {
         // If something goes wrong toggle it back.
         $(this).toggleClass('deselected');
-      }
+      }.bind(this)
+    });
+  });
+
+  $('.mood', this.preferences).click(function (eventData) {
+    var action;
+    if($(this).hasClass('deselected')) {
+      action = '/prefs/selectMood';
+    } else {
+      action = '/prefs/deselectMood';
+    }
+
+    $(this).toggleClass('deselected');
+
+    $.ajax({
+      type: 'POST',
+      url: action,
+      data: {
+        mood: this.dataset.mood
+      },
+      fail: function() {
+        // If something goes wrong toggle it back.
+        $(this).toggleClass('deselected');
+      }.bind(this)
     });
   });
 }

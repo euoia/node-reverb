@@ -162,10 +162,10 @@ td, th {
 }
 
 .preferencesTitle {
-	margin-bottom: 20px;
+	margin-top: 20px;
 }
 
-.verb.deselected {
+.verb.deselected, .mood.deselected {
 	text-decoration: line-through;
 	color: #ccc;
 }

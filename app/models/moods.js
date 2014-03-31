@@ -1,4 +1,6 @@
-var moods = {
+var _ = require('underscore');
+
+var moods = exports.moods = {
   'indicative_present': {
     text: "au présent"
   },
@@ -24,3 +26,4 @@ exports.all_moods = Object.keys(moods);
 exports.text = function(mood) {
   return moods[mood].text;
 };
+
