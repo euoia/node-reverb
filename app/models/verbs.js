@@ -54,7 +54,6 @@ verbLevels.push([
 // Difficulty: 3 (être all_verbLevels).
 // Re*- versions taken out.
 verbLevels.push([
-  'aller',
   'arriver',
   'descendre',
   'entrer',
@@ -68,7 +67,6 @@ verbLevels.push([
   'retourner',
   'sortir',
   'tomber',
-  'venir',
   'devenir'
 ]);
 

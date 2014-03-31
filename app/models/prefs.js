@@ -1,4 +1,5 @@
-var _ = require('underscore');
+var _ = require('underscore'),
+  verbs = require('./verbs.js');
 
 // Rather than store the selected verbs, we'll store the deselected one.
 exports.deselectVerb = function (session, verb) {
@@ -19,10 +20,14 @@ exports.selectVerb = function (session, verb) {
   session.save();
 };
 
-exports.deselectedVerbs = function (session) {
+var deselectedVerbs = exports.deselectedVerbs = function (session) {
   if (session.deselectedVerbs === undefined) {
     session.deselectedVerbs = [];
   }
 
   return session.deselectedVerbs;
+};
+
+exports.selectedVerbs = function (session) {
+  return _.difference(verbs.all_verbs, deselectedVerbs(session));
 };

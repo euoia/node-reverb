@@ -11,7 +11,9 @@ var testCase = require('../controllers/testCase.js'),
  */
 
 exports.newTest = function(req, res){
-  test = testCase.newTest();
+  var possibleVerbs = prefs.selectedVerbs(req.session);
+
+  test = testCase.newTest(possibleVerbs);
   console.log('test', test);
 
   // TODO: tts for question.

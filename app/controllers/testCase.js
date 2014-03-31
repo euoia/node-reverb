@@ -7,8 +7,8 @@ var _ = require('underscore'),
   util = require('util');
 
 
-exports.newTest = function() {
-  var verb = _.sample(verbs.all_verbs),
+exports.newTest = function(possibleVerbs) {
+  var verb = _.sample(possibleVerbs),
     mood = _.sample(moods.all_moods),
     perspective = _.sample(perspectives.all_perspectives),
     gender = _.sample(sentences.genders);
