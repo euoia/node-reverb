@@ -7,6 +7,9 @@ var express = require('express');
 var http = require('http');
 var path = require('path');
 var test = require('./routes/test.js');
+var prefs = require('./routes/prefs.js');
+var session = require('express-session');
+var RedisStore = require('connect-redis')(session);
 
 var app = express();
 
@@ -19,6 +22,8 @@ app.use(express.logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded());
 app.use(express.methodOverride());
+app.use(express.cookieParser());
+app.use(session({ store: new RedisStore(), secret: 'keyboard cat' }));
 app.use(app.router);
 app.use(express.static(path.join(__dirname, '../public')));
 
@@ -30,6 +35,9 @@ if ('development' == app.get('env')) {
 // Set up routes.
 app.get('/', test.newTest);
 app.post('/test/check', test.check);
+
+app.post('/prefs/deselect', prefs.deselect);
+app.post('/prefs/select', prefs.select);
 
 http.createServer(app).listen(app.get('port'), function(){
   console.log('Express server listening on port ' + app.get('port'));

@@ -26,35 +26,63 @@
 			window.onload = function() {
 				test = new Test({
 					form: document.getElementById('testForm'),
+					controls: document.getElementById('controls'),
+					deselectedVerbs: <%- deselectedVerbs %>
 				});
 			};
 		</script>
 
     </head>
     <body>
-		<div class="test">
+
+		<div class="paper">
+			<div id="controls">
+				<a class="prefsLink" href="#">pref</a>
+			</div>
+
 			<div class="testTitleSection"></div>
 			<div class="testTitle"><%= title %></div>
 
-			<audio src="<%= questionAudio %>" autoplay></audio>
+			<div class="preferences">
+				<div class="preferencesTitle">Select which verbs you would like to practice.</div>
 
-			<div class="testText">
-				<!-- Conjugate the verb <verb> in the mood <mood>: <%= perspective %> ___________ ... -->
-				Q. <%= questionText %>
+				<!-- The verbs are stored by difficulty level -->
+				<% for(var level=1, maxLevel=verbLevels.length + 1; level < maxLevel; level += 1) { %>
+					<div class="difficultyTitle">Difficulty <%= level %></div>
+					<table class="chooseVerbs">
+						<% for(var v=0, numVerbs=verbLevels[level-1].length; v < numVerbs; v += 1) { %>
+							<tr>
+								<% for(var col=0; col < 5 && v < numVerbs; col += 1) { %>
+									<td><a href="#" class="verb"><%= verbLevels[level-1][v] %></a></td>
+									<% v += 1 %>
+								<% } %>
+							</tr>
+						<% } %>
+					</table>
+				<% } %>
 			</div>
 
-			<form id="testForm">
-				<input type="hidden" name="verb" value="<%= verb %>" />
-				<input type="hidden" name="mood" value="<%= mood %>" />
-				<input type="hidden" name="perspective" value="<%= perspective %>" />
-				<input type="hidden" name="gender" value="<%= gender %>" />
-				<div class="testResponse">
-					A. <%= questionLeader %> <input name="response" class="testResponseInput"  autofocus="autofocus" autocomplete="off" />
+			<div class="test">
+				<audio src="<%= questionAudio %>" autoplay></audio>
+
+				<div class="testText">
+					<!-- Conjugate the verb <verb> in the mood <mood>: <%= perspective %> ___________ ... -->
+					Q. <%= questionText %>
 				</div>
-				<div class="answer"></div>
-				<div class="conjugationTableContainer"></div>
-				<div class="next"><button class="nextButton">next</button</div>
-			</form>
+
+				<form id="testForm">
+					<input type="hidden" name="verb" value="<%= verb %>" />
+					<input type="hidden" name="mood" value="<%= mood %>" />
+					<input type="hidden" name="perspective" value="<%= perspective %>" />
+					<input type="hidden" name="gender" value="<%= gender %>" />
+					<div class="testResponse">
+						A. <%= questionLeader %> <input name="response" class="testResponseInput"  autofocus="autofocus" autocomplete="off" />
+					</div>
+					<div class="answer"></div>
+					<div class="conjugationTableContainer"></div>
+					<div class="next"><button class="nextButton">next</button</div>
+				</form>
+			</div>
 		</div>
 	</body>
 </html>

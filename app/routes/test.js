@@ -2,7 +2,9 @@ var testCase = require('../controllers/testCase.js'),
   conjugation = require('../controllers/conjugation.js'),
   insults = require('../controllers/insults.js'),
   tts = require('../controllers/tts.js'),
-  util = require('util');
+  util = require('util'),
+  verbs = require('../models/verbs.js'),
+  prefs = require('../models/prefs.js');
 
 /*
  * GET home page.
@@ -22,7 +24,8 @@ exports.newTest = function(req, res){
 
     ttsQuestionUrl = tts.urlFromPath(ttsQuestionPath);
 
-    console.log('rendering');
+    console.dir(verbs.verbLevels);
+
     res.render('index', {
       title: 'Pratiquer la conjugaison des verbes en français',
       verb: test.verb,
@@ -31,7 +34,9 @@ exports.newTest = function(req, res){
       gender: test.gender,
       questionAudio: ttsQuestionUrl,
       questionText: test.questionText,
-      questionLeader: test.questionLeader
+      questionLeader: test.questionLeader,
+      verbLevels: verbs.verbLevels,
+      deselectedVerbs: JSON.stringify(prefs.deselectedVerbs(req.session))
     });
   });
 };

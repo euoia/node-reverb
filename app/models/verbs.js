@@ -1,5 +1,13 @@
+var _ = require('underscore');
+
 // Difficulty: 1.
-var all_verbs = [
+
+// An array of array of verbs.
+// The first element of the array is are the level 1 verbs, the second element
+// are the level 2 verbs etc.
+var verbLevels = [];
+
+verbLevels.push([
   'aller',
   'avoir',
   'devoir',
@@ -15,10 +23,10 @@ var all_verbs = [
   'prendre',
   'savoir',
   'vouloir'
-];
+]);
 
 // Difficulty: 2.
-all_verbs.push.apply(all_verbs, [
+verbLevels.push([
   'acheter',
   'appeler',
   'boire',
@@ -43,9 +51,9 @@ all_verbs.push.apply(all_verbs, [
   'voir'
 ]);
 
-// Difficulty: 3 (être all_verbs).
+// Difficulty: 3 (être all_verbLevels).
 // Re*- versions taken out.
-all_verbs.push.apply(all_verbs, [
+verbLevels.push([
   'aller',
   'arriver',
   'descendre',
@@ -64,7 +72,7 @@ all_verbs.push.apply(all_verbs, [
   'devenir'
 ]);
 
-// The être verbs are conjugated differently.
+// The être verbLevels are conjugated differently.
 // In past-participle they conjugate with être instead of avoir.
 var etre_verbs = [
     "aller",
@@ -91,5 +99,6 @@ var etre_verbs = [
     "devenir"
 ];
 
-exports.all_verbs = all_verbs;
+exports.verbLevels = verbLevels;
+exports.all_verbs = _.flatten(verbLevels);
 exports.etre_verbs = etre_verbs;
