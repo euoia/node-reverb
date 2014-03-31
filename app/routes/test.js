@@ -16,7 +16,6 @@ exports.newTest = function(req, res){
   test = testCase.newTest(possibleVerbs);
   console.log('test', test);
 
-  // TODO: tts for question.
   console.log('getting question audio');
   tts.get(test.questionText, function(err, ttsQuestionPath) {
     if (err) {
