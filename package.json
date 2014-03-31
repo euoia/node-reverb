@@ -10,7 +10,9 @@
     "express": "~3.4.8",
     "jade": "*",
     "underscore": "~1.6.0",
-    "request": "~2.34.0"
+    "request": "~2.34.0",
+    "connect-redis": "~1.5.0",
+    "express-session": "~1.0.2"
   },
   "devDependencies": {
     "xml2js": "~0.4.1"
