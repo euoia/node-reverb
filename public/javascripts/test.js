@@ -1,8 +1,12 @@
 function Test(options) {
   this.form = options.form;
   this.controls = options.controls;
+  this.preferences = options.preferences;
 
+  // Toggle selected status of deselected verbs.
   for (var i = 0, l = options.deselectedVerbs.length; i < l; i += 1) {
+    var verb = options.deselectedVerbs[i];
+    $('.' + verb, this.preferences).toggleClass('deselected');
   }
 
   this.form.onsubmit = function(d) {
