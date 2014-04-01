@@ -3,7 +3,10 @@ var _ = require('underscore'),
 
 // Rather than store the selected verbs, we'll store the deselected one.
 exports.deselectVerb = function (req, res) {
-  prefs.deselectVerb(req.session, req.body.verb);
+  if (prefs.deselectVerb(req.session, req.body.verb) === false) {
+    return res.status(403).end();
+  }
+
   console.log('Deselected %s', req.body.verb);
   res.end();
 };
@@ -15,7 +18,10 @@ exports.selectVerb = function (req, res) {
 };
 
 exports.deselectMood = function (req, res) {
-  prefs.deselectMood(req.session, req.body.mood);
+  if (prefs.deselectMood(req.session, req.body.mood) === false) {
+    return res.status(403).end();
+  }
+
   console.log('Deselected %s', req.body.mood);
   res.end();
 };

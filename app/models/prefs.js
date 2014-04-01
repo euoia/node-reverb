@@ -8,8 +8,14 @@ exports.deselectVerb = function (session, verb) {
     session.deselectedVerbs = [];
   }
 
+  // Do not allow all verbs to be deselected.
+  if (session.deselectedVerbs.length === verbs.all_verbs.length - 1) {
+    return false;
+  }
+
   session.deselectedVerbs.push(verb);
   session.save();
+  return true;
 };
 
 exports.selectVerb = function (session, verb) {
@@ -39,8 +45,14 @@ exports.deselectMood = function (session, verb) {
     session.deselectedMoods = [];
   }
 
+  // Do not allow all moods to be deselected.
+  if (session.deselectedMoods.length === moods.all_moods.length - 1) {
+    return false;
+  }
+
   session.deselectedMoods.push(verb);
   session.save();
+  return true;
 };
 
 exports.selectMood = function (session, verb) {

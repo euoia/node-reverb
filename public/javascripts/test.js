@@ -95,21 +95,22 @@ function Test(options) {
       data: {
         verb: this.dataset.verb
       },
-      fail: function() {
+      error: function() {
         // If something goes wrong toggle it back.
         $(this).toggleClass('deselected');
       }.bind(this)
     });
   });
 
+  var that = this;
   $('.mood', this.preferences).click(function (eventData) {
     var action;
     if($(this).hasClass('deselected')) {
       action = '/prefs/selectMood';
-      this.deselectedMoods = _.without(this.deselectedMoods, this.dataset.mood);
+      that.deselectedMoods = _.without(that.deselectedMoods, this.dataset.mood);
     } else {
       action = '/prefs/deselectMood';
-      this.deselectedMoods.push(this.dataset.mood);
+      that.deselectedMoods.push(this.dataset.mood);
     }
 
     $(this).toggleClass('deselected');
@@ -120,7 +121,7 @@ function Test(options) {
       data: {
         mood: this.dataset.mood
       },
-      fail: function() {
+      error: function() {
         // If something goes wrong toggle it back.
         $(this).toggleClass('deselected');
       }.bind(this)
