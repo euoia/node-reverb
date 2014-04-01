@@ -1,5 +1,7 @@
 Practice French verb conjugation in the web browser.
 
+Live demo: http://practicefrenchverbs.com
+
 TODO
 ====
 * Split sentences into start/verb/end pieces.
