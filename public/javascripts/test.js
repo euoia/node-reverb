@@ -61,13 +61,17 @@ function Test(options) {
           $('.test').fadeIn();
           preferencesShown = false;
           fading = false;
+          $('#response').blur();
         }
       });
     } else {
       $('.test').fadeOut({
         complete: function() {
           $('.preferences').fadeIn();
-          $('.testResponse').focus();
+          setTimeout(function() {
+            $('#response').focus();
+          }, 2000);
+
           preferencesShown = true;
           fading = false;
         }
