@@ -49,11 +49,11 @@
 				<div class="preferencesTitle">Désélectionnez les temps que vous ne voulez pas pratiquer</div>
 
 				<!-- Show the moods -->
-				<% for (mood in moods) { %>
-					<% if (moods.hasOwnProperty(mood) === false) { continue; } %>
+				<% for (moodName in moods) { %>
+					<% if (moods.hasOwnProperty(moodName) === false) { continue; } %>
 					<table class="chooseMoods">
 						<tr>
-							<td><a href="#" data-mood="<%= mood %>" class="mood <%= mood %>"><%= moods[mood].text %></a></td>
+							<td><a href="#" data-mood="<%= moodName %>" class="mood <%= moodName %>"><%= moods[moodName].text %></a></td>
 						</tr>
 					</table>
 				<% } %>
@@ -92,7 +92,7 @@
 					<input type="hidden" name="perspective" value="<%= perspective %>" />
 					<input type="hidden" name="gender" value="<%= gender %>" />
 					<div class="testResponse">
-						R. <%= questionLeader %> <input name="response" class="testResponseInput"  autofocus="autofocus" autocomplete="off" />
+						R. <%= questionLeader %> <input id="response" name="response" class="testResponseInput"  autofocus="autofocus" autocomplete="off" />
 					</div>
 					<div class="answer"></div>
 					<div class="conjugationTableContainer"></div>
