@@ -40,6 +40,7 @@ app.post('/prefs/deselectVerb', prefs.deselectVerb);
 app.post('/prefs/selectVerb', prefs.selectVerb);
 app.post('/prefs/deselectMood', prefs.deselectMood);
 app.post('/prefs/selectMood', prefs.selectMood);
+app.post('/prefs/setAudioEnabled', prefs.setAudioEnabled);
 
 http.createServer(app).listen(app.get('port'), function(){
   console.log('Express server listening on port ' + app.get('port'));

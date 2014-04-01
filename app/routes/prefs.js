@@ -31,3 +31,12 @@ exports.selectMood = function (req, res) {
   console.log('Selected %s', req.body.mood);
   res.end();
 };
+
+exports.setAudioEnabled = function (req, res) {
+  if (prefs.setAudioEnabled(req.session, req.body.enabled) === false) {
+    return res.status(403).end();
+  }
+
+  console.log('Set audio enabled to %s', req.body.enabled);
+  res.end();
+};

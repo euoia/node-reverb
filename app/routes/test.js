@@ -2,10 +2,11 @@ var testCase = require('../controllers/testCase.js'),
   conjugation = require('../controllers/conjugation.js'),
   insults = require('../controllers/insults.js'),
   tts = require('../controllers/tts.js'),
-  util = require('util'),
   verbs = require('../models/verbs.js'),
   moods = require('../models/moods.js'),
-  prefs = require('../models/prefs.js');
+  prefs = require('../models/prefs.js'),
+  util = require('util'),
+  async = require('async');
 
 /*
  * GET home page.
@@ -16,28 +17,41 @@ exports.newTest = function(req, res){
     possibleMoods = prefs.selectedMoods(req.session),
     test = testCase.newTest(possibleVerbs, possibleMoods);
 
-  tts.get(test.questionText, function(err, ttsQuestionPath) {
-    if (err) {
-      console.log('Error in tts.get', err);
-      return;
-    }
+  async.series([
+    function getAudioUrlIfEnabled(callback) {
+      // If audio is enabled we go into an async path.
+      if (prefs.ttsAudioEnabled(req.session) === true) {
+        console.log('Audio is enabled');
+        tts.get(test.questionText, function(err, ttsQuestionPath) {
+          if (err) {
+            console.log('Error in tts.get', err);
+            return;
+          }
 
-    ttsQuestionUrl = tts.urlFromPath(ttsQuestionPath);
-
-    res.render('index', {
-      title: 'Pratiquer la conjugaison des verbes en français',
-      verb: test.verb,
-      mood: test.mood,
-      perspective: test.perspective,
-      gender: test.gender,
-      questionAudio: ttsQuestionUrl,
-      questionText: test.questionText,
-      questionLeader: test.questionLeader,
-      verbLevels: verbs.verbLevels,
-      deselectedVerbs: JSON.stringify(prefs.deselectedVerbs(req.session)),
-      moods: moods.moods,
-      deselectedMoods: JSON.stringify(prefs.deselectedMoods(req.session))
-    });
+          ttsQuestionUrl = tts.urlFromPath(ttsQuestionPath);
+          callback(null, ttsQuestionUrl);
+        });
+      } else {
+        console.log('Audio not enabled');
+        callback(null, null);
+      }
+    }],
+    function renderPage(err, ttsQuestionUrl) {
+      res.render('index', {
+        title: 'Pratiquer la conjugaison des verbes en français',
+        verb: test.verb,
+        mood: test.mood,
+        perspective: test.perspective,
+        gender: test.gender,
+        questionAudio: ttsQuestionUrl,
+        questionText: test.questionText,
+        questionLeader: test.questionLeader,
+        verbLevels: verbs.verbLevels,
+        deselectedVerbs: JSON.stringify(prefs.deselectedVerbs(req.session)),
+        moods: moods.moods,
+        deselectedMoods: JSON.stringify(prefs.deselectedMoods(req.session)),
+        ttsAudioEnabled: prefs.ttsAudioEnabled(req.session)
+      });
   });
 };
 

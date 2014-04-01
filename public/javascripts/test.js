@@ -4,6 +4,7 @@ function Test(options) {
   this.form = options.form;
   this.controls = options.controls;
   this.preferences = options.preferences;
+  this.ttsAudioEnabled = options.ttsAudioEnabled;
 
   // Toggle selected status of deselected verbs in prefs.
   for (i = 0, l = options.deselectedVerbs.length; i < l; i += 1) {
@@ -16,6 +17,9 @@ function Test(options) {
     var mood = options.deselectedMoods[i];
     $('.' + mood, this.preferences).toggleClass('deselected');
   }
+
+  // Toggle enabled status of the text-to-speech audio.
+  this.setAudioEnabled(this.ttsAudioEnabled);
 
   // Store the deselected moods, we need this info for displaying the conjugation table.
   this.deselectedMoods = options.deselectedMoods;
@@ -48,6 +52,7 @@ function Test(options) {
     window.location = '/';
   });
 
+  // Hide/show preferences.
   var preferencesShown = false;
   var fading = false;
   $('.prefsLink', this.controls).click(function (eventData) {
@@ -78,6 +83,25 @@ function Test(options) {
       });
     }
   });
+
+
+  $('.ttsAudioLink', this.controls).click(function (eventData) {
+    this.ttsAudioEnabled = !this.ttsAudioEnabled;
+    this.setAudioEnabled(this.ttsAudioEnabled);
+
+    $.ajax({
+      type: 'POST',
+      url: '/prefs/setAudioEnabled',
+      data: JSON.stringify({
+        enabled: this.ttsAudioEnabled
+      }),
+      contentType: 'application/json',
+      error: function() {
+        this.ttsAudioEnabled = !this.ttsAudioEnabled;
+        this.setAudioEnabled(this.ttsAudioEnabled);
+      }.bind(this)
+    });
+  }.bind(this));
 
   $('.verb', this.preferences).click(function (eventData) {
     var action;
@@ -277,4 +301,14 @@ Test.prototype.handleCheckanswer = function(resData) {
   this.playAudio(resData.audio);
   $('.next', this.form).show();
   $('.nextButton', this.form).focus();
+};
+
+Test.prototype.setAudioEnabled = function(value) {
+  if (value === true) {
+    $('.ttsAudioLink i', this.controls).removeClass('fa-volume-off');
+    $('.ttsAudioLink i', this.controls).addClass('fa-volume-up');
+  } else {
+    $('.ttsAudioLink i', this.controls).removeClass('fa-volume-up');
+    $('.ttsAudioLink i', this.controls).addClass('fa-volume-off');
+  }
 };

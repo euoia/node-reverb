@@ -75,3 +75,23 @@ var deselectedMoods = exports.deselectedMoods = function (session) {
 exports.selectedMoods = function (session) {
   return _.difference(moods.all_moods, deselectedMoods(session));
 };
+
+// Wehether the text-to-speech audio is enabled.
+exports.ttsAudioEnabled = function (session) {
+  if (session.ttsAudioEnabled === undefined) {
+    // Default: off.
+    session.ttsAudioEnabled = false;
+  }
+
+  return session.ttsAudioEnabled;
+};
+
+exports.setAudioEnabled = function (session, value) {
+  if (value !== true && value !== false) {
+    console.log('[setAudioEnabled] Value must be true or false.', value);
+    return false;
+  }
+
+  session.ttsAudioEnabled = value;
+  return true;
+};

@@ -21,15 +21,19 @@
 		<script src="bower_components/jquery/dist/jquery.min.js" type="text/javascript" charset="utf-8"></script>
 		<script src="bower_components/underscore/underscore.js" type="text/javascript" charset="utf-8"></script>
 
+		<!-- CDN -->
+		<link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
+
 		<!-- startup -->
 		<script type="text/javascript" charset="utf-8">
 			window.onload = function() {
 				test = new Test({
 					form: document.getElementById('testForm'),
 					controls: document.getElementById('controls'),
+					preferences: document.getElementById('preferences'),
 					deselectedVerbs: <%- deselectedVerbs %>,
 					deselectedMoods: <%- deselectedMoods %>,
-					preferences: document.getElementById('preferences')
+					ttsAudioEnabled: <%= ttsAudioEnabled %>
 				});
 			};
 		</script>
@@ -38,7 +42,9 @@
     <body>
 
 		<div class="paper">
+			<!-- "Font Awesome by Dave Gandy - http://fontawesome.io". -->
 			<div id="controls">
+				<span class="ttsAudioLink link"><i class="volume fa fa-volume-up"></i></span>&nbsp;
 				<a class="prefsLink" href="#">pref</a>
 			</div>
 

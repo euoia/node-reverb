@@ -177,3 +177,38 @@ td, th {
 .difficultyTitle {
 	margin-top: 20px;
 }
+
+.link:hover {
+	cursor: pointer;
+}
+
+/* Nice flat checkboxes, but not using these.
+input[type=checkbox].ttsAudioCheckbox {
+	position: absolute;
+	overflow: hidden;
+	clip: rect(0 0 0 0);
+	height:1px;
+	width:1px;
+	margin:-1px;
+	padding:0;
+	border:0;
+}
+
+input[type=checkbox].ttsAudioCheckbox + label {
+	padding-left:20px;
+	height:15px;
+	display:inline-block;
+	line-height:15px;
+	background-repeat:no-repeat;
+	background-position: 0 0;
+	vertical-align:middle;
+	cursor:pointer;
+	font-weight: 700;
+}
+
+input[type=checkbox].ttsAudioCheckbox:checked + label {
+	background-position: 0 -15px;
+}
+
+.ttsAudioCheckboxLabel { background-image:url(http://csscheckbox.com/checkboxes/lite-green-check.png); }
+*/
