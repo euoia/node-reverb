@@ -82,7 +82,7 @@ exports.check = function(req, res){
   if (responseCorrect === true) {
     console.log('Response was correct.');
     // TODO: Alternative masculine/feminine answers.
-    var congrats = util.format('Très bien! La bonne réponse est %s.',
+    var congrats = util.format('La bonne réponse est %s.',
       goodResponse);
 
     tts.get(congrats, function(err, ttsCongratsPath) {
