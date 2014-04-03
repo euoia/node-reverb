@@ -1,4 +1,5 @@
-var testCase = require('../controllers/testCase.js'),
+var _ = require('underscore'),
+  testCase = require('../controllers/testCase.js'),
   conjugation = require('../controllers/conjugation.js'),
   insults = require('../controllers/insults.js'),
   tts = require('../controllers/tts.js'),
@@ -65,13 +66,24 @@ exports.check = function(req, res){
 
   console.dir(req.body);
 
-  var answer = testCase.answer(verb, perspective, mood, gender);
+  var answers = testCase.answers(verb, perspective, mood, gender);
+  var responseCorrect = false;
+  if (_.findWhere(answers, {verb: response}) !== undefined) {
+    responseCorrect = true;
+  }
 
-  console.log('[test check] response=%s answer=%s answer.text=%s', response, answer.verb, answer.text);
-  if (response === answer.verb) {
+  var goodResponse = _.chain(answers)
+    .pluck('text')
+    .map(function (answer) { return util.format('«%s»', answer); })
+    .value()
+    .join(' ou ');
+
+  console.log('[test check] response=%s answers=', response, answers);
+  if (responseCorrect === true) {
+    console.log('Response was correct.');
     // TODO: Alternative masculine/feminine answers.
-    var congrats = util.format('Très bien! La bonne réponse est «%s».',
-      answer.text);
+    var congrats = util.format('Très bien! La bonne réponse est %s.',
+      goodResponse);
 
     tts.get(congrats, function(err, ttsCongratsPath) {
       if (err) {
@@ -88,9 +100,11 @@ exports.check = function(req, res){
       });
     });
   } else {
-    var insult = util.format('%s! Vous devez répondre: «%s».',
+    console.log('Response was incorrect.');
+
+    var insult = util.format('%s! Vous devez répondre: %s.',
       insults.newInsult(),
-      answer.text);
+      goodResponse);
 
     tts.get(insult, function(err, ttsInsultPath) {
       if (err) {

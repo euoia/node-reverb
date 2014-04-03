@@ -37,17 +37,21 @@ exports.newTest = function(possibleVerbs, possibleMoods) {
   };
 };
 
-exports.answer = function (verb, perspective, mood, gender) {
-  // Get the conjugations in all perspectives for this verb/mood combo.
-  var conjugatedVerb = conjugation.conjugate(verb, perspective, mood, gender);
-
+// Returns an array of acceptable answers.
+// Each answer object has a verb and text property.
+exports.answers = function (verb, perspective, mood, gender) {
   // Generate the full sentence beginning.
   var sentenceBeginning = sentences.beginning(verb, perspective, mood, gender);
 
-  var conjugationText = util.format('%s %s', sentenceBeginning, conjugatedVerb);
+  // Get the conjugations in all perspectives for this verb/mood combo.
+  var conjugatedVerbs = conjugation.conjugate(verb, perspective, mood, gender);
 
-  return {
-    verb: conjugatedVerb,
-    text: conjugationText
-  };
+  return _.map(conjugatedVerbs, function (verb) {
+    var sentence = util.format('%s %s', sentenceBeginning, verb);
+
+    return {
+      verb: verb,
+      text: sentence
+    };
+  });
 };

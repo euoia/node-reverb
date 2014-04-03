@@ -101,18 +101,22 @@ var conjugationsInMood = exports.conjugationsInMood = function(verb, mood, gende
   var verbHead = verb.substr(0, verbSplitPoint);
   var verbTail = verb.substr(verbSplitPoint);
 
+  // This returns an array of conjugated verbs.
+  // Some verbs conjugate in multiple acceptable ways,
+  // e.g. payer => Je paie or je paye.
   function createConjugatedVerb (perspectiveRule) {
-    var verbEnding = perspectiveRule.i;
-    return util.format('%s%s', verbHead, verbEnding);
+    return _.map(perspectiveRule.i, function (verbEnding) {
+      return util.format('%s%s', verbHead, verbEnding);
+    });
   }
 
   function createConjugatedPastParticiple (perspectiveRule, perspective) {
-    var verbEnding = perspectiveRule.i;
-    var conjugatedVerb = util.format('%s%s', verbHead, verbEnding);
-    var conjugatedVerbModifiedForContext = perspectives.modifyVerbForContext(
-      conjugatedVerb, verb, perspective, mood, gender);
-
-    return conjugatedVerbModifiedForContext;
+    return _.map(perspectiveRule.i, function (verbEnding) {
+      var conjugatedVerb = util.format('%s%s', verbHead, verbEnding);
+      var conjugatedVerbModifiedForContext = perspectives.modifyVerbForContext(
+        conjugatedVerb, verb, perspective, mood, gender);
+      return conjugatedVerbModifiedForContext;
+    });
   }
 
   var conjugations;
@@ -149,8 +153,15 @@ exports.conjugationTable = function(verb) {
   var results = {};
 
   _.each(moods.all_moods, function(mood) {
-    results[mood] = conjugationsInMood(verb, mood, 'masculine');
+    var conjugations = conjugationsInMood(verb, mood, 'masculine');
+    for (var perspective in conjugations) {
+      conjugations[perspective] = conjugations[perspective].join(' ou ');
+    }
+
+    results[mood] = conjugations;
   });
+
+  console.dir(results);
 
   return results;
 };
