@@ -277,6 +277,10 @@ Test.prototype.generateConjugationTable = function(conjugationTable) {
 };
 
 Test.prototype.playAudio = function(audioPath) {
+  if (this.ttsAudioEnabled === false) {
+    return;
+  }
+
   var audio = document.createElement('audio');
   audio.src = audioPath;
   audio.autoplay = true;

@@ -84,20 +84,33 @@ exports.check = function(req, res){
     var congrats = util.format('La bonne réponse est %s.',
       goodResponse);
 
-    tts.get(congrats, function(err, ttsCongratsPath) {
-      if (err) {
-        console.log('Error in tts.get', err);
-        return;
+    async.series([
+      function getAudioUrlIfEnabled(callback) {
+        // If audio is enabled we go into an async path.
+        if (prefs.ttsAudioEnabled(req.session) === true) {
+          console.log('Audio is enabled');
+          tts.get(congrats, function(err, ttsCongratsPath) {
+            if (err) {
+              console.log('Error in tts.get', err);
+              return;
+            }
+
+            var ttsCongratsUrl = tts.urlFromPath(ttsCongratsPath);
+            callback(null, ttsCongratsUrl);
+          });
+        } else {
+          console.log('Audio not enabled');
+          callback(null, null);
+        }
+      }],
+      function renderPage(err, ttsCongratsUrl) {
+        res.send({
+          correct: true,
+          congrats: congrats,
+          audio: ttsCongratsUrl
+        });
       }
-
-      var ttsCongratsUrl = tts.urlFromPath(ttsCongratsPath);
-
-      res.send({
-        correct: true,
-        congrats: congrats,
-        audio: ttsCongratsUrl
-      });
-    });
+    ); // async.series.
   } else {
     console.log('Response was incorrect.');
 
@@ -105,20 +118,33 @@ exports.check = function(req, res){
       insults.newInsult(),
       goodResponse);
 
-    tts.get(insult, function(err, ttsInsultPath) {
-      if (err) {
-        console.log('Error in tts.get', err);
-        return;
+    async.series([
+      function getAudioUrlIfEnabled(callback) {
+        // If audio is enabled we go into an async path.
+        if (prefs.ttsAudioEnabled(req.session) === true) {
+          console.log('Audio is enabled');
+
+          tts.get(insult, function(err, ttsInsultPath) {
+            if (err) {
+              console.log('Error in tts.get', err);
+              return;
+            }
+
+            var ttsInsultUrl = tts.urlFromPath(ttsInsultPath);
+            callback(null, ttsInsultUrl);
+          });
+        } else {
+          callback(null, null);
+        }
+      }],
+      function renderPage(err, ttsInsultUrl) {
+        res.send({
+          correct: false,
+          insult: insult,
+          conjugationTable: conjugation.conjugationTable(verb, mood),
+          audio: ttsInsultUrl
+        });
       }
-
-      var ttsInsultUrl = tts.urlFromPath(ttsInsultPath);
-
-      res.send({
-        correct: false,
-        insult: insult,
-        conjugationTable: conjugation.conjugationTable(verb, mood),
-        audio: ttsInsultUrl
-      });
-    });
+    ); // async.series.
   }
 };
