@@ -81,7 +81,6 @@ exports.check = function(req, res){
   console.log('[test check] response=%s answers=', response, answers);
   if (responseCorrect === true) {
     console.log('Response was correct.');
-    // TODO: Alternative masculine/feminine answers.
     var congrats = util.format('La bonne réponse est %s.',
       goodResponse);
 
