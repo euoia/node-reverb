@@ -4,9 +4,21 @@ var util = require('util'),
   request = require('request'),
   fs = require('fs');
 
+var apiKey = process.env.API_KEY;
+
+var apiRoot;
+if (apiKey === undefined) {
+  console.log('Not using an API key.');
+  apiRoot = 'http://translate.google.com/translate_tts?tl=fr&q=';
+} else {
+  console.log('Using API key %s', apiKey);
+  apiRoot = util.format(
+    'http://translate.google.com/translate_tts?key=%s&tl=fr&q=',
+    apiKey);
+}
+
 var cacheIndex = './public/tts_cache/index.txt';
 var cacheDir = './public/tts_cache';
-var apiRoot = 'http://translate.google.com/translate_tts?tl=fr&q=';
 
 function makeAPIUrl (str) {
   return util.format('%s%s', apiRoot, encodeURIComponent(str));
