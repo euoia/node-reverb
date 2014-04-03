@@ -161,8 +161,6 @@ exports.conjugationTable = function(verb) {
     results[mood] = conjugations;
   });
 
-  console.dir(results);
-
   return results;
 };
 
