@@ -37,13 +37,13 @@ var perspectives = {
   },
   'third_singular': {
     subject: 'Il',
-    avoir: 'Il à',
+    avoir: 'Il a',
     etre: 'Il est',
     subjunctive: "Il faut qu'il",
     verb_suffix: '',
     feminine: {
       subject: 'Elle',
-      avoir: 'Elle à',
+      avoir: 'Elle a',
       etre: 'Elle est',
       subjunctive: "Il faut qu'elle",
       verb_suffix: 'e'
