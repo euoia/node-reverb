@@ -24,12 +24,14 @@ function Test(options) {
   // Store the deselected moods, we need this info for displaying the conjugation table.
   this.deselectedMoods = options.deselectedMoods;
 
-  this.form.onsubmit = function(d) {
-    var verb = $('input[name=verb]', this.form).val();
-    var mood = $('input[name=mood]', this.form).val();
-    var perspective = $('input[name=perspective]', this.form).val();
-    var gender = $('input[name=gender]', this.form).val();
-    var response = $('input[name=response]', this.form).val();
+  var that = this;
+  $(this.form).submit(function (eventData) {
+
+    var verb = $('input[name=verb]', that.form).val();
+    var mood = $('input[name=mood]', that.form).val();
+    var perspective = $('input[name=perspective]', that.form).val();
+    var gender = $('input[name=gender]', that.form).val();
+    var response = $('input[name=response]', that.form).val();
 
     $.ajax({
       type: 'POST',
@@ -41,14 +43,16 @@ function Test(options) {
         gender: gender,
         response: response
       },
-      success: this.handleCheckanswer.bind(this),
+      success: that.handleCheckanswer.bind(that),
       dataType: 'json'
     });
 
+    console.log('eventData', eventData);
+    eventData.preventDefault();
     return false;
-  }.bind(this);
+  });
 
-  $('.next', this.form).click(function(eventData) {
+  $('.next').click(function(eventData) {
     window.location = '/';
   });
 
@@ -126,7 +130,6 @@ function Test(options) {
     });
   });
 
-  var that = this;
   $('.mood', this.preferences).click(function (eventData) {
     var action;
     if($(this).hasClass('deselected')) {
@@ -303,8 +306,8 @@ Test.prototype.handleCheckanswer = function(resData) {
   }
 
   this.playAudio(resData.audio);
-  $('.next', this.form).show();
-  $('.nextButton', this.form).focus();
+  $('.next').show();
+  $('.nextButton').focus();
 };
 
 Test.prototype.setAudioEnabled = function(value) {
