@@ -306,7 +306,7 @@ Test.prototype.handleCheckanswer = function(resData) {
 
     var perspective = $('input[name=perspective]', this.form).val();
     var mood = $('input[name=mood]', this.form).val();
-    var selector = '.table-' + mood + ' + .' + perspective;
+    var selector = '.table-' + mood + '.' + perspective;
     console.log('selector', selector);
     $(selector).addClass('hilightWrongAnswer');
   }
