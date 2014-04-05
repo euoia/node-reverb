@@ -183,6 +183,11 @@ td, th {
 	cursor: pointer;
 }
 
+.hilightWrongAnswer {
+	color: red;
+	text-decoration: underline;
+}
+
 /* Nice flat checkboxes, but not using these.
 input[type=checkbox].ttsAudioCheckbox {
 	position: absolute;
