@@ -3,5 +3,5 @@ var perspectives = require('../app/models/perspectives.js'),
 
 assert.equal(
   perspectives.snippet('prendre', 'second_singular', 'subjunctive_present', 'feminine'),
-  'Il faut que tu'
+  'Il faut que tu '
 );
