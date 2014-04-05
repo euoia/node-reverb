@@ -2,8 +2,8 @@
 var fs = require('fs'),
   _ = require('underscore'),
   util = require('util'),
-  perspectives = require('../models/perspectives.js');
-  moods = require('../models/moods.js');
+  perspectives = require('./perspectives.js');
+  moods = require('./moods.js');
 
 var verbFile = fs.readFileSync(__dirname + '/../../lib/conjugation-tables/verbs-fr.js');
 var verbData = JSON.parse(verbFile);

@@ -1,6 +1,6 @@
-var verbs = require('../models/verbs.js'),
-  moods = require('../models/moods.js'),
-  perspectives = require('../models/perspectives.js'),
+var verbs = require('./verbs.js'),
+  moods = require('./moods.js'),
+  perspectives = require('./perspectives.js'),
   _ = require('underscore');
 
 var genders = exports.genders = [

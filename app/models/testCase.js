@@ -1,9 +1,9 @@
 var _ = require('underscore'),
   conjugation = require('./conjugation.js'),
   sentences = require('./sentences.js'),
-  verbs = require('../models/verbs.js'),
-  moods = require('../models/moods.js'),
-  perspectives = require('../models/perspectives.js'),
+  verbs = require('./verbs.js'),
+  moods = require('./moods.js'),
+  perspectives = require('./perspectives.js'),
   util = require('util');
 
 
@@ -23,7 +23,7 @@ exports.newTest = function(possibleVerbs, possibleMoods) {
   var sentenceBeginning = sentences.beginning(verb, perspective, mood, gender);
 
   var questionText = util.format(
-    'Conjuguez le verbe «%s» %s …',
+    'Conjuguez le verbe «%s» %s…',
     verb,
     moods.text(mood));
 
@@ -47,7 +47,7 @@ exports.answers = function (verb, perspective, mood, gender) {
   var conjugatedVerbs = conjugation.conjugate(verb, perspective, mood, gender);
 
   return _.map(conjugatedVerbs, function (verb) {
-    var sentence = util.format('%s %s', sentenceBeginning, verb);
+    var sentence = util.format('%s%s', sentenceBeginning, verb);
 
     return {
       verb: verb,

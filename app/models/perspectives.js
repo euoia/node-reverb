@@ -1,9 +1,8 @@
-var verbs = require('../models/verbs.js'),
-  moods = require('../models/moods.js'),
+var verbs = require('./verbs.js'),
+  moods = require('./moods.js'),
   _ = require('underscore'),
-  util = require('util');
-
-// TODO: Subjunctive.
+  util = require('util'),
+  conjugation = require('./conjugation.js');
 
 // These are bits of text associated with various perspectives.
 // first_singular   - The first-person singular form. En: I, Fr: je.
@@ -22,58 +21,58 @@ var verbs = require('../models/verbs.js'),
 //                    participle_past_participle and the verb conjugates with être.
 var perspectives = {
   'first_singular': {
-    subject: 'Je',
-    avoir: "J'ai",
-    etre: 'Je suis',
-    subjunctive: 'Il faut que je',
+    subject: 'Je ',
+    avoir: "J'ai ",
+    etre: 'Je suis ',
+    subjunctive: 'Il faut que je ',
     verb_suffix: ''
   },
   'second_singular': {
-    subject: 'Tu',
-    avoir: 'Tu as',
-    etre: 'Tu es',
-    subjunctive: 'Il faut que tu',
+    subject: 'Tu ',
+    avoir: 'Tu as ',
+    etre: 'Tu es ',
+    subjunctive: 'Il faut que tu ',
     verb_suffix: ''
   },
   'third_singular': {
-    subject: 'Il',
-    avoir: 'Il a',
-    etre: 'Il est',
-    subjunctive: "Il faut qu'il",
+    subject: 'Il ',
+    avoir: 'Il a ',
+    etre: 'Il est ',
+    subjunctive: "Il faut qu'il ",
     verb_suffix: '',
     feminine: {
-      subject: 'Elle',
-      avoir: 'Elle a',
-      etre: 'Elle est',
-      subjunctive: "Il faut qu'elle",
+      subject: 'Elle ',
+      avoir: 'Elle a ',
+      etre: 'Elle est ',
+      subjunctive: "Il faut qu'elle ",
       verb_suffix: 'e'
     }
   },
   'first_plural': {
-    subject: 'Nous',
-    avoir: 'Nous avons',
-    etre: 'Nous sommes',
-    subjunctive: 'Il faut que nous',
+    subject: 'Nous ',
+    avoir: 'Nous avons ',
+    etre: 'Nous sommes ',
+    subjunctive: 'Il faut que nous ',
     verb_suffix: 's'
   },
   'second_plural': {
-    subject: 'Vous',
-    avoir: 'Vous avez',
-    etre: 'Vous êtes',
-    subjunctive: 'Il faut que vous',
+    subject: 'Vous ',
+    avoir: 'Vous avez ',
+    etre: 'Vous êtes ',
+    subjunctive: 'Il faut que vous ',
     verb_suffix: 's'
   },
   'third_plural': {
-    subject: 'Ils',
-    avoir: 'Ils ont',
-    etre: 'Ils sont',
-    subjunctive: "Il faut qu'ils",
+    subject: 'Ils ',
+    avoir: 'Ils ont ',
+    etre: 'Ils sont ',
+    subjunctive: "Il faut qu'ils ",
     verb_suffix: 's',
     feminine: {
-      subject: 'Elles',
-      avoir: 'Elles ont',
-      etre: 'Elles sont',
-      subjunctive: "Il faut qu'elles",
+      subject: 'Elles ',
+      avoir: 'Elles ont ',
+      etre: 'Elles sont ',
+      subjunctive: "Il faut qu'elles ",
       verb_suffix: 'es'
     }
   }
@@ -93,6 +92,7 @@ exports.verbSuffix = function (verb, perspective, gender) {
   return perspectives[perspective][aspect];
 };
 
+// Returns one of the entries from the perspectives object.
 exports.snippet = function (verb, perspective, mood, gender) {
   // One of: subject, avoir, etre.
   var aspect;
@@ -118,6 +118,29 @@ exports.snippet = function (verb, perspective, mood, gender) {
       perspectives[perspective].feminine !== undefined
   ) {
     return perspectives[perspective].feminine[aspect];
+  }
+
+  // Well this is a bit nasty. It handles the case where the correct answer
+  // starts with a vowel and the snippet ends with "Je".
+  if (perspective === 'first_singular') {
+    conjugatedVerbs = conjugation.conjugate(verb, perspective, mood, gender);
+
+    // Just use the first one.
+    var firstAnswer = conjugatedVerbs[0];
+    var firstLetterOfFirstAnswer = firstAnswer[0];
+    if (firstLetterOfFirstAnswer === 'a' ||
+        firstLetterOfFirstAnswer === 'é' ||
+        firstLetterOfFirstAnswer === 'e' ||
+        firstLetterOfFirstAnswer === 'i' ||
+        firstLetterOfFirstAnswer === 'o' ||
+        firstLetterOfFirstAnswer === 'u'
+    ) {
+      if (aspect === 'subject') {
+        return "J'";
+      } else if (aspect === 'subjunctive') {
+        return "Il faut que j'";
+      }
+    }
   }
 
   return perspectives[perspective][aspect];

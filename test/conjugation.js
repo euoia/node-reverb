@@ -1,5 +1,5 @@
 var assert = require('assert'),
-  conjugation = require('../app/controllers/conjugation.js'),
+  conjugation = require('../app/models/conjugation.js'),
   _ = require('underscore');
 
 assert.deepEqual(
