@@ -27,7 +27,7 @@ body {
 	margin-left: auto;
 	margin-right: auto;
 	text-align: left;
-	font: normal 12px/1.5 "Lucida Grande", arial, sans-serif;
+	font: normal 13px/1.5 "Lucida Grande", arial, sans-serif;
 	color: #012395;
 
 	padding: 8px 0px 3px 80px;
@@ -70,7 +70,7 @@ body {
 
 .testTitleSection {
 	margin-bottom: 20px;
-	margin-top: -4px;
+	margin-top: -5px;
 	margin-left: -80px;
 	background-color: #ffffff;
 	min-height: 64px;
@@ -83,7 +83,7 @@ body {
 	font-size: 1.2em;
 	text-align: center;
 	margin-top: -20px;
-	margin-bottom: 20px;
+	margin-bottom: 21px;
 	text-decoration: underline;
 }
 
@@ -115,6 +115,7 @@ td, th {
 	padding-left: 10px;
 	padding-right: 10px;
 	text-align: left;
+	vertical-align: bottom;
 }
 
 .next {
