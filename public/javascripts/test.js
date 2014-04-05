@@ -245,7 +245,7 @@ Test.prototype.generateConjugationTable = function(conjugationTable) {
 
   var perspective, mood, moodVerbTemplate;
 
-  for (var p = 0; p < perspectives.length; p += 1) {
+  for (var p = 0; p < perspectives.length + 1; p += 1) {
     table += '<tr>';
 
     for (var m = 0; m < this.moods.length + 1; m += 1) {
