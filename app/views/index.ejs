@@ -16,11 +16,11 @@
         <link rel="stylesheet" href="stylesheets/style.css">
 
 		<!-- app -->
-		<script src="javascripts/test.js" type="text/javascript" charset="utf-8"></script>
+		<script src="javascripts/test.js" type="text/javascript"></script>
 
 		<!-- lib -->
-		<script src="bower_components/jquery/dist/jquery.min.js" type="text/javascript" charset="utf-8"></script>
-		<script src="bower_components/underscore/underscore.js" type="text/javascript" charset="utf-8"></script>
+		<script src="bower_components/jquery/dist/jquery.min.js" type="text/javascript"></script>
+		<script src="bower_components/underscore/underscore.js" type="text/javascript"></script>
 
 		<!-- CDN -->
 		<link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
@@ -56,14 +56,14 @@
 				<div class="preferencesTitle">Désélectionnez les temps que vous ne voulez pas pratiquer</div>
 
 				<!-- Show the moods -->
+				<table class="chooseMoods">
 				<% for (moodName in moods) { %>
 					<% if (moods.hasOwnProperty(moodName) === false) { continue; } %>
-					<table class="chooseMoods">
 						<tr>
 							<td><a href="#" data-mood="<%= moodName %>" class="mood <%= moodName %>"><%= moods[moodName].text %></a></td>
 						</tr>
-					</table>
 				<% } %>
+				</table>
 
 				<div class="preferencesTitle">Désélectionnez les verbes que vous ne voulez pas pratiquer</div>
 
@@ -73,9 +73,13 @@
 					<table class="chooseVerbs">
 						<% for(var v=0, numVerbs=verbLevels[level-1].length; v < numVerbs;) { %>
 							<tr>
-								<% for(var col=0; col < 5 && v < numVerbs; col += 1, v += 1) { %>
-									<% var prefVerb = verbLevels[level-1][v] %>
-									<td><a href="#" data-verb="<%= prefVerb %>" class="verb <%= prefVerb %>"><%= prefVerb %></a></td>
+								<% for(var col=0; col < 5; col += 1, v += 1) { %>
+									<% var prefVerb = verbLevels[level-1][v]; %>
+									<% if (prefVerb === undefined) { %>
+										<td>&nbsp;</td>
+									<% } else { %>
+										<td><a href="#" data-verb="<%= prefVerb %>" class="verb <%= prefVerb %>"><%= prefVerb %></a></td>
+									<% } %>
 								<% } %>
 							</tr>
 						<% } %>
@@ -104,7 +108,7 @@
 					<div class="conjugationTableContainer"></div>
 				</form>
 
-				<div class="next"><button class="nextButton">suivant</button</div>
+				<div class="next"><button class="nextButton">suivant</button></div>
 			</div>
 		</div>
 
