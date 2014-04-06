@@ -33,7 +33,7 @@ exports.selectMood = function (req, res) {
 };
 
 exports.setAudioEnabled = function (req, res) {
-  if (prefs.setaudioenabled(req.session, req.body.enabled) === false) {
+  if (prefs.setAudioEnabled(req.session, req.body.enabled) === false) {
     return res.status(403).end();
   }
 
