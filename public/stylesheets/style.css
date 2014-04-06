@@ -188,6 +188,11 @@ td, th {
 	text-decoration: underline;
 }
 
+.preferences > p {
+	margin-top: 0;
+	margin-left: 10px;
+}
+
 /* Nice flat checkboxes, but not using these.
 input[type=checkbox].ttsAudioCheckbox {
 	position: absolute;

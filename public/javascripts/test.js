@@ -5,6 +5,7 @@ function Test(options) {
   this.controls = options.controls;
   this.preferences = options.preferences;
   this.ttsAudioEnabled = options.ttsAudioEnabled;
+  this.optionalAccepts = options.optionalAccentsEnabled;
 
   // Toggle selected status of deselected verbs in prefs.
   for (i = 0, l = options.deselectedVerbs.length; i < l; i += 1) {
@@ -20,6 +21,9 @@ function Test(options) {
 
   // Toggle enabled status of the text-to-speech audio.
   this.setAudioEnabled(this.ttsAudioEnabled);
+
+  // Toggle enabled status of the optional accents.
+  this.renderOptionalAccentsEnabled();
 
   // Store the deselected moods, we need this info for displaying the conjugation table.
   this.deselectedMoods = options.deselectedMoods;
@@ -156,6 +160,25 @@ function Test(options) {
 
     // Show or hide the mood from the conjguation table.
     $('.table-' + this.dataset.mood).toggle();
+  });
+
+  $('.optionalAccents').click(function (eventData) {
+    that.toggleOptionalAccentsEnabled();
+    that.renderOptionalAccentsEnabled();
+
+    $.ajax({
+      type: 'POST',
+      url: '/prefs/setOptionalAccents',
+      data: JSON.stringify({
+        enabled: that.optionalAccentsEnabled
+      }),
+      contentType: 'application/json',
+      error: function() {
+        // If something goes wrong toggle it back.
+        that.toggleOptionalAccentsEnabled();
+        that.renderOptionalAccentsEnabled();
+      }.bind(this)
+    });
   });
 
   this.moods =  [
@@ -323,5 +346,23 @@ Test.prototype.setAudioEnabled = function(value) {
   } else {
     $('.ttsAudioLink i', this.controls).removeClass('fa-volume-up');
     $('.ttsAudioLink i', this.controls).addClass('fa-volume-off');
+  }
+};
+
+Test.prototype.toggleOptionalAccentsEnabled = function() {
+  if (this.optionalAccentsEnabled === true) {
+    this.optionalAccentsEnabled = false;
+  } else {
+    this.optionalAccentsEnabled = true;
+  }
+};
+
+Test.prototype.renderOptionalAccentsEnabled = function() {
+  if (this.optionalAccentsEnabled === true) {
+    $('.optionalAccents', this.preferences).html('oui');
+    $('.optionalAccents', this.preferences).addClass('enabled');
+  } else {
+    $('.optionalAccents', this.preferences).html('non');
+    $('.optionalAccents', this.preferences).removeClass('enabled');
   }
 };

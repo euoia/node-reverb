@@ -95,3 +95,23 @@ exports.setAudioEnabled = function (session, value) {
   session.ttsAudioEnabled = value;
   return true;
 };
+
+exports.setOptionalAccents = function (session, value) {
+  if (value !== true && value !== false) {
+    console.log('[setOptionalAccents] Value must be true or false.', value);
+    return false;
+  }
+
+  session.optionalAccentsEnabled = value;
+  return true;
+};
+
+// Wehether the text-to-speech audio is enabled.
+exports.optionalAccentsEnabled = function (session) {
+  if (session.optionalAccentsEnabled === undefined) {
+    // Default: off.
+    session.optionalAccentsEnabled = false;
+  }
+
+  return session.optionalAccentsEnabled;
+};

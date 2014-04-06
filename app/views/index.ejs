@@ -34,7 +34,8 @@
 					preferences: document.getElementById('preferences'),
 					deselectedVerbs: <%- deselectedVerbs %>,
 					deselectedMoods: <%- deselectedMoods %>,
-					ttsAudioEnabled: <%= ttsAudioEnabled %>
+					ttsAudioEnabled: <%= ttsAudioEnabled %>,
+					optionalAccentsEnabled: <%= optionalAccentsEnabled %>
 				});
 			};
 		</script>
@@ -86,6 +87,8 @@
 					</table>
 				<% } %>
 
+				<div class="preferencesTitle">Les accents sont optionelle:</div>
+				<p><a href="#" class="optionalAccents"></a></p>
 			</div>
 
 			<div class="test">

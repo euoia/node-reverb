@@ -7,7 +7,8 @@ var _ = require('underscore'),
   moods = require('../models/moods.js'),
   prefs = require('../models/prefs.js'),
   util = require('util'),
-  async = require('async');
+  async = require('async'),
+  convert = require('../models/convert.js');
 
 /*
  * GET home page.
@@ -51,7 +52,8 @@ exports.newTest = function(req, res){
         deselectedVerbs: JSON.stringify(prefs.deselectedVerbs(req.session)),
         moods: moods.moods,
         deselectedMoods: JSON.stringify(prefs.deselectedMoods(req.session)),
-        ttsAudioEnabled: prefs.ttsAudioEnabled(req.session)
+        ttsAudioEnabled: prefs.ttsAudioEnabled(req.session),
+        optionalAccentsEnabled: prefs.optionalAccentsEnabled(req.session)
       });
   });
 };
@@ -67,8 +69,26 @@ exports.check = function(req, res){
   console.dir(req.body);
 
   var answers = testCase.answers(verb, perspective, mood, gender);
+
+  // Copy the array.
+  var acceptableAnswers = answers.slice(0);
   var responseCorrect = false;
-  if (_.findWhere(answers, {verb: response}) !== undefined) {
+
+  if (prefs.optionalAccentsEnabled(req.session)) {
+    console.log('Accents are optional');
+    var optionalAccentAnswers = _.map(answers, function (answer) {
+      return {
+        verb: convert.convertAccentedCharacters(answer.verb),
+        text: answer.text
+      };
+    });
+
+    acceptableAnswers = acceptableAnswers.concat(optionalAccentAnswers);
+  } else {
+    console.log('Accents are mandatory');
+  }
+
+  if (_.findWhere(acceptableAnswers, {verb: response}) !== undefined) {
     responseCorrect = true;
   }
 
