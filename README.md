@@ -2,11 +2,13 @@ Practice French verb conjugation in the web browser.
 
 Live demo: http://practicefrenchverbs.com
 
+To use a google apps API key set the API_KEY environment variable.
+
 TODO
 ====
-* Split sentences into start/verb/end pieces.
+* Split sentences into pieces (verb, insult, etc) to increase chance of a cache
+  hit on the TTS audio.
 * Test mode! Test the verb/moods you got wrong.
-* Acquire API key
 * Speed up: concatenate and minify, check with yslow
 
 License
