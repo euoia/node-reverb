@@ -37,7 +37,7 @@ exports.setAudioEnabled = function (req, res) {
     return res.status(403).end();
   }
 
-  console.log('set audio enabled to %s', req.body.enabled);
+  console.log('Set audio enabled to %s', req.body.enabled);
   res.end();
 };
 
@@ -47,5 +47,14 @@ exports.setOptionalAccents = function (req, res) {
   }
 
   console.log('set optional accents to %s', req.body.enabled);
+  res.end();
+};
+
+exports.setTranslationLanguage = function (req, res) {
+  if (prefs.setTranslationLanguage(req.session, req.body.translationLanguage) === false) {
+    return res.status(403).end();
+  }
+
+  console.log('set translation language %s', req.body.translationLanguage);
   res.end();
 };

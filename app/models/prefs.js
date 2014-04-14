@@ -115,3 +115,29 @@ exports.optionalAccentsEnabled = function (session) {
 
   return session.optionalAccentsEnabled;
 };
+
+var validTranslationLanguages = this.validTranslationLanguages = [
+  'aucune',
+  'anglais'
+];
+
+exports.setTranslationLanguage = function (session, value) {
+  if (_.contains(validTranslationLanguages, value) === false) {
+    console.log('[setTranslationLanguage] Value must be one of ', validTranslationLanguages, value);
+    return false;
+  }
+
+  session.translationLanguage = value;
+  return true;
+};
+
+// The language to show the verb translation in.
+// Either returns: '', or 'en'.
+exports.translationLanguage = function (session) {
+  if (session.translationLanguage === undefined) {
+    // Default: 'aucune' (no translation).
+    session.translationLanguage = 'aucune';
+  }
+
+  return session.translationLanguage;
+};

@@ -8,7 +8,8 @@ var _ = require('underscore'),
   prefs = require('../models/prefs.js'),
   util = require('util'),
   async = require('async'),
-  convert = require('../models/convert.js');
+  convert = require('../models/convert.js'),
+  translation = require('../models/translation.js');
 
 /*
  * GET home page.
@@ -17,7 +18,8 @@ var _ = require('underscore'),
 exports.newTest = function(req, res){
   var possibleVerbs = prefs.selectedVerbs(req.session),
     possibleMoods = prefs.selectedMoods(req.session),
-    test = testCase.newTest(possibleVerbs, possibleMoods);
+    test = testCase.newTest(possibleVerbs, possibleMoods),
+    translatedVerb = translation.longTranslate(test.verb);
 
   async.series([
     function getAudioUrlIfEnabled(callback) {
@@ -39,6 +41,7 @@ exports.newTest = function(req, res){
       }
     }],
     function renderPage(err, ttsQuestionUrl) {
+      console.log('translation Language = %s', prefs.translationLanguage(req.session));
       res.render('index', {
         title: 'Pratiquer la conjugaison des verbes en français',
         verb: test.verb,
@@ -53,7 +56,10 @@ exports.newTest = function(req, res){
         moods: moods.moods,
         deselectedMoods: JSON.stringify(prefs.deselectedMoods(req.session)),
         ttsAudioEnabled: prefs.ttsAudioEnabled(req.session),
-        optionalAccentsEnabled: prefs.optionalAccentsEnabled(req.session)
+        optionalAccentsEnabled: prefs.optionalAccentsEnabled(req.session),
+        translatedVerb: translatedVerb,
+        translationLanguage: prefs.translationLanguage(req.session),
+        validTranslationLanguages: prefs.validTranslationLanguages
       });
   });
 };

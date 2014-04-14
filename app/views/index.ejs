@@ -35,7 +35,8 @@
 					deselectedVerbs: <%- deselectedVerbs %>,
 					deselectedMoods: <%- deselectedMoods %>,
 					ttsAudioEnabled: <%= ttsAudioEnabled %>,
-					optionalAccentsEnabled: <%= optionalAccentsEnabled %>
+					optionalAccentsEnabled: <%= optionalAccentsEnabled %>,
+					translationLanguage: <%- JSON.stringify(translationLanguage) %>
 				});
 			};
 		</script>
@@ -89,11 +90,31 @@
 
 				<div class="preferencesTitle">Les accents sont optionels:</div>
 				<p><a href="#" class="optionalAccents"></a></p>
+
+				<div class="preferencesTitle">Traduction</div>
+				<p>
+					<select class="validTranslationLanguagesSelect">
+						<% var translationLanguageSelected %>
+						<% for(var tl=0, numLangs=validTranslationLanguages.length; tl < numLangs; tl += 1) { %>
+							<% if (validTranslationLanguages[tl] === translationLanguage) {
+									translationLanguageSelected = 'selected';
+								} else {
+									translationLanguageSelected = '';
+								}
+							%>
+
+							<option <%= translationLanguageSelected %> value="<%= validTranslationLanguages[tl] %>"><%= validTranslationLanguages[tl] %></option>
+						<% } %>
+					</select>
+				</p>
 			</div>
 
 			<div class="test">
 				<audio src="<%= questionAudio %>" autoplay></audio>
 
+				<div class="translatedVerb">
+					<%- translatedVerb %>
+				</div>
 				<div class="testText">
 					<!-- Conjugate the verb <verb> in the mood <mood>: <%= perspective %> ___________ ... -->
 					Q. <%= questionText %>

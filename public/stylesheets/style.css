@@ -221,5 +221,68 @@ input[type=checkbox].ttsAudioCheckbox:checked + label {
 	background-position: 0 -15px;
 }
 
-.ttsAudioCheckboxLabel { background-image:url(http://csscheckbox.com/checkboxes/lite-green-check.png); }
+.ttsAudioCheckboxLabel { background-image:url(http://csscheckbox.com/checkboxes/lite-green-check.png); } */
+
+.translatedVerb {
+	color: #657d65;
+	float: right;
+	margin-right: 100px;
+	display: none;
+}
+
+/*
+select {
+	border: 1px solid lightblue;
+	border-radius: 3px;
+	color: #00B7FF;
+	width: 100px;
+	height: 18px
+	padding-bottom: 2px;
+	background:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='50px' height='50px'><polyline points='46.139,15.518 25.166,36.49 4.193,15.519'/></svg>");
+}
+
+select:active {
+    border: 1px solid #000;
+}
 */
+
+select {
+	background:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg'  width='50px' height='50px'><polyline fill='#ccc' points='46.139,15.518 25.166,36.49 4.193,15.519'/></svg>");
+	background-color: white;
+	background-repeat:no-repeat;
+	background-position: right 10px top 1px;
+	background-size: 16px 16px;
+	color: #00B7FF;
+	width:100px;
+	padding-left: 8px;
+
+	padding-bottom: 2px;
+	padding-top: 1px;
+	font-family:arial,tahoma;
+	font-size:12px;
+	font-weight:bold;
+	border-radius:3px;
+	-webkit-border-radius:3px;
+	-webkit-appearance: none;
+	border:1px solid #00B7FF;
+	outline:0;
+	-webkit-transition:0.3s ease all;
+		-moz-transition:0.3s ease all;
+		-ms-transition:0.3s ease all;
+			-o-transition:0.3s ease all;
+			transition:0.3s ease all;
+	height: 22px;
+	margin-top: -5px;
+	-moz-appearance: none;
+	text-indent: 0.01px;
+	text-overflow: '';
+}
+
+select:focus, select:active {
+  border:1px solid #00B7FF;
+  outline:0;
+}
+
+select:hover {
+	background-color: #eef;
+}

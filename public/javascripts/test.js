@@ -6,6 +6,7 @@ function Test(options) {
   this.preferences = options.preferences;
   this.ttsAudioEnabled = options.ttsAudioEnabled;
   this.optionalAccepts = options.optionalAccentsEnabled;
+  this.translationLanguage = options.translationLanguage;
 
   // Toggle selected status of deselected verbs in prefs.
   for (i = 0, l = options.deselectedVerbs.length; i < l; i += 1) {
@@ -27,6 +28,9 @@ function Test(options) {
 
   // Store the deselected moods, we need this info for displaying the conjugation table.
   this.deselectedMoods = options.deselectedMoods;
+
+  // Show or hide the translated verb.
+  this.renderTranslatedVerb();
 
   var that = this;
   $(this.form).submit(function (eventData) {
@@ -177,6 +181,26 @@ function Test(options) {
         // If something goes wrong toggle it back.
         that.toggleOptionalAccentsEnabled();
         that.renderOptionalAccentsEnabled();
+      }.bind(this)
+    });
+  });
+
+  $('.validTranslationLanguagesSelect').change(function (eventData) {
+    var oldTranslationLanguage = that.translationLanguage;
+    that.translationLanguage = this.value;
+    that.renderTranslatedVerb();
+
+    $.ajax({
+      type: 'POST',
+      url: '/prefs/setTranslationLanguage',
+      data: JSON.stringify({
+        translationLanguage: that.translationLanguage
+      }),
+      contentType: 'application/json',
+      error: function() {
+        // If something goes wrong toggle it back.
+        that.translationLanguage = oldTranslationLanguage;
+        $('.validTranslationLanguagesSelect').val(oldTranslationLanguage);
       }.bind(this)
     });
   });
@@ -364,5 +388,13 @@ Test.prototype.renderOptionalAccentsEnabled = function() {
   } else {
     $('.optionalAccents', this.preferences).html('non');
     $('.optionalAccents', this.preferences).removeClass('enabled');
+  }
+};
+
+Test.prototype.renderTranslatedVerb = function() {
+  if (this.translationLanguage === 'aucune') {
+    $('.translatedVerb').hide();
+  } else {
+    $('.translatedVerb').fadeIn();
   }
 };
