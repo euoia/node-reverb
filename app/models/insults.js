@@ -2,12 +2,9 @@ var _ = require('underscore');
 
 var insults = [
   'Abruti',
-  'Vas te faire enculer',
-  'Vas te faire foutre',
   'Andouille',
   'Avorton',
   'Bouffon',
-  'Branleur',
   'Cave',
   'Connard',
   'Crétin',
