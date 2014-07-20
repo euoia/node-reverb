@@ -101,7 +101,7 @@ body {
 	border-width: 0;
 	background: transparent;
 	height: 20px;
-	width: 8em;
+	width: 200px;
 }
 
 .testResponseInput:focus {
@@ -333,7 +333,11 @@ select:hover {
 		background-size: 100% 30px;
 
 		width: auto;
-		min-height: 1600px;
+		min-height: 1700px;
+
+		/* iPhone 3is 320px wide (unsupported) */
+		/* iPhone 4 is 640px wide, nexus 4 is 768px */
+		min-width: 620px;
 	}
 
 	.test {
@@ -344,7 +348,7 @@ select:hover {
 		border-width: 0;
 		background: transparent;
 		height: 30px;
-		width: 100px;
+		width: 200px;
 	}
 
 	.preferencesTitle {
@@ -378,4 +382,12 @@ select:hover {
 		margin-top: 26px;
 		color: #00B7FF;
 	}
+
+	/* Since mobile devices don't pop up the keyboard, make the input more
+	 * obvious. */
+	.testResponseInputContainer {
+		border-bottom: 2px dashed #aaa;
+	}
 }
+
+

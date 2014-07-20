@@ -8,7 +8,7 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 		<title><%= title %></title>
         <meta name="description" content="">
-        <meta name="viewport" content="width=device-width">
+        <meta name="viewport" content="width=device-width, user-scalable=0">
 
         <meta name="description" content="Practice French verb conjugation online. Pratiquer vos verbes français en ligne.">
 
@@ -136,7 +136,19 @@
 					<input type="hidden" name="perspective" value="<%= perspective %>" />
 					<input type="hidden" name="gender" value="<%= gender %>" />
 					<div class="testResponse">
-						R. <%= questionLeader %> <input id="response" name="response" class="testResponseInput"  autofocus="autofocus" autocomplete="off" />
+						R. <%= questionLeader %>
+						<span class="testResponseInputContainer">
+							<input
+								id="response"
+								name="response"
+								class="testResponseInput"
+								autofocus="autofocus"
+								autocomplete="off"
+								spellcheck="false"
+								autocorrect="off"
+								autocapitalize="off"
+								/>
+						</span>
 					</div>
 					<div class="answer"></div>
 					<div class="conjugationTableContainer"></div>
