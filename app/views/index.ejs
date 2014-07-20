@@ -8,7 +8,7 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 		<title><%= title %></title>
         <meta name="description" content="">
-        <meta name="viewport" content="width=620, user-scalable=0">
+        <meta name="viewport" content="width=640, user-scalable=0">
 
         <meta name="description" content="Practice French verb conjugation online. Pratiquer vos verbes français en ligne.">
 
@@ -101,7 +101,7 @@
 				<p><a href="#" class="optionalAccents"></a></p>
 
 				<div class="preferencesTitle">Traduction</div>
-				<p>
+				<div class="raise-up-from-line">
 					<select class="validTranslationLanguagesSelect">
 						<% var translationLanguageSelected %>
 						<% for(var tl=0, numLangs=validTranslationLanguages.length; tl < numLangs; tl += 1) { %>
@@ -115,7 +115,7 @@
 							<option <%= translationLanguageSelected %> value="<%= validTranslationLanguages[tl] %>"><%= validTranslationLanguages[tl] %></option>
 						<% } %>
 					</select>
-				</p>
+				</div>
 
 				<div class="preferencesTitle">Contactez-nous!</div>
 				<p>

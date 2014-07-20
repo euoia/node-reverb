@@ -82,7 +82,7 @@ body {
 
 .testTitle {
 	background-color: transparent;
-	font-size: 1.15em;
+	font-size: 16px;
 	text-align: center;
 	margin-top: -20px;
 	margin-bottom: 21px;
@@ -160,11 +160,16 @@ td, th {
 }
 
 .preferences {
+	padding-top: 1px; /* Adjust this the same as .test padding-top */
 	display: none;
 }
 
+.test {
+	padding-top: 1px;
+}
+
 .preferencesTitle {
-	margin-top: 20px;
+	margin-top: 20px; /* set to line-height */
 }
 
 .verb.deselected, .mood.deselected {
@@ -192,15 +197,6 @@ td, th {
 .preferences > p {
 	margin-top: 0;
 	margin-left: 10px;
-}
-
-/* Adjust these so that the text site just above the line */
-.preferences {
-	padding-top: 1px;
-}
-
-.test {
-	padding-top: 1px;
 }
 
 /* Nice flat checkboxes, but not using these.
@@ -329,17 +325,18 @@ select:hover {
 	body {
 		padding-left: 0px;
 		width: auto;
+		font: normal 22px "Lucida Grande", arial, sans-serif;
+		max-height: 1000000px;
 	}
 
 	.paper {
-		font: normal 18px/1.5 "Lucida Grande", arial, sans-serif;
-
-		line-height: 30px;
-		-webkit-background-size: 100% 30px;
-		-moz-background-size: 100% 30px;
-		-ms-background-size: 100% 30px;
-		-o-background-size: 100% 30px;
-		background-size: 100% 30px;
+		font: normal 22px "Lucida Grande", arial, sans-serif;
+		line-height: 35px;
+		-webkit-background-size: 100% 35px;
+		-moz-background-size: 100% 35px;
+		-ms-background-size: 100% 35px;
+		-o-background-size: 100% 35px;
+		background-size: 100% 35px;
 
 		width: auto;
 		min-height: 1700px;
@@ -347,35 +344,38 @@ select:hover {
 		/* iPhone 3is 320px wide (unsupported) */
 		/* iPhone 4 is 640px wide, nexus 4 is 768px */
 		min-width: 620px;
+		padding-right: 10px;
+	}
+
+	/* Adjust according to padding-right on .paper */
+	.testTitleSection {
+		margin-right: -10px;
 	}
 
 	/* Adjust these so that the text just sits above the line */
 	.testTitle {
-		margin-top: -18px;
-		margin-bottom: 19px;
+		font-size: 26px;
+		margin-top: -43px;
+		margin-bottom: 39px; /* adjust this enough to push preferences and test down onto line */
 	}
 
-	.preferences {
-		padding-top: 15px;
+	.preferencesTitle:first-child {
+		margin-top: 0px; /* set to line-height */
 	}
 
-	.test {
-		padding-top: 15px;
+	.preferencesTitle {
+		margin-top: 35px; /* set to line-height */
 	}
 
 	.testResponseInput {
 		border-width: 0;
 		background: transparent;
-		height: 30px;
+		height: 35px;
 		width: 200px;
 	}
 
-	.preferencesTitle {
-		margin-top: 30px;
-	}
-
 	.difficultyTitle {
-		margin-top: 30px;
+		margin-top: 35px;
 	}
 
 	select {
@@ -389,11 +389,11 @@ select:hover {
 	}
 
 	.conjugationTableContainer table {
-		margin-top: 30px;
+		margin-top: 35px;
 	}
 
 	.nextButton {
-		height: 30px;
+		height: 35px;
 		margin-top: 26px;
 		color: #00B7FF;
 	}
@@ -404,6 +404,14 @@ select:hover {
 		border-bottom: 2px dashed #aaa;
 	}
 
+	.raise-up-from-line {
+		margin-top: -10px;
+		padding-bottom: 10px;
+	}
 }
 
 
+/* Hack to disable font boosting, see:
+ * http://stackoverflow.com/questions/13430897/how-to-override-font-boosting-in-mobile-chrome
+ */
+html * {max-height:1000000px;}
