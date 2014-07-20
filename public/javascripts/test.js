@@ -449,8 +449,8 @@ Test.prototype.handleCheckanswer = function(resData) {
   this.playAudio(resData.audio);
   $('.next').show();
 
-  // This leads to a bad experience on mobile.
-  // $('.nextButton').focus();
+  $('#response').blur();
+  $('.nextButton').focus();
 };
 
 Test.prototype.setAudioEnabled = function(value) {
