@@ -194,6 +194,15 @@ td, th {
 	margin-left: 10px;
 }
 
+/* Adjust these so that the text site just above the line */
+.preferences {
+	padding-top: 1px;
+}
+
+.test {
+	padding-top: 1px;
+}
+
 /* Nice flat checkboxes, but not using these.
 input[type=checkbox].ttsAudioCheckbox {
 	position: absolute;
@@ -340,8 +349,18 @@ select:hover {
 		min-width: 620px;
 	}
 
+	/* Adjust these so that the text just sits above the line */
+	.testTitle {
+		margin-top: -18px;
+		margin-bottom: 19px;
+	}
+
+	.preferences {
+		padding-top: 15px;
+	}
+
 	.test {
-		padding-top: 14px;
+		padding-top: 15px;
 	}
 
 	.testResponseInput {
@@ -353,10 +372,6 @@ select:hover {
 
 	.preferencesTitle {
 		margin-top: 30px;
-	}
-
-	.preferences {
-		padding-top: 14px;
 	}
 
 	.difficultyTitle {
@@ -388,6 +403,7 @@ select:hover {
 	.testResponseInputContainer {
 		border-bottom: 2px dashed #aaa;
 	}
+
 }
 
 
