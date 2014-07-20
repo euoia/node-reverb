@@ -486,5 +486,3 @@ Test.prototype.renderTranslatedVerb = function() {
     $('.translatedVerb').fadeIn();
   }
 };
-
-

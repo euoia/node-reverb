@@ -330,7 +330,7 @@ select:hover {
 	}
 
 	.paper {
-		font: normal 22px "Lucida Grande", arial, sans-serif;
+		font: normal 26px "Lucida Grande", arial, sans-serif;
 		line-height: 35px;
 		-webkit-background-size: 100% 35px;
 		-moz-background-size: 100% 35px;
@@ -343,8 +343,14 @@ select:hover {
 
 		/* iPhone 3is 320px wide (unsupported) */
 		/* iPhone 4 is 640px wide, nexus 4 is 768px */
-		min-width: 620px;
+		min-width: 640px;
 		padding-right: 10px;
+	}
+
+	.chooseVerbs {
+		/* If the font size is too big it can be too wide for the page */
+		/* Alternatively we could change the number of columns! */
+		font-size: 22px;
 	}
 
 	/* Adjust according to padding-right on .paper */
@@ -355,8 +361,11 @@ select:hover {
 	/* Adjust these so that the text just sits above the line */
 	.testTitle {
 		font-size: 26px;
-		margin-top: -43px;
-		margin-bottom: 39px; /* adjust this enough to push preferences and test down onto line */
+		margin-top: -41px;
+		margin-bottom: 36px; /* adjust this enough to push preferences and test down onto line */
+		margin-left: 10px;
+		margin-right: 10px;
+		font-weight: 500;
 	}
 
 	.preferencesTitle:first-child {
