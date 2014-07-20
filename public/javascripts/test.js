@@ -448,7 +448,9 @@ Test.prototype.handleCheckanswer = function(resData) {
 
   this.playAudio(resData.audio);
   $('.next').show();
-  $('.nextButton').focusWithoutScrolling();
+
+  // This leads to a bad experience on mobile.
+  // $('.nextButton').focus();
 };
 
 Test.prototype.setAudioEnabled = function(value) {
@@ -485,12 +487,4 @@ Test.prototype.renderTranslatedVerb = function() {
   } else {
     $('.translatedVerb').fadeIn();
   }
-};
-
-// http://stackoverflow.com/questions/4898203/jquery-focus-without-scroll
-$.fn.focusWithoutScrolling = function(){
-  var x = window.scrollX, y = window.scrollY;
-  this.focus();
-  window.scrollTo(x, y);
-  return this; //chainability
 };
