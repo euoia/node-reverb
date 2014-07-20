@@ -312,7 +312,7 @@ function Test(options) {
   ];
 
   this.tableTemplate.indicative_future = [
-    '<th>futur</th>',
+    '<th class="table-indicative_future">futur</th>',
     '<td class="table-indicative_future first_singular"><%= indicative_future.first_singular %></td>',
     '<td class="table-indicative_future second_singular"><%= indicative_future.second_singular %></td>',
     '<td class="table-indicative_future third_singular"><%= indicative_future.third_singular %></td>',
@@ -425,12 +425,20 @@ Test.prototype.handleCheckanswer = function(resData) {
     $('.conjugationTableContainer', this.form).html(
       this.generateConjugationTable(resData.conjugationTable));
 
-
     var perspective = $('input[name=perspective]', this.form).val();
     var mood = $('input[name=mood]', this.form).val();
     var selector = '.table-' + mood + '.' + perspective;
+
     console.log('selector', selector);
     $(selector).addClass('hilightWrongAnswer');
+
+    // Add a class to all the non-wrong moods.
+    for (var m = 0; m < this.moods.length + 1; m += 1) {
+      console.log('this.moods[m]', this.moods[m]);
+      if (this.moods[m] != mood) {
+        $('.table-' + this.moods[m]).addClass('not-wrong-mood');
+      }
+    }
   }
 
   this.playAudio(resData.audio);

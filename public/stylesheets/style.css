@@ -1,7 +1,9 @@
+/*
 incorrect {
   padding: 50px;
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
 }
+*/
 
 a {
   color: #00B7FF;
@@ -11,7 +13,7 @@ body {
 	background-color: #edebaa;
 	margin-left: auto;
 	margin-right: auto;
-	width: 70em;
+	width: 1000px;
 
    background: -webkit-linear-gradient(top, rgb(136,199,201) 58%, rgb(202,232,235) 100%);
    background: -moz-linear-gradient(top, rgb(136,199,201) 58%, rgb(202,232,235) 100%);
@@ -53,8 +55,8 @@ body {
 	-webkit-box-shadow: 0.770 1px 2px rgba(0,0,0,0.07);
 	-moz-box-shadow: 0 1px 2px rgba(0,0,0,0.07);
 	box-shadow: 0 1px 2px rgba(0,0,0,0.07);
-	width: 816px;
-	height: 1056px;
+	width: 850px;
+	min-height: 1056px;
 }
 
 .paper::after {
@@ -124,8 +126,7 @@ td, th {
 
 .nextButton {
 	background: transparent;
-	color: green;
-	font-family: monospace;
+	color: #00B7FF;
 	border: 0px solid white;
 	height: 20px;
 	padding: 0;
@@ -285,4 +286,96 @@ select:focus, select:active {
 
 select:hover {
 	background-color: #eef;
+}
+
+@media (max-width: 1000px) {
+	body {
+		padding-left: 10px;
+	}
+
+	.paper {
+		margin-left: 20px;
+	}
+}
+
+@media (max-width: 920px) {
+	body {
+		padding-left: 10px;
+		padding-right: 0px;
+		padding-top: 0px;
+		padding-bottom: 0px;
+	}
+
+	.paper {
+		margin-left: 0;
+		padding: 8px 0px 3px 80px;
+	}
+
+	.test {
+		padding-left: 10px;
+	}
+}
+
+@media (max-width: 870px) {
+	body {
+		padding-left: 0px;
+		width: auto;
+	}
+
+	.paper {
+		font: normal 18px/1.5 "Lucida Grande", arial, sans-serif;
+
+		line-height: 30px;
+		-webkit-background-size: 100% 30px;
+		-moz-background-size: 100% 30px;
+		-ms-background-size: 100% 30px;
+		-o-background-size: 100% 30px;
+		background-size: 100% 30px;
+
+		width: auto;
+		min-height: 1600px;
+	}
+
+	.test {
+		padding-top: 14px;
+	}
+
+	.testResponseInput {
+		border-width: 0;
+		background: transparent;
+		height: 30px;
+		width: 100px;
+	}
+
+	.preferencesTitle {
+		margin-top: 30px;
+	}
+
+	.preferences {
+		padding-top: 14px;
+	}
+
+	.difficultyTitle {
+		margin-top: 30px;
+	}
+
+	select {
+		line-height: 20px;
+		background-position: right 4px top 1px;
+		font-size:16px;
+	}
+
+	.not-wrong-mood {
+		display: none;
+	}
+
+	.conjugationTableContainer table {
+		margin-top: 30px;
+	}
+
+	.nextButton {
+		height: 30px;
+		margin-top: 26px;
+		color: #00B7FF;
+	}
 }
