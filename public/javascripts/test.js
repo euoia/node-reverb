@@ -180,6 +180,7 @@ function Test(options) {
         $(this).toggleClass('deselected');
       }.bind(this)
     });
+    return false;
   });
 
   $('.mood', this.preferences).click(function (eventData) {
@@ -208,6 +209,7 @@ function Test(options) {
 
     // Show or hide the mood from the conjguation table.
     $('.table-' + this.dataset.mood).toggle();
+    return false;
   });
 
   $('.optionalAccents').click(function (eventData) {
@@ -227,6 +229,7 @@ function Test(options) {
         that.renderOptionalAccentsEnabled();
       }.bind(this)
     });
+    return false;
   });
 
   $('.deselect-level').click(function (eventData) {
@@ -242,6 +245,7 @@ function Test(options) {
       });
 
     deselectVerbs(_.toArray(verbs));
+    return false;
   });
 
   $('.select-level').click(function (eventData) {
@@ -258,6 +262,7 @@ function Test(options) {
 
     console.log('verbs', _.toArray(verbs));
     selectVerbs(_.toArray(verbs));
+    return false;
   });
 
   $('.validTranslationLanguagesSelect').change(function (eventData) {
