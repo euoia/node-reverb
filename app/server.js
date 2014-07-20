@@ -36,8 +36,8 @@ if ('development' == app.get('env')) {
 app.get('/', test.newTest);
 app.post('/test/check', test.check);
 
-app.post('/prefs/deselectVerb', prefs.deselectVerb);
-app.post('/prefs/selectVerb', prefs.selectVerb);
+app.post('/prefs/deselectVerbs', prefs.deselectVerbs);
+app.post('/prefs/selectVerbs', prefs.selectVerbs);
 app.post('/prefs/deselectMood', prefs.deselectMood);
 app.post('/prefs/selectMood', prefs.selectMood);
 app.post('/prefs/setAudioEnabled', prefs.setAudioEnabled);

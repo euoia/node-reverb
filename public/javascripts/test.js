@@ -102,12 +102,12 @@ function Test(options) {
     this.setAudioEnabled(this.ttsAudioEnabled);
 
     $.ajax({
-      type: 'POST',
       url: '/prefs/setAudioEnabled',
+      type: 'POST',
+      contentType: 'application/json',
       data: JSON.stringify({
         enabled: this.ttsAudioEnabled
       }),
-      contentType: 'application/json',
       error: function() {
         this.ttsAudioEnabled = !this.ttsAudioEnabled;
         this.setAudioEnabled(this.ttsAudioEnabled);
@@ -115,23 +115,67 @@ function Test(options) {
     });
   }.bind(this));
 
+  function selectVerbs (verbs) {
+    _.each(verbs, function(verb) {
+      $('.' + verb).removeClass('deselected');
+    });
+
+    $.ajax({
+      url: '/prefs/selectVerbs',
+      type: 'POST',
+      contentType: 'application/json',
+      data: JSON.stringify({
+        verbs: verbs
+      }),
+      error: function() {
+        _.each(verbs, function(verb) {
+          // If something goes wrong toggle them.
+          $('.' + verb).addClass('deselected');
+        });
+      }.bind(this)
+    });
+  }
+
+  function deselectVerbs (verbs) {
+    _.each(verbs, function(verb) {
+      $('.' + verb).addClass('deselected');
+    });
+
+    $.ajax({
+      url: '/prefs/deselectVerbs',
+      type: 'POST',
+      contentType: 'application/json',
+      data: JSON.stringify({
+        verbs: verbs
+      }),
+      error: function() {
+        _.each(verbs, function(verb) {
+          // If something goes wrong toggle them.
+          $('.' + verb).removeClass('deselected');
+        });
+      }.bind(this)
+    });
+  }
+
   $('.verb', this.preferences).click(function (eventData) {
     var action;
     if($(this).hasClass('deselected')) {
-      action = '/prefs/selectVerb';
+      action = '/prefs/selectVerbs';
     } else {
-      action = '/prefs/deselectVerb';
+      action = '/prefs/deselectVerbs';
     }
 
     $(this).toggleClass('deselected');
 
     $.ajax({
-      type: 'POST',
       url: action,
-      data: {
-        verb: this.dataset.verb
-      },
+      type: 'POST',
+      contentType: 'application/json',
+      data: JSON.stringify({
+        verbs: [this.dataset.verb]
+      }),
       error: function() {
+        console.log('An error occurred');
         // If something goes wrong toggle it back.
         $(this).toggleClass('deselected');
       }.bind(this)
@@ -183,6 +227,37 @@ function Test(options) {
         that.renderOptionalAccentsEnabled();
       }.bind(this)
     });
+  });
+
+  $('.deselect-level').click(function (eventData) {
+    var level = this.dataset.level;
+
+    verbs = $('.verb').filter(function () {
+      return (
+        this.dataset.level === level &&
+        $(this).hasClass('deselected') === false);
+      })
+      .map(function (idx, verb) {
+        return verb.dataset.verb;
+      });
+
+    deselectVerbs(_.toArray(verbs));
+  });
+
+  $('.select-level').click(function (eventData) {
+    var level = this.dataset.level;
+
+    verbs = $('.verb').filter(function () {
+      return (
+        this.dataset.level === level &&
+        $(this).hasClass('deselected') === true);
+      })
+      .map(function (idx, verb) {
+        return verb.dataset.verb;
+      });
+
+    console.log('verbs', _.toArray(verbs));
+    selectVerbs(_.toArray(verbs));
   });
 
   $('.validTranslationLanguagesSelect').change(function (eventData) {
@@ -398,3 +473,5 @@ Test.prototype.renderTranslatedVerb = function() {
     $('.translatedVerb').fadeIn();
   }
 };
+
+

@@ -1,30 +1,43 @@
 var _ = require('underscore'),
   verbs = require('./verbs.js'),
-  moods = require('./moods.js');
+  moods = require('./moods.js'),
+  VError = require('verror');
+
+var defaultVerbIfNoneSelected = 'aller';
 
 // Rather than store the selected verbs, we'll store the deselected one.
-exports.deselectVerb = function (session, verb) {
+exports.deselectVerbs = function (session, chosenVerbs, cb) {
   if (session.deselectedVerbs === undefined) {
     session.deselectedVerbs = [];
   }
 
-  // Do not allow all verbs to be deselected.
-  if (session.deselectedVerbs.length === verbs.all_verbs.length - 1) {
-    return false;
-  }
+  session.deselectedVerbs = session.deselectedVerbs.concat(chosenVerbs);
+  session.save(function (err) {
+    if (err) {
+      return cb(new VError(err, 'Something went wrong saving the session.'));
+    }
+    cb(null);
+  });
 
-  session.deselectedVerbs.push(verb);
-  session.save();
-  return true;
 };
 
-exports.selectVerb = function (session, verb) {
-  if (_.contains(session.deselectedVerbs, verb)) {
-    session.deselectedVerbs = _.without(
-      session.deselectedVerbs, verb);
+exports.selectVerbs = function (session, chosenVerbs, cb) {
+  if (session.deselectedVerbs === undefined) {
+    session.deselectedVerbs = [];
   }
 
-  session.save();
+  session.deselectedVerbs = _.difference(
+    session.deselectedVerbs,
+    chosenVerbs);
+
+  console.log('session.deselectedVerbs', session.deselectedVerbs);
+
+  session.save(function (err) {
+    if (err) {
+      return cb(new VError(err, 'Something went wrong saving the session.'));
+    }
+    cb(null);
+  });
 };
 
 var deselectedVerbs = exports.deselectedVerbs = function (session) {
@@ -36,7 +49,12 @@ var deselectedVerbs = exports.deselectedVerbs = function (session) {
 };
 
 exports.selectedVerbs = function (session) {
-  return _.difference(verbs.all_verbs, deselectedVerbs(session));
+  var selectedVerbs = _.difference(verbs.all_verbs, deselectedVerbs(session));
+  if (selectedVerbs.length === 0) {
+    return [defaultVerbIfNoneSelected];
+  }
+
+  return selectedVerbs;
 };
 
 // Rather than store the selected verbs, we'll store the deselected one.

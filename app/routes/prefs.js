@@ -1,20 +1,28 @@
 var _ = require('underscore'),
   prefs = require('../models/prefs.js');
 
-// Rather than store the selected verbs, we'll store the deselected one.
-exports.deselectVerb = function (req, res) {
-  if (prefs.deselectVerb(req.session, req.body.verb) === false) {
-    return res.status(403).end();
-  }
+exports.deselectVerbs = function(req, res) {
+  prefs.deselectVerbs(req.session, req.body.verbs, function (err) {
+    if (err !== null) {
+      console.log('Error deselecting verbs:', err.message);
+      return res.status(403).end();
+    }
 
-  console.log('Deselected %s', req.body.verb);
-  res.end();
+    console.log('Deselected %s', req.body.verbs);
+    res.end();
+  });
 };
 
-exports.selectVerb = function (req, res) {
-  prefs.selectVerb(req.session, req.body.verb);
-  console.log('Selected %s', req.body.verb);
-  res.end();
+exports.selectVerbs = function (req, res) {
+  prefs.selectVerbs(req.session, req.body.verbs, function (err) {
+    if (err !== null) {
+      console.log('Error selecting verbs:', err.message);
+      return res.status(403).end();
+    }
+
+    console.log('Selected %s', req.body.verbs);
+    res.end();
+  });
 };
 
 exports.deselectMood = function (req, res) {
