@@ -109,15 +109,21 @@ body {
 }
 
 .conjugationTableContainer {
-	font-family: monospace;
 	display: table;
+}
+
+.conjugatedVerb {
+	/* If using a monospace font reduce the font size a bit */
+	font-family: "Lucida Console", "Monaco", monospace;
+	font-size: 12px;
 }
 
 td, th {
 	padding-left: 10px;
 	padding-right: 10px;
 	text-align: left;
-	vertical-align: bottom;
+	font-weight: normal;
+	letter-spacing: 1px;
 }
 
 .next {
@@ -136,7 +142,6 @@ td, th {
 
 .perspective {
 	text-align: right;
-	font-weight: 600;
 }
 
 
@@ -191,7 +196,8 @@ td, th {
 
 .hilightWrongAnswer {
 	color: red;
-	text-decoration: underline;
+	font-weight: 700;
+	border-bottom: 1px solid red;
 }
 
 .preferences > p {
@@ -264,7 +270,6 @@ select {
 
 	padding-bottom: 2px;
 	padding-top: 1px;
-	font-family:arial,tahoma;
 	font-size:12px;
 	font-weight:bold;
 	border-radius:3px;
@@ -325,12 +330,10 @@ select:hover {
 	body {
 		padding-left: 0px;
 		width: auto;
-		font: normal 22px "Lucida Grande", arial, sans-serif;
-		max-height: 1000000px;
 	}
 
 	.paper {
-		font: normal 26px "Lucida Grande", arial, sans-serif;
+		font: normal 26px georgia, serif;
 		line-height: 35px;
 		-webkit-background-size: 100% 35px;
 		-moz-background-size: 100% 35px;
@@ -353,6 +356,11 @@ select:hover {
 		font-size: 22px;
 	}
 
+	/* Do not use monospace on mobile since they don't need to line up. */
+	.conjugatedVerb {
+		font: normal 26px georgia, serif;
+	}
+
 	/* Adjust according to padding-right on .paper */
 	.testTitleSection {
 		margin-right: -10px;
@@ -360,9 +368,9 @@ select:hover {
 
 	/* Adjust these so that the text just sits above the line */
 	.testTitle {
-		font-size: 26px;
-		margin-top: -41px;
-		margin-bottom: 36px; /* adjust this enough to push preferences and test down onto line */
+		font-size: 32px;
+		margin-top: -43px;
+		margin-bottom: 38px; /* adjust this enough to push preferences and test down onto line */
 		margin-left: 10px;
 		margin-right: 10px;
 		font-weight: 500;

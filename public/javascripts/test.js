@@ -297,64 +297,64 @@ function Test(options) {
   this.tableTemplate = {};
 
   this.tableTemplate.indicative_imperfect = [
-    '<th class="table-indicative_imperfect">l\'imparfait</th>',
-    '<td class="table-indicative_imperfect first_singular"><%= indicative_imperfect.first_singular %></td>',
-    '<td class="table-indicative_imperfect second_singular"><%= indicative_imperfect.second_singular %></td>',
-    '<td class="table-indicative_imperfect third_singular"><%= indicative_imperfect.third_singular %></td>',
-    '<td class="table-indicative_imperfect first_plural"><%= indicative_imperfect.first_plural %></td>',
-    '<td class="table-indicative_imperfect second_plural"><%= indicative_imperfect.second_plural %></td>',
-    '<td class="table-indicative_imperfect third_plural"><%= indicative_imperfect.third_plural %></td>'
+    '<td class="table-indicative_imperfect">L\'imparfait</td>',
+    '<td class="conjugatedVerb table-indicative_imperfect first_singular"><%= indicative_imperfect.first_singular %></td>',
+    '<td class="conjugatedVerb table-indicative_imperfect second_singular"><%= indicative_imperfect.second_singular %></td>',
+    '<td class="conjugatedVerb table-indicative_imperfect third_singular"><%= indicative_imperfect.third_singular %></td>',
+    '<td class="conjugatedVerb table-indicative_imperfect first_plural"><%= indicative_imperfect.first_plural %></td>',
+    '<td class="conjugatedVerb table-indicative_imperfect second_plural"><%= indicative_imperfect.second_plural %></td>',
+    '<td class="conjugatedVerb table-indicative_imperfect third_plural"><%= indicative_imperfect.third_plural %></td>'
   ];
 
   this.tableTemplate.indicative_present = [
-    '<th class="table-indicative_present">présent</th>',
-    '<td class="table-indicative_present first_singular"><%= indicative_present.first_singular %></td>',
-    '<td class="table-indicative_present second_singular"><%= indicative_present.second_singular %></td>',
-    '<td class="table-indicative_present third_singular"><%= indicative_present.third_singular %></td>',
-    '<td class="table-indicative_present first_plural"><%= indicative_present.first_plural %></td>',
-    '<td class="table-indicative_present second_plural"><%= indicative_present.second_plural %></td>',
-    '<td class="table-indicative_present third_plural"><%= indicative_present.third_plural %></td>'
+    '<td class="table-indicative_present">Présent</td>',
+    '<td class="conjugatedVerb table-indicative_present first_singular"><%= indicative_present.first_singular %></td>',
+    '<td class="conjugatedVerb table-indicative_present second_singular"><%= indicative_present.second_singular %></td>',
+    '<td class="conjugatedVerb table-indicative_present third_singular"><%= indicative_present.third_singular %></td>',
+    '<td class="conjugatedVerb table-indicative_present first_plural"><%= indicative_present.first_plural %></td>',
+    '<td class="conjugatedVerb table-indicative_present second_plural"><%= indicative_present.second_plural %></td>',
+    '<td class="conjugatedVerb table-indicative_present third_plural"><%= indicative_present.third_plural %></td>'
   ];
 
   this.tableTemplate.indicative_future = [
-    '<th class="table-indicative_future">futur</th>',
-    '<td class="table-indicative_future first_singular"><%= indicative_future.first_singular %></td>',
-    '<td class="table-indicative_future second_singular"><%= indicative_future.second_singular %></td>',
-    '<td class="table-indicative_future third_singular"><%= indicative_future.third_singular %></td>',
-    '<td class="table-indicative_future first_plural"><%= indicative_future.first_plural %></td>',
-    '<td class="table-indicative_future second_plural"><%= indicative_future.second_plural %></td>',
-    '<td class="table-indicative_future third_plural"><%= indicative_future.third_plural %></td>'
+    '<td class="table-indicative_future">Futur</td>',
+    '<td class="conjugatedVerb table-indicative_future first_singular"><%= indicative_future.first_singular %></td>',
+    '<td class="conjugatedVerb table-indicative_future second_singular"><%= indicative_future.second_singular %></td>',
+    '<td class="conjugatedVerb table-indicative_future third_singular"><%= indicative_future.third_singular %></td>',
+    '<td class="conjugatedVerb table-indicative_future first_plural"><%= indicative_future.first_plural %></td>',
+    '<td class="conjugatedVerb table-indicative_future second_plural"><%= indicative_future.second_plural %></td>',
+    '<td class="conjugatedVerb table-indicative_future third_plural"><%= indicative_future.third_plural %></td>'
   ];
 
   this.tableTemplate.conditional_present = [
-    '<th class="table-conditional_present">conditionnel</th>',
-    '<td class="table-conditional_present first_singular"><%= conditional_present.first_singular %></td>',
-    '<td class="table-conditional_present second_singular"><%= conditional_present.second_singular %></td>',
-    '<td class="table-conditional_present third_singular"><%= conditional_present.third_singular %></td>',
-    '<td class="table-conditional_present first_plural"><%= conditional_present.first_plural %></td>',
-    '<td class="table-conditional_present second_plural"><%= conditional_present.second_plural %></td>',
-    '<td class="table-conditional_present third_plural"><%= conditional_present.third_plural %></td>'
+    '<td class="table-conditional_present">Conditionnel</td>',
+    '<td class="conjugatedVerb table-conditional_present first_singular"><%= conditional_present.first_singular %></td>',
+    '<td class="conjugatedVerb table-conditional_present second_singular"><%= conditional_present.second_singular %></td>',
+    '<td class="conjugatedVerb table-conditional_present third_singular"><%= conditional_present.third_singular %></td>',
+    '<td class="conjugatedVerb table-conditional_present first_plural"><%= conditional_present.first_plural %></td>',
+    '<td class="conjugatedVerb table-conditional_present second_plural"><%= conditional_present.second_plural %></td>',
+    '<td class="conjugatedVerb table-conditional_present third_plural"><%= conditional_present.third_plural %></td>'
   ];
 
   this.tableTemplate.subjunctive_present = [
-    '<th class="table-subjunctive_present">subjonctif présent</th>',
-    '<td class="table-subjunctive_present first_singular"><%= subjunctive_present.first_singular %></td>',
-    '<td class="table-subjunctive_present second_singular"><%= subjunctive_present.second_singular %></td>',
-    '<td class="table-subjunctive_present third_singular"><%= subjunctive_present.third_singular %></td>',
-    '<td class="table-subjunctive_present first_plural"><%= subjunctive_present.first_plural %></td>',
-    '<td class="table-subjunctive_present second_plural"><%= subjunctive_present.second_plural %></td>',
-    '<td class="table-subjunctive_present third_plural"><%= subjunctive_present.third_plural %></td>'
+    '<td class="table-subjunctive_present">Subjonctif présent</td>',
+    '<td class="conjugatedVerb table-subjunctive_present first_singular"><%= subjunctive_present.first_singular %></td>',
+    '<td class="conjugatedVerb table-subjunctive_present second_singular"><%= subjunctive_present.second_singular %></td>',
+    '<td class="conjugatedVerb table-subjunctive_present third_singular"><%= subjunctive_present.third_singular %></td>',
+    '<td class="conjugatedVerb table-subjunctive_present first_plural"><%= subjunctive_present.first_plural %></td>',
+    '<td class="conjugatedVerb table-subjunctive_present second_plural"><%= subjunctive_present.second_plural %></td>',
+    '<td class="conjugatedVerb table-subjunctive_present third_plural"><%= subjunctive_present.third_plural %></td>'
   ];
 
 
   this.tableTemplate.participle_past_participle = [
-    '<th class="table-participle_past_participle">passé composé</th>',
-    '<td class="table-participle_past_participle first_singular"><%= participle_past_participle.first_singular %></td>',
-    '<td class="table-participle_past_participle second_singular"><%= participle_past_participle.second_singular %></td>',
-    '<td class="table-participle_past_participle third_singular"><%= participle_past_participle.third_singular %></td>',
-    '<td class="table-participle_past_participle first_plural"><%= participle_past_participle.first_plural %></td>',
-    '<td class="table-participle_past_participle second_plural"><%= participle_past_participle.second_plural %></td>',
-    '<td class="table-participle_past_participle third_plural"><%= participle_past_participle.third_plural %></td>'
+    '<td class="table-participle_past_participle">Passé composé</td>',
+    '<td class="conjugatedVerb table-participle_past_participle first_singular"><%= participle_past_participle.first_singular %></td>',
+    '<td class="conjugatedVerb table-participle_past_participle second_singular"><%= participle_past_participle.second_singular %></td>',
+    '<td class="conjugatedVerb table-participle_past_participle third_singular"><%= participle_past_participle.third_singular %></td>',
+    '<td class="conjugatedVerb table-participle_past_participle first_plural"><%= participle_past_participle.first_plural %></td>',
+    '<td class="conjugatedVerb table-participle_past_participle second_plural"><%= participle_past_participle.second_plural %></td>',
+    '<td class="conjugatedVerb table-participle_past_participle third_plural"><%= participle_past_participle.third_plural %></td>'
   ];
 }
 
@@ -362,12 +362,12 @@ Test.prototype.generateConjugationTable = function(conjugationTable) {
   var table = '<table class="conjugationTable">';
 
   var perspectives = [
-    'je',
-    'tu',
-    'il',
-    'nous',
-    'vous',
-    'ils'
+    'Je',
+    'Tu',
+    'Il',
+    'Nous',
+    'Vous',
+    'Ils'
   ];
 
   var perspective, mood, moodVerbTemplate;
