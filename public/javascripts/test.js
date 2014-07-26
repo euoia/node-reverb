@@ -450,7 +450,7 @@ Test.prototype.handleCheckanswer = function(resData) {
   $('.next').show();
 
   $('#response').blur();
-  $('.nextButton').focus();
+  $('.nextButton').focusWithoutScrolling();
 };
 
 Test.prototype.setAudioEnabled = function(value) {

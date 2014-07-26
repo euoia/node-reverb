@@ -32,6 +32,14 @@
 		<!-- startup -->
 		<script type="text/javascript" charset="utf-8">
 			window.onload = function() {
+				// http://stackoverflow.com/questions/4898203/jquery-focus-without-scroll
+				$.fn.focusWithoutScrolling = function(){
+					var x = window.scrollX, y = window.scrollY;
+					this.focus();
+					window.scrollTo(x, y);
+					return this; //chainability
+				};
+
 				test = new Test({
 					form: document.getElementById('testForm'),
 					controls: document.getElementById('controls'),
