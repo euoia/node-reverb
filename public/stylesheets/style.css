@@ -6,7 +6,7 @@ incorrect {
 */
 
 a {
-  color: #00B7FF;
+  color: #428bca;
 }
 
 body {
@@ -132,7 +132,7 @@ td, th {
 
 .nextButton {
 	background: transparent;
-	color: #00B7FF;
+	color: #428bca;
 	border: 0px solid white;
 	height: 20px;
 	padding: 0;
