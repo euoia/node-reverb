@@ -370,7 +370,7 @@ select:hover {
 	.testTitle {
 		font-size: 32px;
 		margin-top: -43px;
-		margin-bottom: 38px; /* adjust this enough to push preferences and test down onto line */
+		margin-bottom: 37px; /* adjust this enough to push preferences and test down onto line */
 		margin-left: 10px;
 		margin-right: 10px;
 		font-weight: 500;
@@ -387,8 +387,13 @@ select:hover {
 	.testResponseInput {
 		border-width: 0;
 		background: transparent;
-		height: 35px;
+		margin-left: 0px;
+		margin-right: 0px;
+		margin-bottom: 0px;
+		margin-top: -1px;
+		padding: 0px;
 		width: 200px;
+		height: 35px;
 	}
 
 	.difficultyTitle {
@@ -407,6 +412,13 @@ select:hover {
 
 	.conjugationTableContainer table {
 		margin-top: 35px;
+		margin-bottom: 0px;
+	}
+
+	.conjugationTableContainer td {
+		 /* Any larger and Android mobile makes the table cells 36px high. Note
+		  * that this is not reproduceable in the emulator. */
+		font-size: 24px;
 	}
 
 	.nextButton {
