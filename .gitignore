@@ -2,3 +2,6 @@ public/tts_cache
 npm-debug.log
 public/npm-debug.log
 node_modules
+logs
+run-practicefrenchverbs.com
+practicefrenchverbs.log
