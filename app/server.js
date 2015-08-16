@@ -10,27 +10,34 @@ var test = require('./routes/test.js');
 var prefs = require('./routes/prefs.js');
 var session = require('express-session');
 var RedisStore = require('connect-redis')(session);
+var favicon = require('serve-favicon');
+var morgan = require('morgan');
+var bodyParser = require('body-parser');
+var cookieParser = require('cookie-parser');
 
 var app = express();
 
-// all environments
+// Use coloured short logging format in development.
+if ('development' == app.get('env')) {
+	app.use(morgan('dev'));
+} else {
+	app.use(morgan('combined'));
+}
+
 app.set('port', process.env.PORT || 3000);
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
-app.use(express.favicon(path.join(__dirname, '../public', 'images', 'favicon.ico')));
-app.use(express.logger('dev'));
-app.use(express.json());
-app.use(express.urlencoded());
-app.use(express.methodOverride());
-app.use(express.cookieParser());
-app.use(session({ store: new RedisStore(), secret: 'keyboard cat' }));
-app.use(app.router);
+app.use(favicon(path.join(__dirname, '../public', 'images', 'favicon.ico')));
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({extended: false}));
+app.use(cookieParser());
+app.use(session({
+	store: new RedisStore(),
+	secret: 'keyboard cat',
+	resave: false,
+	saveUninitialized: false
+}));
 app.use(express.static(path.join(__dirname, '../public')));
-
-// development only
-if ('development' == app.get('env')) {
-  app.use(express.errorHandler());
-}
 
 // Set up routes.
 app.get('/', test.newTest);
@@ -44,6 +51,11 @@ app.post('/prefs/setAudioEnabled', prefs.setAudioEnabled);
 app.post('/prefs/setOptionalAccents', prefs.setOptionalAccents);
 app.post('/prefs/setTranslationLanguage', prefs.setTranslationLanguage);
 
-http.createServer(app).listen(app.get('port'), function(){
-  console.log('Express server listening on port ' + app.get('port'));
+// Development: show errors to the user.
+if ('development' == app.get('env')) {
+  app.use(express.errorHandler());
+}
+
+app.listen(app.get('port'), function () {
+	console.log('Express server listening on port ' + app.get('port'));
 });
