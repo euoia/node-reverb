@@ -1,8 +1,3 @@
-
-/**
- * Module dependencies.
- */
-
 var express = require('express');
 var http = require('http');
 var path = require('path');
@@ -14,6 +9,7 @@ var favicon = require('serve-favicon');
 var morgan = require('morgan');
 var bodyParser = require('body-parser');
 var cookieParser = require('cookie-parser');
+var errorhandler = require('errorhandler');
 
 var app = express();
 
@@ -53,7 +49,7 @@ app.post('/prefs/setTranslationLanguage', prefs.setTranslationLanguage);
 
 // Development: show errors to the user.
 if ('development' == app.get('env')) {
-  app.use(express.errorHandler());
+  app.use(errorhandler());
 }
 
 app.listen(app.get('port'), function () {
