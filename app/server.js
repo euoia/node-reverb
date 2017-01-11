@@ -28,10 +28,10 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: false}));
 app.use(cookieParser());
 app.use(session({
-	store: new RedisStore(),
-	secret: 'keyboard cat',
-	resave: false,
-	saveUninitialized: false
+  store: new RedisStore(),
+  secret: 'keyboard cat',
+  resave: false,
+  saveUninitialized: false
 }));
 app.use(express.static(path.join(__dirname, '../public')));
 
@@ -49,9 +49,9 @@ app.post('/prefs/setTranslationLanguage', prefs.setTranslationLanguage);
 
 // Development: show errors to the user.
 if ('development' == app.get('env')) {
-	app.use(errorhandler());
+  app.use(errorhandler());
 }
 
 app.listen(app.get('port'), function () {
-	console.log('Express server listening on port ' + app.get('port'));
+  console.log('Express server listening on port ' + app.get('port'));
 });
