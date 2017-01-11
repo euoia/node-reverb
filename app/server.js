@@ -15,9 +15,9 @@ var app = express();
 
 // Use coloured short logging format in development.
 if ('development' == app.get('env')) {
-	app.use(morgan('dev'));
+  app.use(morgan('dev'));
 } else {
-	app.use(morgan('combined'));
+  app.use(morgan('combined'));
 }
 
 app.set('port', process.env.PORT || 3000);
