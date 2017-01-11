@@ -1,6 +1,6 @@
 Practice French verb conjugation in the web browser.
 
-Live demo: http://practicefrenchverbs.com
+Live demo: http://www.learnfrenchverbs.com
 
 To use a google apps API key set the API_KEY environment variable.
 
