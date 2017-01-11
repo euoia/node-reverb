@@ -8,7 +8,6 @@ var RedisStore = require('connect-redis')(session);
 var favicon = require('serve-favicon');
 var morgan = require('morgan');
 var bodyParser = require('body-parser');
-var cookieParser = require('cookie-parser');
 var errorhandler = require('errorhandler');
 
 var app = express();
@@ -26,10 +25,9 @@ app.set('view engine', 'ejs');
 app.use(favicon(path.join(__dirname, '../public', 'images', 'favicon.ico')));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: false}));
-app.use(cookieParser());
 app.use(session({
   store: new RedisStore(),
-  secret: 'keyboard cat',
+  secret: 'magical kidney',
   resave: false,
   saveUninitialized: false
 }));
