@@ -18,7 +18,6 @@
     "morgan": "^1.6.1",
     "request": "~2.60",
     "serve-favicon": "^2.3.0",
-    "supervisor": "0.7.1",
     "underscore": "~1.8",
     "verror": "~1.6",
     "xml2js": "~0.4.10"
