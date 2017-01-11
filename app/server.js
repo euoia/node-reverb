@@ -49,7 +49,7 @@ app.post('/prefs/setTranslationLanguage', prefs.setTranslationLanguage);
 
 // Development: show errors to the user.
 if ('development' == app.get('env')) {
-  app.use(errorhandler());
+	app.use(errorhandler());
 }
 
 app.listen(app.get('port'), function () {
